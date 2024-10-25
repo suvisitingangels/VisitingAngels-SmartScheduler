@@ -1,0 +1,28 @@
+/* src/components/Navbar.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: black;
+    color: #fff;
+  }
+  
+  .navbar-logo h1 {
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  
+  .navbar-links a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .navbar-links a:hover {
+    color: #ddd;
+  }
+  
