@@ -1,0 +1,42 @@
+/* src/components/FilterCriteria.css */
+
+.filter-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .filter-option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .filter-option input[type="checkbox"] {
+    transform: scale(1.5); /* Adjust scale as needed */
+    margin-right: 8px;
+  }
+  .location-filter-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .location-filter-option{
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .location-filter-option input[type="checkbox"] {
+    transform: scale(1.5); /* Adjust scale as needed */
+    margin-right: 8px;
+  }
+  
+  .divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 15px 0;
+  }
+
+  h2{
+    margin-bottom: 15px;
+  }

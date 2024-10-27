@@ -1,0 +1,72 @@
+/* src/components/DateCarousel.css */
+
+.date-carousel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
+  .date-carousel button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .date-carousel button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .date-list-wrapper {
+    overflow: hidden;
+    width: 1400px;
+  }
+  
+  .date-list {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .date-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space between day and date */
+    align-items: center;
+    min-height: 60px; /* Adjusted min-height */
+    padding: 10px;
+    background-color: lightblue;
+    cursor: pointer;
+    text-align: center;
+    min-width: 200px;
+    font-size: 0.9em;
+    border: 1px solid white;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+  }
+  
+  .date-item:hover {
+    background-color: #ddd;
+  }
+  
+  /* Styling for day and date parts */
+  .day {
+    font-weight: bold;
+  }
+  
+  .actual-date {
+    align-self: flex-end; /* Position the date at the bottom */
+    width: 100%;
+  }
+
+  /* Highlight the selected date */
+.date-item.selected {
+    background-color: gray; /* Change to your preferred color */
+    color: white;
+  }
+  

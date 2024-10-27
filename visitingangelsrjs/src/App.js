@@ -10,11 +10,11 @@ This setup provides a structured and user-friendly navigation flow across the ap
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import FindCaregiver from './pages/FindCaregiver';
-import LoadData from './pages/LoadData';
-import NotFound from './pages/NotFound';
+import Navbar from './components/common/Navbar';
+import Home from './pages/Home/Home';
+import FindCaregiver from './pages/FindCaregiver/FindCaregiver';
+import LoadData from './pages/LoadData/LoadData';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
