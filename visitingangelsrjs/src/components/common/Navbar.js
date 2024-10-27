@@ -12,6 +12,7 @@ function Navbar() {
         <Link to="/" className="navbar-link">Home</Link>
         <Link to="/find-caregiver" className="navbar-link">Find Caregiver</Link>
         <Link to="/loaddata" className="navbar-link">Load</Link>
+        <Link to="/addavailability" className="navbar-link">Availability</Link>
       </div>
     </nav>
   );

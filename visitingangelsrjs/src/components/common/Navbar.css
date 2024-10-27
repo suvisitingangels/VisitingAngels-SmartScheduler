@@ -15,11 +15,13 @@
   }
   
   .navbar-links a {
-    margin-left: 1.5rem;
+    padding: 1rem 1.5rem; /* Padding inside the border */
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
     transition: color 0.3s;
+    border-left: 1px solid lightblue;
+    border-right: 1px solid lightblue;
   }
   
   .navbar-links a:hover {
