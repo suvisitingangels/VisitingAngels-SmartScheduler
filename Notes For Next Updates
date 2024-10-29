@@ -1,3 +1,10 @@
 1. Modify webapp to be dynamic
 2. Availability Tool
 3. Make the filter side-bar sticky
+4. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
+5. What the caregivers can do
+    - Request PTO
+    - Request Change in Schedule/Availability
+    - See their current schedules and availability
+    - See their 'classes'
+    - Update their 'classes' per request to scheduler
