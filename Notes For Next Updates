@@ -33,6 +33,8 @@ Main Features
 
 8. Date Calendar
     - Day has to be bigger in size (Monday, Tuesday, etc) [Done]
+    - On select a day, shows that day
+    - Unselect, shows everything?
 
 9. Add A Profile Page
     - Can Modify email/username
