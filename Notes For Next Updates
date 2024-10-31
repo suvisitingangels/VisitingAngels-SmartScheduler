@@ -1,9 +1,13 @@
 Main Features
-1. Modify webapp to be dynamic
+
+1. Date Calendar
     - Modify the calendar date to be bigger (Min Size and Max Size)
-    - Filter Items should resize accordingly (One Column)
-    - When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
+    <> When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
         - Max-Min 7 items for the calendar date, so no matter what, there will always be 7 items for the calendar date.
+    - [Done on Laptop] Day has to be bigger in size (Monday, Tuesday, etc) 
+    - [Done on Laptop] One row of filter items
+    - On select a day, shows that day
+    - Unselect, shows everything?
 
 
 2. Availability Tool
@@ -11,42 +15,43 @@ Main Features
     - if time is already scheduled or blocked, then cancel operation and report that there's a conflict
     - Schedulers should be able to remove an an available time
 
-3. Make the filter side-bar sticky
+
+3. Filter Side-Bar
+    - Should be sticky
+    - Filter Options should be scrollable and bigger in text size
+    - The filter options should have a clear button to reset all the filters
+    <> Filter Options should have more sections based on it, so level 1,2,3 and Transportation etcetc.
+        - Alphabetical Order
+    - Filter Items should resize accordingly (One Column)
 
 
 4. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
+    <> What the caregivers can do (See in their page)
+        - Request PTO
+        - Request Change in Schedule/Availability
+        - See their current schedules and availability
+        - See their 'classes'
+        - Update their 'classes' per request to scheduler
 
 
-5. What the caregivers can do (See in their page)
-    - Request PTO
-    - Request Change in Schedule/Availability
-    - See their current schedules and availability
-    - See their 'classes'
-    - Update their 'classes' per request to scheduler
-
-
-6. The filter options should have a clear button to reset all the filters
-    - Filter Options should be scrollable and bigger in text size
-
-7. Filter Options should have more sections based on it, so level 1,2,3 and Transportation etcetc.
-    - Alphabetical Order
-
-8. Date Calendar
+5. Date Calendar
     - Day has to be bigger in size (Monday, Tuesday, etc) [Done]
     - On select a day, shows that day
     - Unselect, shows everything?
 
-9. Add A Profile Page
+
+6. Add A Profile Page
     - Can Modify email/username
     - Can Modify Password, uses verification through email
 
-10. Login so, if user does not have token, they aren't able to login
+
+7. Login so, if user does not have token, they aren't able to login
     - Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
+
 
 
 DYNAMIC NOTES/UPDATES TO BEWARE
 1. Classes are going to be dynamic based on the CSV File
-
 
 
 
