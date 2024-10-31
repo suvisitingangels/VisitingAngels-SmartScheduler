@@ -5,7 +5,7 @@ Main Features
     <> When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
         - Max-Min 7 items for the calendar date, so no matter what, there will always be 7 items for the calendar date.
     - [Done on Laptop] Day has to be bigger in size (Monday, Tuesday, etc) 
-    - [Done on Laptop] One row of filter items
+    - [Done on Laptop] One column of filter items
     - On select a day, shows that day
     - Unselect, shows everything?
 
