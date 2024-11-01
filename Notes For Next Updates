@@ -1,11 +1,16 @@
+'-' Means not a task yet
+'=' Done/Waiting to be reviewed
+'!' On Github/Being worked on
+'?' Not sure if it should be implemented or not
+
 Main Features
 
 1. Date Calendar
     - Modify the calendar date to be bigger (Min Size and Max Size)
-    <> When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
+    - When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
         - Max-Min 7 items for the calendar date, so no matter what, there will always be 7 items for the calendar date.
-    - [Done on Laptop] Day has to be bigger in size (Monday, Tuesday, etc) 
-    - [Done on Laptop] One column of filter items
+    = [Done Pushed] Day has to be bigger in size (Monday, Tuesday, etc) 
+    = [Done Pushed] One column of filter items
     - On select a day, shows that day
     - Unselect, shows everything?
 
@@ -17,16 +22,17 @@ Main Features
 
 
 3. Filter Side-Bar
-    - Should be sticky
-    - Filter Options should be scrollable and bigger in text size
-    - The filter options should have a clear button to reset all the filters
-    <> Filter Options should have more sections based on it, so level 1,2,3 and Transportation etcetc.
+    ! Should be sticky
+    ! Filter Options should be scrollable 
+    = Filter Text and Buttons should be bigger in text size
+    ! The filter options should have a clear button to reset all the filters
+    ? Filter Options should have more sections based on it, so level 1,2,3 and Transportation etcetc.
         - Alphabetical Order
     - Filter Items should resize accordingly (One Column)
 
 
 4. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
-    <> What the caregivers can do (See in their page)
+    - What the caregivers can do (See in their page)
         - Request PTO
         - Request Change in Schedule/Availability
         - See their current schedules and availability
@@ -34,18 +40,12 @@ Main Features
         - Update their 'classes' per request to scheduler
 
 
-5. Date Calendar
-    - Day has to be bigger in size (Monday, Tuesday, etc) [Done]
-    - On select a day, shows that day
-    - Unselect, shows everything?
-
-
-6. Add A Profile Page
+5. Add A Profile Page
     - Can Modify email/username
     - Can Modify Password, uses verification through email
 
 
-7. Login so, if user does not have token, they aren't able to login
+6. Login so, if user does not have token, they aren't able to login
     - Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
 
 
