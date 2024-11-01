@@ -57,6 +57,7 @@
   /* Styling for day and date parts */
   .day {
     font-weight: bold;
+    font-size: 1.4em;
   }
   
   .actual-date {
