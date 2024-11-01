@@ -23,7 +23,8 @@
   margin-right: 20px;
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: calc(100vh - 80px); /* Adjust based on the padding or header height */
+  overflow-y: auto;
 }
 
 .caregiver-list {
