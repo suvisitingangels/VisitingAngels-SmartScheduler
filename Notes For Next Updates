@@ -22,13 +22,14 @@ Main Features
 
 
 3. Filter Side-Bar
-    ! Should be sticky
-    ! Filter Options should be scrollable 
+    = Should be sticky
+    = Filter Options should be scrollable 
     = Filter Text and Buttons should be bigger in text size
     ! The filter options should have a clear button to reset all the filters
     ? Filter Options should have more sections based on it, so level 1,2,3 and Transportation etcetc.
         - Alphabetical Order
     - Filter Items should resize accordingly (One Column)
+    - Adding search bar to search for certain filters
 
 
 4. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
