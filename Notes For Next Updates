@@ -43,6 +43,8 @@ Find Caregiver Page
 
 
 Availability Page
+    = [PROJECT #AP001] Create the availability page
+
     1. Availability Tool
         -> Schedulers should be able to add/remove an an available time based on a specific time
         -> if time is already scheduled or blocked, then cancel operation and report that there's a conflict
