@@ -1,4 +1,4 @@
-'-' Means not a task yet
+'->' Means not a task yet in the backlog
 '=' Done/Waiting to be reviewed
 '!' On Team Tasks/Being worked on
 '?' Not sure if it should be implemented or not
@@ -9,12 +9,14 @@
 
 Navigation Bar
     1. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
-        - What the caregivers can do (See in their page)
-            - Request PTO
-            - Request Change in Schedule/Availability
-            - See their current schedules and availability
-            - See their 'classes'
-            - Update their 'classes' per request to scheduler
+        -> What the caregivers can do (See in their page)
+            -> Request PTO
+            -> Request Change in Schedule/Availability
+            -> See their current schedules and availability
+            -> See their 'classes'
+            -> Update their 'classes' per request to scheduler
+    2. Add the logo
+        -> The logo should when clicked, redirect back to the home page
 
 
 
@@ -24,8 +26,8 @@ Find Caregiver Page
         ! [PROJECT FC#009] When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
             - Max-Min 7 items for the calendar date, so no matter what, there will always be 7 items for the calendar date.
         = [PROJECT #FC003] One column of filter items
-        - On select a day, shows that day
-        - Unselect, shows everything?
+        -> On select a day, shows that day
+        -> Unselect, shows everything?
 
     2. Filter Side-Bar
         = [PROJECT FC#005] Should be sticky
@@ -36,38 +38,43 @@ Find Caregiver Page
             - Alphabetical Order
         = [PROJECT #FC003] Filter options should be one Column
         ! [PROJECT #FC008] Adding search bar to search for certain filters
-        - Filter options should be dynamic sizing
+        -> Filter options should be dynamic sizing
 
 
 
 Availability Page
     1. Availability Tool
-        - Schedulers should be able to add/remove an an available time based on a specific time
-        - if time is already scheduled or blocked, then cancel operation and report that there's a conflict
+        -> Schedulers should be able to add/remove an an available time based on a specific time
+        -> if time is already scheduled or blocked, then cancel operation and report that there's a conflict
 
 
 
 Profile Page
     1. Add A Profile Page
-        - Can Modify email/username
-        - Can Modify Password, uses verification through email
+        -> Can Modify email/username
+        -> Can Modify Password, uses verification through email
 
 
 
 Login Page
     1. Login so, if user does not have token, they aren't able to login
-        - Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
+        -> Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
+
+
+
+Home Page
+    1. Add the notifications
 
 
 
 Random/Not Assigned to Page yet
     1. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
-        - What the caregivers can do (See in their page)
-            - Request PTO
-            - Request Change in Schedule/Availability
-            - See their current schedules and availability
-            - See their 'classes'
-            - Update their 'classes' per request to scheduler
+        -> What the caregivers can do (See in their page)
+            -> Request PTO
+            -> Request Change in Schedule/Availability
+            -> See their current schedules and availability
+            -> See their 'classes'
+            -> Update their 'classes' per request to scheduler
 
 
 
