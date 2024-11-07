@@ -1,61 +1,81 @@
 '-' Means not a task yet
 '=' Done/Waiting to be reviewed
-'!' On Github/Being worked on
+'!' On Team Tasks/Being worked on
 '?' Not sure if it should be implemented or not
-
-Main Features
-
-1. Date Calendar
-    - Modify the calendar date to be bigger (Min Size and Max Size)
-    - When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
-        - Max-Min 7 items for the calendar date, so no matter what, there will always be 7 items for the calendar date.
-    = [Done Pushed] Day has to be bigger in size (Monday, Tuesday, etc) 
-    = [Done Pushed] One column of filter items
-    - On select a day, shows that day
-    - Unselect, shows everything?
+[{Project Type} {ID Number}]
 
 
-2. Availability Tool
-    - Allow schedulers to input a specific time that they want to block out for a caregiver
-    - if time is already scheduled or blocked, then cancel operation and report that there's a conflict
-    - Schedulers should be able to remove an an available time
+[Scheduler Side]
+
+Navigation Bar
+    1. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
+        - What the caregivers can do (See in their page)
+            - Request PTO
+            - Request Change in Schedule/Availability
+            - See their current schedules and availability
+            - See their 'classes'
+            - Update their 'classes' per request to scheduler
 
 
-3. Filter Side-Bar
-    = Should be sticky
-    = Filter Options should be scrollable 
-    = Filter Text and Buttons should be bigger in text size
-    ! The filter options should have a clear button to reset all the filters
-    ? Filter Options should have more sections based on it, so level 1,2,3 and Transportation etcetc.
-        - Alphabetical Order
-    - Filter Items should resize accordingly (One Column)
-    - Adding search bar to search for certain filters
+
+Find Caregiver Page
+    1. Date Calendar
+        = [PROJECT FC#002] Modify the calendar date to be bigger (Min Size and Max Size)
+        ! [PROJECT FC#009] When re-sizing the date calendar, if zoomed in, can lead to 2-3 of the last days to be blocked/unavailable to be selected
+            - Max-Min 7 items for the calendar date, so no matter what, there will always be 7 items for the calendar date.
+        = [PROJECT #FC003] One column of filter items
+        - On select a day, shows that day
+        - Unselect, shows everything?
+
+    2. Filter Side-Bar
+        = [PROJECT FC#005] Should be sticky
+        = [PROJECT #FC001] Filter Options should be scrollable 
+        = [PROJECT #FC004] Filter Text and Buttons should be bigger in text size
+        ! [PROJECT #FC006] The filter options should have a clear button to reset all the filters
+        ! [PROJECT #FC007] Filter Options should have more sections based on it, so level 1,2,3 and Transportation etcetc.
+            - Alphabetical Order
+        = [PROJECT #FC003] Filter options should be one Column
+        ! [PROJECT #FC008] Adding search bar to search for certain filters
+        - Filter options should be dynamic sizing
 
 
-4. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
-    - What the caregivers can do (See in their page)
-        - Request PTO
-        - Request Change in Schedule/Availability
-        - See their current schedules and availability
-        - See their 'classes'
-        - Update their 'classes' per request to scheduler
+
+Availability Page
+    1. Availability Tool
+        - Schedulers should be able to add/remove an an available time based on a specific time
+        - if time is already scheduled or blocked, then cancel operation and report that there's a conflict
 
 
-5. Add A Profile Page
-    - Can Modify email/username
-    - Can Modify Password, uses verification through email
+
+Profile Page
+    1. Add A Profile Page
+        - Can Modify email/username
+        - Can Modify Password, uses verification through email
 
 
-6. Login so, if user does not have token, they aren't able to login
-    - Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
+
+Login Page
+    1. Login so, if user does not have token, they aren't able to login
+        - Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
+
+
+
+Random/Not Assigned to Page yet
+    1. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
+        - What the caregivers can do (See in their page)
+            - Request PTO
+            - Request Change in Schedule/Availability
+            - See their current schedules and availability
+            - See their 'classes'
+            - Update their 'classes' per request to scheduler
 
 
 
 DYNAMIC NOTES/UPDATES TO BEWARE
-1. Classes are going to be dynamic based on the CSV File
+    1. Classes are going to be dynamic based on the CSV File
 
 
 
 THINGS THAT SHOULD NOT BE ALLOWED
-1. Schedulers should not be able to directly modify with classes
-    - Reason for this is that it should all be managed by the CSV file
+    1. Schedulers should not be able to directly modify with classes
+        - Reason for this is that it should all be managed by the CSV file
