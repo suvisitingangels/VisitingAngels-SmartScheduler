@@ -14,6 +14,7 @@ import Navbar from './components/common/Navbar';
 import Home from './pages/Home/Home';
 import FindCaregiver from './pages/FindCaregiver/FindCaregiver';
 import LoadData from './pages/LoadData/LoadData';
+import Availability from './pages/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/find-caregiver" element={<FindCaregiver />} />
         <Route path="/loaddata" element={<LoadData />} />
+        <Route path="/availability" element={<Availability />} />
         <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
       </Routes>
     </Router>
