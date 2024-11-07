@@ -85,4 +85,4 @@ DYNAMIC NOTES/UPDATES TO BEWARE
 
 THINGS THAT SHOULD NOT BE ALLOWED
     1. Schedulers should not be able to directly modify with classes
-        - Reason for this is that it should all be managed by the CSV file
+        -> Reason for this is that it should all be managed by the CSV file
