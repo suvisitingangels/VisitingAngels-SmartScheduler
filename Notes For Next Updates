@@ -43,6 +43,8 @@ Find Caregiver Page
 
 
 Availability Page
+    = [PROJECT #AP001] Create the availability page
+
     1. Availability Tool
         -> Schedulers should be able to add/remove an an available time based on a specific time
         -> if time is already scheduled or blocked, then cancel operation and report that there's a conflict
@@ -50,13 +52,17 @@ Availability Page
 
 
 Profile Page
-    1. Add A Profile Page
+    ! [PROJECT #PP001] Create a profile page
+
+    1. Profile Page Features
         -> Can Modify email/username
         -> Can Modify Password, uses verification through email
 
 
 
 Login Page
+    ! [PROJECT #LP001] Create the login page
+
     1. Login so, if user does not have token, they aren't able to login
         -> Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
 
@@ -64,6 +70,13 @@ Login Page
 
 Home Page
     1. Add the notifications
+
+
+
+Load Data Page
+    1. Load Data Features
+        ! [PROJECT #LD001] Create the functionality of loading a CSV file for the Caregiver Schedules
+        ! [PROJECT #LD002] Create the functionality of loading a CSV file for the Classes
 
 
 
