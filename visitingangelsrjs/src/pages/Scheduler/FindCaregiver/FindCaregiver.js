@@ -1,4 +1,4 @@
-// src/pages/FindCaregiver.js
+// src/pages/Scheduler/FindCaregiver.js
 
 import React from 'react';
 import './FindCaregiver.css';

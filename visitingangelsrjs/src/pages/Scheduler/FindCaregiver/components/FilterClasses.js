@@ -1,8 +1,8 @@
-// src/components/FilterCriteria.js
+// src/pages/scheduler/components/FilterCriteria.js
 
 import React from 'react';
 import './FilterClasses.css';
-import filterCriteriaData from '../../../data/FilterClassesData';
+import filterCriteriaData from '../../../../data/FilterClassesData';
 
 function FilterCriteria() {
     return (

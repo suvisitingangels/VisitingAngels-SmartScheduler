@@ -1,4 +1,4 @@
-// src/components/DateCarousel.js
+// src/pages/scheduler/components/DateCarousel.js
 
 import React, { useState } from 'react';
 import './DateCarousel.css';

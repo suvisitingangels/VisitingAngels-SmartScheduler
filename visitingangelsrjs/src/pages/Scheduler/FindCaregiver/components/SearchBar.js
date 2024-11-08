@@ -1,4 +1,4 @@
-// src/components/SearchBar.js
+// src/pages/scheduler/components/SearchBar.js
 
 import React, { useState } from 'react';
 import './SearchBar.css';

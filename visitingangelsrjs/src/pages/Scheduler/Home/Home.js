@@ -1,4 +1,4 @@
-// src/pages/Home.js
+// src/pages/scheduler/Home/Home.js
 
 
 import React from 'react';

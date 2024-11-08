@@ -1,4 +1,4 @@
-// src/pages/LoadData.js
+// src/pages/Scheduler/LoadData/LoadData.js
 
 /*
 The LoadData.js file defines a simple React component for the "Load Data" page within the application. 

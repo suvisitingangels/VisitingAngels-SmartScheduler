@@ -11,10 +11,10 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
-import Home from './pages/Home/Home';
-import FindCaregiver from './pages/FindCaregiver/FindCaregiver';
-import LoadData from './pages/LoadData/LoadData';
-import Availability from './pages/Availability/Availability';
+import Home from './pages/Scheduler/Home/Home';
+import FindCaregiver from './pages/Scheduler/FindCaregiver/FindCaregiver';
+import LoadData from './pages/Scheduler/LoadData/LoadData';
+import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 
 function App() {

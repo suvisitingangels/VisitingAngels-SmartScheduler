@@ -1,4 +1,4 @@
-// src/pages/Availability/Availability.js
+// src/pages/Scheduler/Availability/Availability.js
 
 import React, { useState } from 'react';
 import './Availability.css';
