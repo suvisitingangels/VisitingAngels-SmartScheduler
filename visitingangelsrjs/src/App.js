@@ -10,23 +10,35 @@ This setup provides a structured and user-friendly navigation flow across the ap
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/common/Navbar';
+import Navbar from './pages/Scheduler/Components/Navbar/Navbar';
 import Home from './pages/Scheduler/Home/Home';
 import FindCaregiver from './pages/Scheduler/FindCaregiver/FindCaregiver';
 import LoadData from './pages/Scheduler/LoadData/LoadData';
 import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
+import Login from './pages/FirstLogin/FirstLogin';
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* Conditionally render the Navbar only for routes other than "/login" */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/find-caregiver" element={<FindCaregiver />} />
-        <Route path="/loaddata" element={<LoadData />} />
-        <Route path="/availability" element={<Availability />} />
-        <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <Navbar />
+              <Routes>
+                <Route path="/scheduler" element={<Home />} />
+                <Route path="/scheduler/find-caregiver" element={<FindCaregiver />} />
+                <Route path="/scheduler/loaddata" element={<LoadData />} />
+                <Route path="/scheduler/availability" element={<Availability />} />
+                <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
+              </Routes>
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
