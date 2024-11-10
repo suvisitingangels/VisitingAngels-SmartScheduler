@@ -11,14 +11,14 @@ function FindCaregiver() {
   return (
     <div className="find-caregiver-container">
       {/* Sidebar for filtering options */}
-      <aside className="filter-sidebar">
+      <aside className="find-caregiver-filter-sidebar">
         <FilterCriteria /> {/* Imported FilterCriteria component */}
       </aside>
 
       {/* Main content area */}
-      <section className="caregiver-list">
+      <section className="find-caregiver-caregiver-list">
         <SearchBar></SearchBar>
-        <hr className="divider" />
+        <hr className="find-caregiver-divider" />
         <DateCarousel></DateCarousel>
       </section>
     </div>

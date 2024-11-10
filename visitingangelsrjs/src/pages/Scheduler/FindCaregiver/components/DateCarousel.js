@@ -30,21 +30,21 @@ function DateCarousel() {
   };
 
   return (
-    <div className="date-carousel">
+    <div className="find-caregiver-date-carousel">
       <button onClick={showPrevious} disabled={startIndex === 0}>◀</button>
-      <div className="date-list-wrapper">
+      <div className="find-caregiver-date-list-wrapper">
         <div
-          className="date-list"
+          className="find-caregiver-date-list"
           style={{ transform: `translateX(-${startIndex * 200}px)` }}
         >
           {dates.map((date, index) => (
             <div
               key={index}
-              className={`date-item ${index === selectedIndex ? 'selected' : ''}`} // Conditionally apply class
+              className={`find-caregiver-date-item ${index === selectedIndex ? 'selected' : ''}`} // Conditionally apply class
               onClick={() => handleDateClick(index)}
             >
-              <div className="day">{formatDay(date)}</div>
-              <div className="actual-date">{formatDate(date)}</div>
+              <div className="find-caregiver-day">{formatDay(date)}</div>
+              <div className="find-caregiver-actual-date">{formatDate(date)}</div>
             </div>
           ))}
         </div>

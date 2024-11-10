@@ -1,38 +1,38 @@
 /* src/pages/scheduler/components/FilterCriteria.css */
 
-.filter-options {
+.find-caregiver-filter-options {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
   }
   
-  .filter-option {
+  .find-caregiver-filter-option {
     display: flex;
     align-items: center;
     width: 100%;
     font-size: 1.2em;
   }
   
-  .filter-option input[type="checkbox"] {
+  .find-caregiver-filter-option input[type="checkbox"] {
     transform: scale(1.5); /* Adjust scale as needed */
     margin-right: 8px;
   }
-  .location-filter-options {
+  .find-caregiver-location-filter-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  .location-filter-option{
+  .find-caregiver-location-filter-option{
     display: flex;
     align-items: center;
     width: 100%;
   }
-  .location-filter-option input[type="checkbox"] {
+  .find-caregiver-location-filter-option input[type="checkbox"] {
     transform: scale(1.5); /* Adjust scale as needed */
     margin-right: 8px;
   }
   
-  .divider {
+  .find-caregiver-divider {
     border: none;
     border-top: 1px solid #ccc;
     margin: 15px 0;

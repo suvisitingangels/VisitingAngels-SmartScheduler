@@ -9,9 +9,9 @@ function FilterCriteria() {
         <div>
             {/* General Filter Options */}
             <h2>Filter Options</h2>
-            <div className="filter-options">
+            <div className="find-caregiver-filter-options">
                 {filterCriteriaData.generalFilters.map((filter) => (
-                    <div key={filter.id} className="filter-option">
+                    <div key={filter.id} className="find-caregiver-filter-option">
                         <input type="checkbox" id={filter.id} />
                         <label htmlFor={filter.id}>{filter.label}</label>
                     </div>
@@ -19,17 +19,17 @@ function FilterCriteria() {
             </div>
 
             {/* Divider and Location Section */}
-            <hr className="divider" />
+            <hr className="find-caregiver-divider" />
             <h2>Location</h2>
-            <div className="location-filter-options">
+            <div className="find-caregiver-location-filter-options">
                 {filterCriteriaData.locationFilters.map((filter) => (
-                    <div key={filter.id} className="location-filter-option">
+                    <div key={filter.id} className="find-caregiver-location-filter-option">
                         <input type="checkbox" id={filter.id} />
                         <label htmlFor={filter.id}>{filter.label}</label>
                     </div>
                 ))}
             </div>
-            <hr className="divider" />
+            <hr className="find-caregiver-divider" />
         </div>
     );
 }

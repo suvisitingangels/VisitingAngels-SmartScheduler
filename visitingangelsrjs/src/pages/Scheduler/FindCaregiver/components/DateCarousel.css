@@ -1,6 +1,6 @@
 /* src/pages/scheduler/components/DateCarousel.css */
 
-.date-carousel {
+.find-caregiver-date-carousel {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -8,7 +8,7 @@
     justify-content: center;
   }
   
-  .date-carousel button {
+  .find-caregiver-date-carousel button {
     padding: 8px 12px;
     background-color: #007bff;
     color: white;
@@ -18,22 +18,22 @@
     transition: background-color 0.3s;
   }
   
-  .date-carousel button:disabled {
+  .find-caregiver-date-carousel button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
   
-  .date-list-wrapper {
+  .find-caregiver-date-list-wrapper {
     overflow: hidden;
     width: 1400px;
   }
   
-  .date-list {
+  .find-caregiver-date-list {
     display: flex;
     transition: transform 0.5s ease;
   }
   
-  .date-item {
+  .find-caregiver-date-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Space between day and date */
@@ -50,23 +50,23 @@
     transition: background-color 0.3s;
   }
   
-  .date-item:hover {
+  .find-caregiver-date-item:hover {
     background-color: #ddd;
   }
   
   /* Styling for day and date parts */
-  .day {
+  .find-caregiver-day {
     font-weight: bold;
     font-size: 1.4em;
   }
   
-  .actual-date {
+  .find-caregiver-actual-date {
     align-self: flex-end; /* Position the date at the bottom */
     width: 100%;
   }
 
   /* Highlight the selected date */
-.date-item.selected {
+.find-caregiver-date-item.selected {
     background-color: gray; /* Change to your preferred color */
     color: white;
   }

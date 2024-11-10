@@ -16,7 +16,7 @@ function SearchBar() {
   };
 
   return (
-    <div className="search-bar">
+    <div className="find-caregiver-search-bar">
       <input
         type="text"
         value={query}
