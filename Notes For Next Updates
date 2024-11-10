@@ -5,7 +5,25 @@
 [{Project Type} {ID Number}]
 
 
+
+[Backend]
+
+Tokens
+    -> [PROJECT #BE001] Generate the Role-Based Token
+    -> [PROJECT #BE002] Attach the Token to the user
+    -> [PROJECT #BE003] Create middleware to check the token when entering a page
+    -> [PROJECT #BE004] Apply middleware to protect the routes
+
+
+
 [Scheduler Side]
+
+Role-Access Backend
+    -> Initial Login Page where user has to login to have access to any of the pages.
+        -> Once logged in, the user should be able to keep access for about 3 hours. If user resfreshes any of the pages, the token will be refreshed to 3 hours again
+    -> When connecting to any of these pages, there should be a check of token. The token should check whether or not the user trying to access this page has a valid token (scheduler)
+
+
 
 Navigation Bar
     1. Add Role-Based Access (Meaning profiles for caregivers and schedulers)
@@ -61,7 +79,11 @@ Profile Page
 
 
 Login Page
-    ! [PROJECT #LP001] Create the login page
+    1. 
+        ! [PROJECT #LP001] Create the login page
+        -> Login page should have a form for the user to login
+        -> Login page should have a forgot password (maybe)
+        -> 
 
     1. Login so, if user does not have token, they aren't able to login
         -> Token should be 3 hours long (If user already logged in and goes into the website, refreshes the token to 3 hours again)
@@ -89,6 +111,14 @@ Random/Not Assigned to Page yet
             -> See their 'classes'
             -> Update their 'classes' per request to scheduler
 
+
+
+[Database]
+    = [PROJECT #DB001] Create the SQL Database for remote access
+    = [PROJECT #DB002] Create the schema
+    = [PROJECT #DB003] Create the table to store the username, password, and role
+    = [PROJECT #DB004] Store data into the table
+    -> Maybe pre-hash the passwords in the database?
 
 
 DYNAMIC NOTES/UPDATES TO BEWARE
