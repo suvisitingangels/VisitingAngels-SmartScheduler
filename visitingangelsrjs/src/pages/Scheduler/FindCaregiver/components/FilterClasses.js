@@ -7,7 +7,6 @@ import filterCriteriaData from '../../../../data/FilterClassesData';
 function FilterCriteria() {
     return (
         <div>
-            {/* General Filter Options */}
             <h2>Filter Options</h2>
             <div className="find-caregiver-filter-options">
                 {filterCriteriaData.generalFilters.map((filter) => (
@@ -18,7 +17,6 @@ function FilterCriteria() {
                 ))}
             </div>
 
-            {/* Divider and Location Section */}
             <hr className="find-caregiver-divider" />
             <h2>Location</h2>
             <div className="find-caregiver-location-filter-options">

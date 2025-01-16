@@ -1,0 +1,54 @@
+.caregiver-container {
+    margin: 20px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .caregiver-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .caregiver-table thead tr {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .caregiver-table th,
+  .caregiver-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+    text-align: left;
+  }
+  
+  .caregiver-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .caregiver-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .caregiver-heading {
+    color: #007bff;
+    text-align: center;
+  }
+  
+  .caregiver-message {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .caregiver-table {
+      font-size: 0.9rem;
+    }
+  
+    .caregiver-table th,
+    .caregiver-table td {
+      padding: 8px 10px;
+    }
+  }
+  

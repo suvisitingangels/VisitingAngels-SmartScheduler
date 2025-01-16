@@ -12,7 +12,7 @@ function DateCarousel() {
   });
 
   const [startIndex, setStartIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(null); // Track selected date
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const formatDay = (date) => date.toLocaleDateString('en-US', { weekday: 'long' });
   const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
@@ -26,7 +26,7 @@ function DateCarousel() {
   };
 
   const handleDateClick = (index) => {
-    setSelectedIndex(index); // Update selected date index
+    setSelectedIndex(index); 
   };
 
   return (
@@ -40,7 +40,7 @@ function DateCarousel() {
           {dates.map((date, index) => (
             <div
               key={index}
-              className={`find-caregiver-date-item ${index === selectedIndex ? 'selected' : ''}`} // Conditionally apply class
+              className={`find-caregiver-date-item ${index === selectedIndex ? 'selected' : ''}`} 
               onClick={() => handleDateClick(index)}
             >
               <div className="find-caregiver-day">{formatDay(date)}</div>

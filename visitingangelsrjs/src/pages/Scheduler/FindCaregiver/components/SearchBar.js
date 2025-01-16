@@ -12,7 +12,6 @@ function SearchBar() {
 
   const handleSearch = () => {
     console.log('Searching for:', query);
-    // Here you can later add functionality to filter caregivers based on the query
   };
 
   return (

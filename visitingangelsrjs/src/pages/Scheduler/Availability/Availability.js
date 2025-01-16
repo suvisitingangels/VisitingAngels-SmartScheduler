@@ -4,25 +4,21 @@ import React, { useState } from 'react';
 import './Availability.css';
 
 function Availability() {
-  // State to store form data
   const [formData, setFormData] = useState({
     caregiverName: '',
     date: '',
     time: '',
-    action: 'Add', // Default selection for dropdown
+    action: 'Add',
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Add any additional submit logic here
   };
 
   return (

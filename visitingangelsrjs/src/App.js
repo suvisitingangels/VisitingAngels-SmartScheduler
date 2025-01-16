@@ -23,7 +23,7 @@ function App() {
     <Router>
       {/* Conditionally render the Navbar only for routes other than "/login" */}
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route
           path="*"
           element={
