@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './DateCarousel.css';
 
-function DateCarousel({ dates }) {
+function DateCarousel({ dates, onDateSelect }) {
   const [startIndex, setStartIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -15,7 +15,9 @@ function DateCarousel({ dates }) {
 
   const handleDateClick = (index) => {
     setSelectedIndex(index);
-    console.log('Selected date:', dates[index]);
+    if (onDateSelect) {
+      onDateSelect(dates[index]);
+    }
   };
 
   const formatFullDay = (dateStr) => {
