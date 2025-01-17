@@ -41,14 +41,10 @@ function FindCaregiver() {
           )
         ).sort((a, b) => new Date(a) - new Date(b)); 
 
-        const formattedDates = allDates.map((dateStr) => {
-          const date = new Date(dateStr);
-          return {
-            day: date.toLocaleDateString('en-US', { weekday: 'short' }),
-            fullDate: date.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' }), 
-            formatted: `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${dateStr}`, 
-          };
-        });
+        const formattedDates = allDates.map((dateStr) => ({
+          day: new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short' }),
+          fullDate: dateStr,
+        }));
 
         setDates(formattedDates);
         setError('');
@@ -62,24 +58,19 @@ function FindCaregiver() {
     fetchCaregiverData();
   }, []);
 
-  if (loading) {
-    return <p>Loading caregiver data...</p>;
-  }
-
-  if (error) {
-    return <p className="error-message">{error}</p>;
-  }
-
   return (
     <div className="find-caregiver-container">
       <aside className="find-caregiver-filter-sidebar">
         <FilterCriteria />
       </aside>
+
       <section className="find-caregiver-caregiver-list">
         <SearchBar />
         <hr className="find-caregiver-divider" />
         <DateCarousel dates={dates} />
         <CaregiverData caregivers={caregivers} />
+        {loading && <p>Loading data...</p>}
+        {error && <p className="error-message">{error}</p>}
       </section>
     </div>
   );
