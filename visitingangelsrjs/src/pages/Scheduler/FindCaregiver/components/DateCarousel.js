@@ -1,21 +1,9 @@
-// src/pages/scheduler/components/DateCarousel.js
-
 import React, { useState } from 'react';
 import './DateCarousel.css';
 
-function DateCarousel() {
-  const startDate = new Date(2024, 9, 21);
-  const dates = Array.from({ length: 14 }, (_, i) => {
-    const date = new Date(startDate);
-    date.setDate(startDate.getDate() + i);
-    return date;
-  });
-
+function DateCarousel({ dates }) {
   const [startIndex, setStartIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(null);
-
-  const formatDay = (date) => date.toLocaleDateString('en-US', { weekday: 'long' });
-  const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
 
   const showPrevious = () => {
     if (startIndex > 0) setStartIndex(startIndex - 1);
@@ -26,7 +14,13 @@ function DateCarousel() {
   };
 
   const handleDateClick = (index) => {
-    setSelectedIndex(index); 
+    setSelectedIndex(index);
+    console.log('Selected date:', dates[index]);
+  };
+
+  const formatFullDay = (dateStr) => {
+    const date = new Date(dateStr.fullDate); 
+    return date.toLocaleDateString('en-US', { weekday: 'long' }); 
   };
 
   return (
@@ -43,8 +37,8 @@ function DateCarousel() {
               className={`find-caregiver-date-item ${index === selectedIndex ? 'selected' : ''}`} 
               onClick={() => handleDateClick(index)}
             >
-              <div className="find-caregiver-day">{formatDay(date)}</div>
-              <div className="find-caregiver-actual-date">{formatDate(date)}</div>
+              <div className="find-caregiver-day">{formatFullDay(date)}</div>
+              <div className="find-caregiver-actual-date">{date.fullDate}</div>
             </div>
           ))}
         </div>
