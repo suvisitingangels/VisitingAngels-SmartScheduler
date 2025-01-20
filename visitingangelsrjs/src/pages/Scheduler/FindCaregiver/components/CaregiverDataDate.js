@@ -1,7 +1,20 @@
-import React from 'react';
-import './CaregiverData.css';
+// src/pages/Scheduler/FindCaregiver/components/CaregiverDataDate.js
 
-function CaregiverData({ caregivers }) {
+/**
+     * CaregiverDataDate Component
+     * 
+     * Displays a table of caregiver schedules, showing caregiver names and their working hours.
+     * Handles cases where no caregivers are scheduled by displaying an appropriate message.
+     * 
+     * @param {Array} caregivers - Array of caregiver objects with `name` and `schedule` properties.
+     * 
+     * @returns {JSX.Element} - A styled table displaying caregiver schedules.
+*/
+
+import React from 'react';
+import './CaregiverDataDate.css';
+
+function CaregiverDataDate({ caregivers }) {
   return (
     <div className="caregiver-container">
       <h2 className="caregiver-heading">Caregiver Schedule</h2>
@@ -36,5 +49,5 @@ function CaregiverData({ caregivers }) {
   );
 }
 
-export default CaregiverData;
+export default CaregiverDataDate;
 

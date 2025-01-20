@@ -1,3 +1,12 @@
+// VisitingAngelsSURJS/visitingangelsrjs/src/pages/Scheduler/FindCaregiver/components/hooks/useFetchCaregiverData.js
+
+/**
+     * useFetchCaregiverData Hook
+     * 
+     * A custom React hook to fetch, process, and manage caregiver data and associated schedule dates.
+     * Handles API requests, data processing, and state management for caregiver information.
+*/
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -8,6 +17,12 @@ export default function useFetchCaregiverData() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    /**
+         * Fetch caregiver data from the API.
+         * 
+         * Makes a GET request to the server, processes the data to extract caregiver schedules,
+         * formats the schedule dates, and updates the respective state variables.
+    */
     const fetchCaregiverData = async () => {
       try {
         console.log('Fetching caregiver data...');

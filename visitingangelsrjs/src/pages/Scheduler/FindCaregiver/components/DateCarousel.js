@@ -1,3 +1,15 @@
+// src/pages/Scheduler/FindCaregiver/components/DateCarousel.js
+
+/**
+     * DateCarousel Component
+     * 
+     * A horizontal carousel for displaying a list of dates, allowing users to scroll through
+     * the dates and select one. Includes previous/next buttons for navigation and highlights
+     * the selected date.
+     * 
+     * @param {Array} dates - Array of date objects, each containing `fullDate` (string) and optionally other details.
+     * @param {Function} onDateSelect - Callback function triggered when a date is selected. Receives the selected date as a parameter.
+*/
 import React, { useState } from 'react';
 import './DateCarousel.css';
 
@@ -13,6 +25,12 @@ function DateCarousel({ dates, onDateSelect }) {
     if (startIndex < dates.length - 7) setStartIndex(startIndex + 1);
   };
 
+  /**
+       * Handle date selection.
+       * Updates the selected date index and triggers the `onDateSelect` callback.
+       * 
+       * @param {number} index - Index of the selected date.
+  */
   const handleDateClick = (index) => {
     setSelectedIndex(index);
     if (onDateSelect) {
