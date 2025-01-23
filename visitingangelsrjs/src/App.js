@@ -17,6 +17,7 @@ import LoadData from './pages/Scheduler/LoadData/LoadData';
 import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/FirstLogin/FirstLogin';
+import CallbackPage from "./pages/Auth/CallbackPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/scheduler/find-caregiver" element={<FindCaregiver />} />
                 <Route path="/scheduler/loaddata" element={<LoadData />} />
                 <Route path="/scheduler/availability" element={<Availability />} />
+                <Route path="/callback" element={<CallbackPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </>
