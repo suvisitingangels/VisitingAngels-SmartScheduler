@@ -9,6 +9,8 @@
 const express = require('express');
 const cors = require('cors');
 const csvRoutes = require('./routes/csvRoutes');
+const authRoutes = require('./routes/authRoutes');
+
 //const { auth } = require('express-openid-connect'); // auth0 dependency
 
 //require('dotenv').config({ path: '../.auth0.env' });// reading in our auth0 id/url/secret
@@ -36,6 +38,7 @@ const app = express();
 */
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', authRoutes);
 
 
 /**
