@@ -17,6 +17,7 @@ import LoadData from './pages/Scheduler/LoadData/LoadData';
 import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/FirstLogin/FirstLogin';
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
                 <Route path="/scheduler/find-caregiver" element={<FindCaregiver />} />
                 <Route path="/scheduler/loaddata" element={<LoadData />} />
                 <Route path="/scheduler/availability" element={<Availability />} />
+                <Route path="/scheduler/profile" element={<Profile />} />
+
                 <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
               </Routes>
             </>

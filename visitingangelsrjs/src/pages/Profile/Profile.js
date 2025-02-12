@@ -2,7 +2,7 @@ import React from 'react';
 import './Profile.css';
 
 function Profile() {
-  //test
+  //test -- TODO need to get user data from database
   const user = {
     name: 'Anna',
     email: 'amuller@example.com',
