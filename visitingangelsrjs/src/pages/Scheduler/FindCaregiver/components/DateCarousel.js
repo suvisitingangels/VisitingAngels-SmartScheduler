@@ -1,21 +1,21 @@
-// src/pages/scheduler/components/DateCarousel.js
+// src/pages/Scheduler/FindCaregiver/components/DateCarousel.js
 
+/**
+     * DateCarousel Component
+     * 
+     * A horizontal carousel for displaying a list of dates, allowing users to scroll through
+     * the dates and select one. Includes previous/next buttons for navigation and highlights
+     * the selected date.
+     * 
+     * @param {Array} dates - Array of date objects, each containing `fullDate` (string) and optionally other details.
+     * @param {Function} onDateSelect - Callback function triggered when a date is selected. Receives the selected date as a parameter.
+*/
 import React, { useState } from 'react';
 import './DateCarousel.css';
 
-function DateCarousel() {
-  const startDate = new Date(2024, 9, 21);
-  const dates = Array.from({ length: 14 }, (_, i) => {
-    const date = new Date(startDate);
-    date.setDate(startDate.getDate() + i);
-    return date;
-  });
-
+function DateCarousel({ dates, onDateSelect }) {
   const [startIndex, setStartIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(null); // Track selected date
-
-  const formatDay = (date) => date.toLocaleDateString('en-US', { weekday: 'long' });
-  const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const showPrevious = () => {
     if (startIndex > 0) setStartIndex(startIndex - 1);
@@ -25,8 +25,22 @@ function DateCarousel() {
     if (startIndex < dates.length - 7) setStartIndex(startIndex + 1);
   };
 
+  /**
+       * Handle date selection.
+       * Updates the selected date index and triggers the `onDateSelect` callback.
+       * 
+       * @param {number} index - Index of the selected date.
+  */
   const handleDateClick = (index) => {
-    setSelectedIndex(index); // Update selected date index
+    setSelectedIndex(index);
+    if (onDateSelect) {
+      onDateSelect(dates[index]);
+    }
+  };
+
+  const formatFullDay = (dateStr) => {
+    const date = new Date(dateStr.fullDate); 
+    return date.toLocaleDateString('en-US', { weekday: 'long' }); 
   };
 
   return (
@@ -40,11 +54,11 @@ function DateCarousel() {
           {dates.map((date, index) => (
             <div
               key={index}
-              className={`find-caregiver-date-item ${index === selectedIndex ? 'selected' : ''}`} // Conditionally apply class
+              className={`find-caregiver-date-item ${index === selectedIndex ? 'selected' : ''}`} 
               onClick={() => handleDateClick(index)}
             >
-              <div className="find-caregiver-day">{formatDay(date)}</div>
-              <div className="find-caregiver-actual-date">{formatDate(date)}</div>
+              <div className="find-caregiver-day">{formatFullDay(date)}</div>
+              <div className="find-caregiver-actual-date">{date.fullDate}</div>
             </div>
           ))}
         </div>

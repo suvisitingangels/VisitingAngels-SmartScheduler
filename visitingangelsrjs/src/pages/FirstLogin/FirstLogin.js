@@ -1,11 +1,46 @@
 import React, { useState } from 'react';
-import './FirstLogin.css'; // Import the CSS file for styling
+import axios from 'axios';
+import './FirstLogin.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prevState) => !prevState);
+    setShowPassword(prevState => !prevState);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+      localStorage.setItem('token', response.data.token);
+      alert('Login successful!');
+      navigate('/scheduler'); // Redirect to /scheduler after successful login
+    } catch (err) {
+      setError('Invalid credentials');
+    }
+  };
+  // Function to handle password input type
+  const getPasswordInputType = () => {
+    if (showPassword) {
+      return 'text';
+    }
+    return 'password';
+  };
+
+  // Function to handle button label
+  const getPasswordToggleLabel = () => {
+    if (showPassword) {
+      return 'Hide';
+    }
+    return 'Show';
   };
 
   return (
@@ -14,8 +49,9 @@ const LoginPage = () => {
         <div className="navbar-logo">Logo</div>
       </nav>
       <div className="first-login-page-container">
-        <form className="first-login-page-form">
+        <form className="first-login-page-form" onSubmit={handleLogin}>
           <h2 className="first-login-page-title">Login</h2>
+
           <div className="first-login-page-form-group">
             <label htmlFor="username" className="first-login-page-label">Username</label>
             <input
@@ -23,27 +59,39 @@ const LoginPage = () => {
               id="username"
               className="first-login-page-input"
               placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
+
           <div className="first-login-page-form-group">
             <label htmlFor="password" className="first-login-page-label">Password</label>
             <div className="password-input-container">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={getPasswordInputType()}
                 id="password"
                 className="first-login-page-input"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
               <button
                 type="button"
                 className="password-toggle-button"
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? 'Hide' : 'Show'}
+                {getPasswordToggleLabel()}
               </button>
             </div>
           </div>
+
           <button type="submit" className="first-login-page-button">Login</button>
+          
+          {error && (
+            <p style={{ color: 'red' }}>{error}</p>
+          )}
         </form>
       </div>
     </div>

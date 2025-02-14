@@ -1,5 +1,13 @@
 // src/pages/scheduler/components/FilterCriteria.js
 
+/**
+     * FilterCriteria Component
+     * 
+     * Displays filtering options for caregivers, allowing users to filter by general criteria and location.
+     * The filtering options are dynamically rendered based on data from `FilterClassesData`.
+     * 
+     * @returns {JSX.Element} - A set of filter options grouped by general criteria and location.
+*/
 import React from 'react';
 import './FilterClasses.css';
 import filterCriteriaData from '../../../../data/FilterClassesData';
@@ -7,7 +15,6 @@ import filterCriteriaData from '../../../../data/FilterClassesData';
 function FilterCriteria() {
     return (
         <div>
-            {/* General Filter Options */}
             <h2>Filter Options</h2>
             <div className="find-caregiver-filter-options">
                 {filterCriteriaData.generalFilters.map((filter) => (
@@ -18,7 +25,6 @@ function FilterCriteria() {
                 ))}
             </div>
 
-            {/* Divider and Location Section */}
             <hr className="find-caregiver-divider" />
             <h2>Location</h2>
             <div className="find-caregiver-location-filter-options">

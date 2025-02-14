@@ -36,9 +36,9 @@
   .find-caregiver-date-item {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Space between day and date */
+    justify-content: space-between; 
     align-items: center;
-    min-height: 60px; /* Adjusted min-height */
+    min-height: 60px; 
     padding: 10px;
     background-color: lightblue;
     cursor: pointer;
@@ -54,20 +54,18 @@
     background-color: #ddd;
   }
   
-  /* Styling for day and date parts */
   .find-caregiver-day {
     font-weight: bold;
     font-size: 1.4em;
   }
   
   .find-caregiver-actual-date {
-    align-self: flex-end; /* Position the date at the bottom */
+    align-self: flex-end;
     width: 100%;
   }
 
-  /* Highlight the selected date */
 .find-caregiver-date-item.selected {
-    background-color: gray; /* Change to your preferred color */
+    background-color: gray;
     color: white;
   }
   

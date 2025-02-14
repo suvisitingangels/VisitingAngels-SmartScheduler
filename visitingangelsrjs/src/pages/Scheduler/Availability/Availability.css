@@ -41,7 +41,7 @@
   }
   
   .availability-form input,
-  .availability-form select { /* Shared styling for input and dropdown */
+  .availability-form select { 
     width: 100%;
     padding: 8px;
     margin-top: 5px;

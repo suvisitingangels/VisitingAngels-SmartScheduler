@@ -14,7 +14,7 @@
   }
   
   .find-caregiver-filter-option input[type="checkbox"] {
-    transform: scale(1.5); /* Adjust scale as needed */
+    transform: scale(1.5);
     margin-right: 8px;
   }
   .find-caregiver-location-filter-options {
@@ -28,7 +28,7 @@
     width: 100%;
   }
   .find-caregiver-location-filter-option input[type="checkbox"] {
-    transform: scale(1.5); /* Adjust scale as needed */
+    transform: scale(1.5);
     margin-right: 8px;
   }
   
