@@ -17,7 +17,6 @@ import LoadData from './pages/Scheduler/LoadData/LoadData';
 import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/FirstLogin/FirstLogin';
-import CallbackPage from "./pages/Auth/CallbackPage";
 import PrivateRoute from './components/PrivateRoute';
 
 
@@ -47,7 +46,6 @@ function App() {
           <Route path="/scheduler/find-caregiver" element={<PrivateRoute><FindCaregiver /></PrivateRoute>} />
           <Route path="/scheduler/loaddata" element={<PrivateRoute><LoadData /></PrivateRoute>} />
           <Route path="/scheduler/availability" element={<PrivateRoute><Availability /></PrivateRoute>} />
-          <Route path="/callback" element={<PrivateRoute><CallbackPage /></PrivateRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AppLayout>
