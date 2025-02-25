@@ -3,13 +3,13 @@
 
 import React from 'react';
 
+import './Home.css';
+
+
 function Home() {
-  return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Welcome To Home Page</p>
-    </div>
-  );
+	return (
+		<h1>Home Page</h1>
+	);
 }
 
 export default Home;
