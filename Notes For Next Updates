@@ -16,7 +16,7 @@ Tokens
 
 
 
-[Scheduler Side]
+======================================================================[Scheduler Side]======================================================================
 
 Role-Access Backend
     -> Initial Login Page where user has to login to have access to any of the pages.
@@ -111,9 +111,23 @@ Random/Not Assigned to Page yet
             -> See their 'classes'
             -> Update their 'classes' per request to scheduler
 
+    -> [PROJECT #FC009] Create temporary Caregiver Info
 
 
-[Database]
+
+======================================================================[Caregiver Side]======================================================================
+Home Page
+    -> Create the home caregiver page
+
+
+
+
+
+
+
+
+
+=========================================================================[Database]==========================================================================
     = [PROJECT #DB001] Create the SQL Database for remote access
     = [PROJECT #DB002] Create the schema
     = [PROJECT #DB003] Create the table to store the username, password, and role
@@ -121,6 +135,12 @@ Random/Not Assigned to Page yet
     -> Maybe pre-hash the passwords in the database?
 
 
+
+
+
+
+
+=========================================================================[Others]===========================================================================
 DYNAMIC NOTES/UPDATES TO BEWARE
     1. Classes are going to be dynamic based on the CSV File
 
@@ -129,3 +149,29 @@ DYNAMIC NOTES/UPDATES TO BEWARE
 THINGS THAT SHOULD NOT BE ALLOWED
     1. Schedulers should not be able to directly modify with classes
         -> Reason for this is that it should all be managed by the CSV file
+
+
+
+
+
+
+
+=================================================================[Resources/Libraries]=========================================================================
+Frontend
+    -> React
+
+Backend
+    -> Node.js
+    -> Cors
+    -> Express
+    -> dotenv
+
+
+
+
+
+
+
+
+
+

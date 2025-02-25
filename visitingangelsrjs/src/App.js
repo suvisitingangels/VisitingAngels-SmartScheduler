@@ -35,6 +35,7 @@ const AppLayout = ({ children }) => {
     </>
   );
 };
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
