@@ -18,6 +18,7 @@ import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/FirstLogin/FirstLogin';
 import PrivateRoute from './components/PrivateRoute';
+import Profile from "./pages/Profile/Profile";
 
 
 // Component to conditionally render Navbar
@@ -35,7 +36,6 @@ const AppLayout = ({ children }) => {
     </>
   );
 };
-import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (

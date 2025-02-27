@@ -28,7 +28,6 @@ export default function useFetchCaregiverData() {
         console.log('Fetching caregiver data...');
         const response = await axios.get('http://localhost:5000/api/csv-data');
 
-
         const data = response.data.data;
         
         const processedCaregivers = data.map((details) => {

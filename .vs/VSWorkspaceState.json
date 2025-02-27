@@ -1,15 +1,17 @@
 {
   "ExpandedNodes": [
     "",
+    "\\server",
+    "\\server\\routes",
     "\\visitingangelsrjs",
+    "\\visitingangelsrjs\\src",
     "\\visitingangelsrjs\\src\\pages",
-    "\\visitingangelsrjs\\src\\pages\\Auth",
-    "\\visitingangelsrjs\\src\\pages\\FirstLogin",
     "\\visitingangelsrjs\\src\\pages\\Scheduler",
-    "\\visitingangelsrjs\\src\\pages\\Scheduler\\Components",
-    "\\visitingangelsrjs\\src\\pages\\Scheduler\\Components\\Login",
-    "\\visitingangelsrjs\\src\\pages\\Scheduler\\Components\\Navbar"
+    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver",
+    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components",
+    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components\\hooks",
+    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components\\utils"
   ],
-  "SelectedNode": "\\visitingangelsrjs\\package.json",
+  "SelectedNode": "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components\\FilterClasses.js",
   "PreviewInSolutionExplorer": false
 }

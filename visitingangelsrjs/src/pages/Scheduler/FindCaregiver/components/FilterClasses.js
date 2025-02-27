@@ -10,28 +10,15 @@
 */
 import React from 'react';
 import './FilterClasses.css';
-import filterCriteriaData from '../../../../data/FilterClassesData';
-
-function FilterCriteria() {
+function FilterCriteria({ filterClasses }) {
     return (
         <div>
             <h2>Filter Options</h2>
             <div className="find-caregiver-filter-options">
-                {filterCriteriaData.generalFilters.map((filter) => (
-                    <div key={filter.id} className="find-caregiver-filter-option">
-                        <input type="checkbox" id={filter.id} />
-                        <label htmlFor={filter.id}>{filter.label}</label>
-                    </div>
-                ))}
-            </div>
-
-            <hr className="find-caregiver-divider" />
-            <h2>Location</h2>
-            <div className="find-caregiver-location-filter-options">
-                {filterCriteriaData.locationFilters.map((filter) => (
-                    <div key={filter.id} className="find-caregiver-location-filter-option">
-                        <input type="checkbox" id={filter.id} />
-                        <label htmlFor={filter.id}>{filter.label}</label>
+                {filterClasses.map((filter) => (
+                    <div key={filter} className="find-caregiver-filter-option">
+                        <input type="checkbox" id={filter} />
+                        <label htmlFor={filter}>{filter}</label>
                     </div>
                 ))}
             </div>
@@ -41,3 +28,5 @@ function FilterCriteria() {
 }
 
 export default FilterCriteria;
+
+

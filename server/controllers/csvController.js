@@ -71,8 +71,8 @@ exports.uploadClassesCSV = (req, res) => {
     .on('data', (row) => {
       // Process the "classes" field: split the comma-separated string into an array.
       if (row.classes) {
-        row.classes = row.classes.split(',').map((cls) => cls.trim());
-      }
+          row.classes = row.classes.split(',').map((cls) => cls.trim()); //this if is useless
+        }   
       results.push(row);
     })
     .on('end', () => {
