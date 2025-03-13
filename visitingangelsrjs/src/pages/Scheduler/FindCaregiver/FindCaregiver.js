@@ -18,6 +18,7 @@ import FilterCriteria from './components/FilterClasses';
 import useFetchFilterClasses from './components/hooks/useFetchFilterClasses';
 import useFetchCaregiverData from './components/hooks/useFetchCaregiverData';
 import filterCaregiversDate from './components/utils/filterCaregiverDate';
+
 function FindCaregiver() {
     // State to store the selected date from the carousel
     const [selectedDate, setSelectedDate] = useState(null);
