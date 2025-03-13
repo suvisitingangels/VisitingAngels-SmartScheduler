@@ -47,3 +47,15 @@
 	padding-top: 1rem;
 	text-align: center;
 }
+
+.csv-type-selector {
+	text-align: center;
+}
+
+.csv-type-selector input[type="radio"] {
+	margin: 0 5px;
+}
+
+.upload-status {
+	text-align: center;
+}
