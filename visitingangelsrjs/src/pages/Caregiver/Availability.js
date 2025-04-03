@@ -16,8 +16,7 @@ function Availability() {
 	const [formData, setFormData] = useState({
 		caregiverName: '',
 		date: '',
-		time: '',
-		action: 'Add',
+		time: ''
 	});
 	const [caregiverName, setCaregiverName] = useState("FirstName LastName")
 	//
@@ -79,17 +78,7 @@ function Availability() {
 						onChange={handleChange}
 					/>
 				</label>
-
-				{/* Add/Remove Dropdown */}
-				<label>
-					Action:
-					<select name="action" value={formData.action} onChange={handleChange}>
-						<option value="Add">Add</option>
-						<option value="Remove">Remove</option>
-					</select>
-				</label>
-
-				<button type="submit">Submit</button>
+				<button type="submit">Add</button>
 			</form>
 		</div>
 	);
