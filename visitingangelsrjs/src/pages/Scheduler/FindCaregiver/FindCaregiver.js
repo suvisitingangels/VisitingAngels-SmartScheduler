@@ -22,6 +22,7 @@ import filterCaregiverClasses from './components/utils/filterCaregiversClasses';
 import useFetchFullFilterClassesData from './components/hooks/useFetchFullFilterClasses';
 
 
+
 function FindCaregiver() {
     const [selectedDate, setSelectedDate] = useState(null);
     const { caregivers, dates, loading, error } = useFetchCaregiverData();

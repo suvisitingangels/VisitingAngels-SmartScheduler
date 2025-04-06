@@ -31,12 +31,14 @@ function DateCarousel({ dates, onDateSelect }) {
        * 
        * @param {number} index - Index of the selected date.
   */
-  const handleDateClick = (index) => {
-    setSelectedIndex(index);
-    if (onDateSelect) {
-      onDateSelect(dates[index]);
-    }
-  };
+    const handleDateClick = (index) => {
+        const newSelectedIndex = index === selectedIndex ? null : index; // check if index is new
+        setSelectedIndex(newSelectedIndex); // set null if not (unselect) or set select to that index
+
+        // if (new) selected index is present then set date. if date is null all caregivers are returned from filterCaregiversDate(caregivers, selectedDate)
+        if (onDateSelect)
+            onDateSelect(newSelectedIndex !== null ? dates[newSelectedIndex] : null); 
+    };
 
   const formatFullDay = (dateStr) => {
     const date = new Date(dateStr.fullDate); 
