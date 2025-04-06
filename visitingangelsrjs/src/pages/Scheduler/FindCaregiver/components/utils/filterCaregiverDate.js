@@ -14,7 +14,6 @@
 export default function filterCaregiversDate(caregivers, selectedDate) {
   
     if (!selectedDate) {
-      console.log('selectedDate is null or undefined, returning all caregivers.');
       return caregivers;
     }
   

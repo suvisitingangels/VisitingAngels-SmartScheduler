@@ -28,7 +28,9 @@ function CaregiverDataDate({ caregivers }) {
         <tbody>
           {caregivers.length > 0 ? (
             caregivers.map((caregiver, index) => {
-              const workingHours = Object.values(caregiver.schedule).join(', '); 
+              const workingHours = caregiver.schedule 
+              ? Object.values(caregiver.schedule).join(', ') 
+              : 'No schedule available';
               return (
                 <tr key={index}>
                   <td>{caregiver.name}</td>

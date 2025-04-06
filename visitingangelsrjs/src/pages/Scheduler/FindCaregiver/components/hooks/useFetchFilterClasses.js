@@ -19,7 +19,6 @@ export default function useFetchFilterClasses() {
         // Define the inner async function to fetch filter classes data
         const fetchFilterClasses = async () => {
             try {
-                console.log('Fetching filter classes data...');
                 const response = await axios.get('http://localhost:5000/api/classes-data'); 
                 const data = response.data.data;
 

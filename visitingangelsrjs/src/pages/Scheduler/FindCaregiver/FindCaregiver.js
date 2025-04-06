@@ -12,28 +12,36 @@
 import React, { useState } from 'react';
 import './FindCaregiver.css';
 import DateCarousel from './components/DateCarousel';
-import CaregiverData from './components/CaregiverDataDate';
+import CaregiverDataDate from './components/CaregiverDataDate';
 import SearchBar from './components/SearchBar';
 import FilterCriteria from './components/FilterClasses';
 import useFetchFilterClasses from './components/hooks/useFetchFilterClasses';
 import useFetchCaregiverData from './components/hooks/useFetchCaregiverData';
 import filterCaregiversDate from './components/utils/filterCaregiverDate';
+import filterCaregiverClasses from './components/utils/filterCaregiversClasses';
+import useFetchFullFilterClassesData from './components/hooks/useFetchFullFilterClasses';
+
+
 function FindCaregiver() {
-    // State to store the selected date from the carousel
     const [selectedDate, setSelectedDate] = useState(null);
-
-    // Fetch caregiver data and date options using a custom hook
     const { caregivers, dates, loading, error } = useFetchCaregiverData();
-    // Filter caregivers based on the selected date
     const filteredCaregiversDate = filterCaregiversDate(caregivers, selectedDate);
-
-    // Fetch all filter classes using a custom hook 
     const { filterClasses, loading: filtersLoading, error: filtersError } = useFetchFilterClasses();
+    const { fullFilterClasses, loading: fullFiltersLoading, error: fullFiltersError } = useFetchFullFilterClassesData();
+    const [activeFilters, setActiveFilters] = useState([]);
+    const finalFilteredCaregivers = filterCaregiverClasses(fullFilterClasses, filteredCaregiversDate, activeFilters);
+
+    const handleCheckboxChange = (filter, isChecked) => {
+        const updatedFilters = isChecked
+          ? [...activeFilters, filter]
+          : activeFilters.filter((f) => f !== filter);
+        setActiveFilters(updatedFilters);
+    };
 
     return (
         <div className="find-caregiver-container">
             <aside className="find-caregiver-filter-sidebar">
-                <FilterCriteria filterClasses={filterClasses} />
+                <FilterCriteria filterClasses={filterClasses} onCheckboxChange={handleCheckboxChange} />
                 {filtersLoading && <p>Loading filters...</p>}
                 {filtersError && <p className="error-message">{filtersError}</p>}
             </aside>
@@ -41,7 +49,7 @@ function FindCaregiver() {
                 <SearchBar />
                 <hr className="find-caregiver-divider" />
                 <DateCarousel dates={dates} onDateSelect={setSelectedDate} />
-                <CaregiverData caregivers={filteredCaregiversDate} />
+                <CaregiverDataDate caregivers={finalFilteredCaregivers} />
                 {loading && <p>Loading data...</p>}
                 {error && <p className="error-message">{error}</p>}
             </section>
