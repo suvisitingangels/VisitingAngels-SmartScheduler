@@ -15,9 +15,7 @@ import './Navbar.css';
 function Navbar() {
 	return (
 		<nav className="navbar">
-			<a href="http://localhost:3000/scheduler">
 				<img src="https://i.imgur.com/GSKsNA8.png" alt="logo"></img>
-			</a>
 			<div>
 				<Link to="/scheduler/find-caregiver" className="navbar-link">Find Caregiver</Link>
 				<Link to="/scheduler/load-data" className="navbar-link-center">Load Data</Link>
