@@ -1,16 +1,19 @@
 {
   "ExpandedNodes": [
     "",
+    "\\server",
+    "\\server\\controllers",
+    "\\server\\db",
+    "\\server\\middlewares",
+    "\\server\\routes",
+    "\\server\\services",
+    "\\server\\utils",
     "\\visitingangelsrjs",
     "\\visitingangelsrjs\\src",
     "\\visitingangelsrjs\\src\\pages",
-    "\\visitingangelsrjs\\src\\pages\\Profile",
     "\\visitingangelsrjs\\src\\pages\\Scheduler",
-    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver",
-    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components",
-    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components\\hooks",
-    "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components\\utils"
+    "\\visitingangelsrjs\\src\\pages\\Scheduler\\LoadData"
   ],
-  "SelectedNode": "\\visitingangelsrjs\\src\\pages\\Scheduler\\FindCaregiver\\components\\CaregiverDataDate.js",
+  "SelectedNode": "\\visitingangelsrjs\\src\\App.js",
   "PreviewInSolutionExplorer": false
 }

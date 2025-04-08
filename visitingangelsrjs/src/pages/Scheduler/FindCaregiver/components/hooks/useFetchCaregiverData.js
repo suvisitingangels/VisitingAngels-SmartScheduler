@@ -25,13 +25,13 @@ export default function useFetchCaregiverData() {
     */
     const fetchCaregiverData = async () => {
       try {
-        console.log('Fetching caregiver data...');
         const response = await axios.get('http://localhost:5000/api/csv-data');
 
         const data = response.data.data;
         
         const processedCaregivers = data.map((details) => {
-            const name = details['Caregiver Name'] || 'Unknown Caregiver';
+            const rawName = details['Caregiver Name'] || 'Unknown Caregiver';
+            const name = rawName.replace(/\s*\[Caregiver\]$/, ''); // filter out tag for space
             const schedule = Object.entries(details)
               .filter(([key, value]) => key.includes('/') && value) 
               .reduce((acc, [date, hours]) => ({ ...acc, [date]: hours }), {});

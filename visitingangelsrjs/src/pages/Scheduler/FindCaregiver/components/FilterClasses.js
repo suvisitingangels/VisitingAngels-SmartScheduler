@@ -11,21 +11,27 @@
 import React from 'react';
 import './FilterClasses.css';
 
-function FilterCriteria({filterClasses}) {
-	return (
-		<div>
-			<h2 className={"filter-header"}>Filter Options</h2>
-			<div className="find-caregiver-filter-options">
-				{filterClasses.map((filter) => (
-					<div key={filter} className="find-caregiver-filter-option">
-						<input type="checkbox" id={filter}/>
-						<label htmlFor={filter}>{filter}</label>
-					</div>
-				))}
-			</div>
-			<hr className="find-caregiver-divider"/>
-		</div>
-	);
+function FilterCriteria({ filterClasses, onCheckboxChange }) {
+    
+    const handleChange = (e) => {
+      const { id, checked } = e.target;
+      onCheckboxChange(id, checked);
+    };
+
+    return (
+        <div>
+            <h2>Filter Options</h2>
+            <div className="find-caregiver-filter-options">
+                {filterClasses.map((filter) => (
+                    <div key={filter} className="find-caregiver-filter-option">
+                        <input type="checkbox" id={filter} onChange={handleChange} />
+                        <label htmlFor={filter}>{filter}</label>
+                    </div>
+                ))}
+            </div>
+            <hr className="find-caregiver-divider" />
+        </div>
+    );
 }
 
 export default FilterCriteria;
