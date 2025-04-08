@@ -47,7 +47,6 @@ function App() {
 					<Route path="/scheduler/load-data" element={<PrivateRoute><LoadData/></PrivateRoute>}/>
 					<Route path="/scheduler/availability" element={<PrivateRoute><Availability/></PrivateRoute>}/>
 					<Route path="/caregiver/availability" element={<PrivateRoute><CaregiverAvailability/></PrivateRoute>}/>
-					<Route path="/caregiver/availability" element={<PrivateRoute><CaregiverAvailability/></PrivateRoute>}/>
 					<Route path="/caregiver/profile" element={<PrivateRoute><Profile/></PrivateRoute>}/>
 					<Route path="*" element={<NotFound/>}/>
 				</Routes>
