@@ -17,6 +17,8 @@ import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/FirstLogin/FirstLogin';
 import PrivateRoute from './components/PrivateRoute';
+import CaregiverAvailability from './pages/Caregiver/Availability.js';
+
 import Profile from "./pages/Profile/Profile";
 
 
@@ -43,8 +45,10 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Login/>}/>
 					<Route path="/scheduler/find-caregiver" element={<PrivateRoute><FindCaregiver/></PrivateRoute>}/>
-					<Route path="/scheduler/loaddata" element={<PrivateRoute><LoadData/></PrivateRoute>}/>
+					<Route path="/scheduler/load-data" element={<PrivateRoute><LoadData/></PrivateRoute>}/>
 					<Route path="/scheduler/availability" element={<PrivateRoute><Availability/></PrivateRoute>}/>
+					<Route path="/caregiver/availability"
+						   element={<PrivateRoute><CaregiverAvailability/></PrivateRoute>}/>
 					<Route path="*" element={<NotFound/>}/>
 				</Routes>
 			</AppLayout>

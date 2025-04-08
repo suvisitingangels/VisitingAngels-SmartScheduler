@@ -1,43 +1,46 @@
 /* src/pages/scheduler/components/FilterCriteria.css */
 
 .find-caregiver-filter-options {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  
-  .find-caregiver-filter-option {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    font-size: 1.2em;
-  }
-  
-  .find-caregiver-filter-option input[type="checkbox"] {
-    transform: scale(1.5);
-    margin-right: 8px;
-  }
-  .find-caregiver-location-filter-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .find-caregiver-location-filter-option{
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-  .find-caregiver-location-filter-option input[type="checkbox"] {
-    transform: scale(1.5);
-    margin-right: 8px;
-  }
-  
-  .find-caregiver-divider {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 15px 0;
-  }
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 10px;
+}
 
-  h2{
-    margin-bottom: 15px;
-  }
+.find-caregiver-filter-option {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	font-size: 1.2em;
+}
+
+.find-caregiver-filter-option input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 8px;
+}
+
+.find-caregiver-location-filter-options {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+.find-caregiver-location-filter-option {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.find-caregiver-location-filter-option input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 8px;
+}
+
+.find-caregiver-divider {
+	border: none;
+	border-top: 1px solid #ccc;
+	margin: 15px 0;
+}
+
+.filter-header {
+	margin-bottom: 15px;
+}

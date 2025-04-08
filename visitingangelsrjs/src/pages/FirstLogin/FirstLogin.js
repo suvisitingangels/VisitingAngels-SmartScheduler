@@ -22,7 +22,7 @@ const LoginPage = () => {
 			const response = await axios.post('http://localhost:5000/api/auth/login', {username, password});
 			localStorage.setItem('token', response.data.token);
 			alert('Login successful!');
-			navigate('/scheduler/loaddata'); // Redirect to /scheduler after successful login
+			navigate('/scheduler/load-data'); // Redirect to /scheduler after successful login
 		} catch (err) {
 			setError('Invalid credentials');
 		}

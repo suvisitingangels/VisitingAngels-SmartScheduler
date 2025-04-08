@@ -20,7 +20,7 @@ function Navbar() {
 			</a>
 			<div>
 				<Link to="/scheduler/find-caregiver" className="navbar-link">Find Caregiver</Link>
-				<Link to="/scheduler/loaddata" className="navbar-link-center">Load Data</Link>
+				<Link to="/scheduler/load-data" className="navbar-link-center">Load Data</Link>
 				<Link to="/scheduler/availability" className="navbar-link">Availability</Link>
 			</div>
 		</nav>
