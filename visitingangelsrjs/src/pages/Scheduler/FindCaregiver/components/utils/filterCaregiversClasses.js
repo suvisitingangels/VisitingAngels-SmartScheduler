@@ -19,7 +19,7 @@ export default function filterCaregiversFilters(filterClasses, filteredCaregiver
         }
 
         if (meetsAll) {
-            namesWithYes.push(caregiver['Caregivers'] + " [Caregiver]");
+            namesWithYes.push(caregiver['Caregivers']);// + " [Caregiver]"); removed for now
         }
     }
 

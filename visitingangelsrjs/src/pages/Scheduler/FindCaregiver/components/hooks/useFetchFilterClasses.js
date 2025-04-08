@@ -25,7 +25,8 @@ export default function useFetchFilterClasses() {
                 if (data && data.length > 0) {
                     // Extract the header keys from the first row if available
                     // These keys are the filter classes
-                    const filters = Object.keys(data[0]).filter(key => key !== "[Other]");
+                    const excludeKeys = ["[Other]", "Caregivers", "Status", "[None Set]"]; // set excludes here
+                    const filters = Object.keys(data[0]).filter(key => !excludeKeys.includes(key));
                     setFilterClasses(filters);
                 } else {
                     setFilterClasses([]);

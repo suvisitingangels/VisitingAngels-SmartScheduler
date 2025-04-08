@@ -1,54 +1,99 @@
+/* Existing general styles remain unchanged */
 .caregiver-container {
     margin: 20px;
     padding: 10px;
     font-family: Arial, sans-serif;
-  }
-  
-  .caregiver-table {
+}
+
+.caregiver-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-  }
-  
-  .caregiver-table thead tr {
+}
+
+.caregiver-table thead tr {
     background-color: #007bff;
     color: #ffffff;
     text-align: left;
-  }
-  
-  .caregiver-table th,
-  .caregiver-table td {
+}
+
+.caregiver-table th,
+.caregiver-table td {
     padding: 12px 15px;
     border: 1px solid #dddddd;
     text-align: left;
-  }
-  
-  .caregiver-table tbody tr:nth-child(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .caregiver-table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .caregiver-heading {
+}
+
+.caregiver-table th:first-child,
+.caregiver-table td:first-child {
+    border-right: 3px solid darkgrey;
+}
+
+.caregiver-table tbody tr:hover {
+    background-color: darkgrey;
+}
+
+.caregiver-heading {
     color: #007bff;
     text-align: center;
-  }
-  
-  .caregiver-message {
+}
+
+.caregiver-info {
+    padding-top: 2px !important;
+    vertical-align: top;
+}
+
+.vertical-split {
+    display: flex;
+    flex-direction: column;
+    height: 65px; 
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+}
+
+.vertical-split .name {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #000;
     text-align: center;
-    font-size: 1.1rem;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+
+.label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+    font-weight: bold;
+}
+
+.hours {
+    text-align: left;
+    padding: 12px 15px;
+}
+
+.separator td {
+    padding: 0;
+    border: 2px solid #aaa;
+}
+
+.group-row {
+    background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
     .caregiver-table {
-      font-size: 0.9rem;
+        font-size: 0.9rem;
     }
-  
+
     .caregiver-table th,
     .caregiver-table td {
-      padding: 8px 10px;
+        padding: 8px 10px;
     }
-  }
-  
+}

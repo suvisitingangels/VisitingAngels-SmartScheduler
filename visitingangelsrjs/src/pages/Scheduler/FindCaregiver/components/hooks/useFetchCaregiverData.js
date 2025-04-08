@@ -30,7 +30,8 @@ export default function useFetchCaregiverData() {
         const data = response.data.data;
         
         const processedCaregivers = data.map((details) => {
-            const name = details['Caregiver Name'] || 'Unknown Caregiver';
+            const rawName = details['Caregiver Name'] || 'Unknown Caregiver';
+            const name = rawName.replace(/\s*\[Caregiver\]$/, ''); // filter out tag for space
             const schedule = Object.entries(details)
               .filter(([key, value]) => key.includes('/') && value) 
               .reduce((acc, [date, hours]) => ({ ...acc, [date]: hours }), {});
