@@ -76,3 +76,6 @@
 	border-radius: 8px;
 }
 
+input {
+	font-family: monospace;
+}
