@@ -1,4 +1,4 @@
-// src/pages/Caregiver/Availability.js
+// src/pages/Scheduler/Availability/Availability.js
 
 /**
  * Availability Component
@@ -8,7 +8,7 @@
  * The form supports dynamic state updates and handles form submission.
  */
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Availability.css';
 
 function Availability() {
@@ -16,10 +16,10 @@ function Availability() {
 	const [formData, setFormData] = useState({
 		caregiverName: '',
 		date: '',
-		time: ''
+		startTime: '',
+		endTime: ''
 	});
-	const [caregiverName, setCaregiverName] = useState("FirstName LastName")
-	//
+	const [caregiverName, setCaregiverName] = useState('FirstName LastName')
 
 	/**
 	 * Handle input changes in the form fields.
@@ -28,8 +28,8 @@ function Availability() {
 	 * @param {Object} e - The input change event.
 	 */
 	const handleChange = (e) => {
-		const {name, value} = e.target;
-		setFormData({...formData, [name]: value});
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
 	};
 
 
@@ -47,16 +47,21 @@ function Availability() {
 	return (
 		<div className="availability-container">
 			<div className="availability-header">
-				<h2>Enter Availability</h2>
+				<h2>Update Availability</h2>
 			</div>
 
 			{/* Form Section */}
 			<form className="availability-form" onSubmit={handleSubmit}>
-				{/*<h3>Enter Availability</h3>*/}
+				<h3>Enter Availability</h3>
 
 				<label>
 					Caregiver Name:
-					<div className={"caregiver-name"}><b>{caregiverName}</b></div>
+					<input
+						type={"text"}
+						id={"caregiver-name"}
+						readOnly
+						value={caregiverName}
+					/>
 				</label>
 
 				<label>
@@ -70,14 +75,25 @@ function Availability() {
 				</label>
 
 				<label>
-					Time:
+					From:
 					<input
 						type="time"
-						name="time"
-						value={formData.time}
+						name="startTime"
+						value={formData.startTime}
 						onChange={handleChange}
 					/>
 				</label>
+
+				<label>
+					To:
+					<input
+						type="time"
+						name="endTime"
+						value={formData.endTime}
+						onChange={handleChange}
+					/>
+				</label>
+
 				<button type="submit">Add</button>
 			</form>
 		</div>

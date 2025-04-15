@@ -64,4 +64,7 @@
   .availability-form button:hover {
     background-color: #2a94a3;
   }
-  
+
+  #caregiver-name {
+	  background-color: #eee;
+  }
