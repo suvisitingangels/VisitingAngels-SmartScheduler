@@ -5,3 +5,7 @@ body, html {
     padding: 0;
     overflow-y: hidden; /* Prevents vertical scrollbar across the whole page */
 }
+
+* {
+	font-family: sans-serif;
+}
