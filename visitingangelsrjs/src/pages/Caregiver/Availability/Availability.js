@@ -8,9 +8,10 @@
  * The form supports dynamic state updates and handles form submission.
  */
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Availability.css';
 
+const today = new Date();
 function Availability() {
 	// State to store form data
 	const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ function Availability() {
 		startTime: '',
 		endTime: ''
 	});
-	const [caregiverName, setCaregiverName] = useState('FirstName LastName')
+	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
 
 	/**
 	 * Handle input changes in the form fields.
@@ -41,6 +42,7 @@ function Availability() {
 	 */
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		alert("Submission successful!")
 		console.log(formData);
 	};
 
@@ -52,7 +54,6 @@ function Availability() {
 
 			{/* Form Section */}
 			<form className="availability-form" onSubmit={handleSubmit}>
-				<h3>Enter Availability</h3>
 
 				<label>
 					Caregiver Name:
