@@ -1,5 +1,4 @@
-// src/pages/Scheduler/Availability/Availability.js
-
+// src/pages/Caregiver/Availability/Availability.js
 /**
  * Availability Component
  *
