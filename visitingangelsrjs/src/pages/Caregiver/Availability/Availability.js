@@ -15,15 +15,17 @@ const today = new Date();
 function Availability() {
 	// State to store form data
 	const [formData, setFormData] = useState({
-		caregiverName: '',
+		user_id: 'admin.admin',
 		date: '',
-		startTime: '',
-		endTime: ''
+		start_time: '',
+		end_time: ''
 	});
 	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
 
+
 	useEffect(() => {
 		// TODO: Get user's first/last name from login
+		// then setFormData user_id
 	})
 
 	/**
@@ -44,13 +46,20 @@ function Availability() {
 	 *
 	 * @param {Object} e - The form submit event.
 	 */
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		// TODO: need to fetch to database once submitted and then we can send submission alert
+		const response = await fetch('http://localhost:5000/api/db/new-availability', {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(formData),
+		})
 
-		alert("Submission successful!")
-		console.log(formData);
+		if (response.status !== 201) throw new Error('Failed to input availabilitiy');
+		else {
+			alert("Submission successful!")
+		}
 	};
 
 	return (
@@ -68,7 +77,7 @@ function Availability() {
 						type={"text"}
 						id={"caregiver-name"}
 						readOnly
-						value={caregiverName}
+						value={formData.user_id}
 					/>
 				</label>
 
@@ -86,8 +95,8 @@ function Availability() {
 					From:
 					<input
 						type="time"
-						name="startTime"
-						value={formData.startTime}
+						name="start_time"
+						value={formData.start_time}
 						onChange={handleChange}
 					/>
 				</label>
@@ -96,8 +105,8 @@ function Availability() {
 					To:
 					<input
 						type="time"
-						name="endTime"
-						value={formData.endTime}
+						name="end_time"
+						value={formData.end_time}
 						onChange={handleChange}
 					/>
 				</label>
