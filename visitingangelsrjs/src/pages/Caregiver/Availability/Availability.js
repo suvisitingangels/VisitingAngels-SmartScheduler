@@ -22,6 +22,10 @@ function Availability() {
 	});
 	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
 
+	useEffect(() => {
+		// TODO: Get user's first/last name from login
+	})
+
 	/**
 	 * Handle input changes in the form fields.
 	 * Updates the corresponding field in the formData state.
@@ -42,6 +46,9 @@ function Availability() {
 	 */
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		// TODO: need to fetch to database once submitted and then we can send submission alert
+
 		alert("Submission successful!")
 		console.log(formData);
 	};
