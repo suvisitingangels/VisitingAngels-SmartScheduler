@@ -1,5 +1,4 @@
-// src/pages/Caregiver/Availability.js
-
+// src/pages/Caregiver/Availability/Availability.js
 /**
  * Availability Component
  *
@@ -8,18 +7,24 @@
  * The form supports dynamic state updates and handles form submission.
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Availability.css';
 
 function Availability() {
 	// State to store form data
 	const [formData, setFormData] = useState({
-		caregiverName: '',
+		user_id: 'admin.admin',
 		date: '',
-		time: ''
+		start_time: '',
+		end_time: ''
 	});
-	const [caregiverName, setCaregiverName] = useState("FirstName LastName")
-	//
+	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
+
+
+	useEffect(() => {
+		// TODO: Get user's first/last name from login
+		// then setFormData user_id
+	})
 
 	/**
 	 * Handle input changes in the form fields.
@@ -28,8 +33,8 @@ function Availability() {
 	 * @param {Object} e - The input change event.
 	 */
 	const handleChange = (e) => {
-		const {name, value} = e.target;
-		setFormData({...formData, [name]: value});
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
 	};
 
 
@@ -39,24 +44,48 @@ function Availability() {
 	 *
 	 * @param {Object} e - The form submit event.
 	 */
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(formData);
+
+		// TODO: need to fetch to database once submitted and then we can send submission alert
+		const response = await fetch('http://localhost:5000/api/db/new-availability', {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(formData),
+		})
+		console.log(response);
+
+		if (!response.ok) {
+			throw new Error('Failed to input availability');
+		}
+		else {
+			alert("Submission successful!")
+			setFormData({
+				user_id: '',
+				date: '',
+				start_time: '',
+				end_time: ''
+			})
+		}
 	};
 
 	return (
 		<div className="availability-container">
 			<div className="availability-header">
-				<h2>Enter Availability</h2>
+				<h2>Update Availability</h2>
 			</div>
 
 			{/* Form Section */}
 			<form className="availability-form" onSubmit={handleSubmit}>
-				{/*<h3>Enter Availability</h3>*/}
 
 				<label>
 					Caregiver Name:
-					<div className={"caregiver-name"}><b>{caregiverName}</b></div>
+					<input
+						type={"text"}
+						id={"caregiver-name"}
+						readOnly
+						value={formData.user_id}
+					/>
 				</label>
 
 				<label>
@@ -70,14 +99,25 @@ function Availability() {
 				</label>
 
 				<label>
-					Time:
+					From:
 					<input
 						type="time"
-						name="time"
-						value={formData.time}
+						name="start_time"
+						value={formData.start_time}
 						onChange={handleChange}
 					/>
 				</label>
+
+				<label>
+					To:
+					<input
+						type="time"
+						name="end_time"
+						value={formData.end_time}
+						onChange={handleChange}
+					/>
+				</label>
+
 				<button type="submit">Add</button>
 			</form>
 		</div>
