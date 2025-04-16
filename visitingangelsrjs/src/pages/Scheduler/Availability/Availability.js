@@ -14,12 +14,12 @@ import './Availability.css';
 function Availability() {
   // State to store form data
   const [formData, setFormData] = useState({
-    caregiverName: '',
-    date: '',
-    time: '',
-    action: 'Add',
+	user_id: '',
+	date: '',
+	start_time: '',
+	end_time: ''
   });
-  
+  const [action, setAction] = useState('Add');
   
   /**
        * Handle input changes in the form fields.
@@ -27,10 +27,14 @@ function Availability() {
        * 
        * @param {Object} e - The input change event.
   */
-  const handleChange = (e) => {
+  const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const handleActionChange = (e) => {
+	  setAction(e.target);
+  }
 
 
   /**
@@ -39,9 +43,26 @@ function Availability() {
        * 
        * @param {Object} e - The form submit event.
   */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+	console.log(formData);
+	  const response = await fetch('http://localhost:5000/api/db/new-availability', {
+		  method: 'POST',
+		  headers: {'Content-Type': 'application/json'},
+		  body: JSON.stringify(formData),
+	  })
+	  if (!response.ok) {
+		  throw new Error('Failed to input availability');
+	  }
+	  else {
+		  alert("Submission successful!")
+		  setFormData({
+			  user_id: '',
+			  date: '',
+			  start_time: '',
+			  end_time: ''
+		  })
+	  }
   };
 
   return (
@@ -51,52 +72,62 @@ function Availability() {
       </div>
       
       {/* Form Section */}
-      <form className="availability-form" onSubmit={handleSubmit}>
-        <h3>Enter Availability</h3>
-        
-        <label>
-          Caregiver Name:
-          <input
-            type="text"
-            name="caregiverName"
-            value={formData.caregiverName}
-            onChange={handleChange}
-            placeholder="Enter caregiver's name"
-          />
-        </label>
-        
-        <label>
-          Date:
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-          />
-        </label>
-        
-        <label>
-          Time:
-          <input
-            type="time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-          />
-        </label>
+		<form className="availability-form" onSubmit={handleSubmit}>
 
-        {/* Add/Remove Dropdown */}
-        <label>
-          Action:
-          <select name="action" value={formData.action} onChange={handleChange}>
-            <option value="Add">Add</option>
-            <option value="Remove">Remove</option>
-          </select>
-        </label>
+			<label>
+				Caregiver Name:
+				<input
+					type="text"
+					name="user_id"
+					value={formData.user_id}
+					onChange={handleFormChange}
+					placeholder="Enter caregiver's username"
+				/>
+			</label>
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+			<label>
+				Date:
+				<input
+					type="date"
+					name="date"
+					value={formData.date}
+					onChange={handleFormChange}
+				/>
+			</label>
+
+			<label>
+				From:
+				<input
+					type="time"
+					name="start_time"
+					value={formData.start_time}
+					onChange={handleFormChange}
+				/>
+			</label>
+
+			<label>
+				To:
+				<input
+					type="time"
+					name="end_time"
+					value={formData.end_time}
+					onChange={handleFormChange}
+				/>
+			</label>
+
+
+			{/* Add/Remove Dropdown */}
+			<label>
+				Action:
+				<select name="action" value={action} onChange={handleActionChange}>
+					<option value="Add">Add</option>
+					<option value="Remove">Remove</option>
+				</select>
+			</label>
+
+			<button type="submit">Submit</button>
+		</form>
+	</div>
   );
 }
 

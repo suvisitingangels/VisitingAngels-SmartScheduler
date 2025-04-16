@@ -11,7 +11,6 @@
 import React, {useEffect, useState} from 'react';
 import './Availability.css';
 
-const today = new Date();
 function Availability() {
 	// State to store form data
 	const [formData, setFormData] = useState({
@@ -55,10 +54,19 @@ function Availability() {
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(formData),
 		})
+		console.log(response);
 
-		if (response.status !== 201) throw new Error('Failed to input availabilitiy');
+		if (!response.ok) {
+			throw new Error('Failed to input availability');
+		}
 		else {
 			alert("Submission successful!")
+			setFormData({
+				user_id: '',
+				date: '',
+				start_time: '',
+				end_time: ''
+			})
 		}
 	};
 
