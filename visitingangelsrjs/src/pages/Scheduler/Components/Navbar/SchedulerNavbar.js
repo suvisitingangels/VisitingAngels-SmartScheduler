@@ -12,7 +12,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
+function SchedulerNavbar() {
 	return (
 		<nav className="navbar">
 				<img src="https://i.imgur.com/GSKsNA8.png" alt="logo"></img>
@@ -25,5 +25,5 @@ function Navbar() {
 	);
 }
 
-export default Navbar;
+export default SchedulerNavbar;
 
