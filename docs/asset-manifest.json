@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/VisitingAngelsSURJS/static/css/main.7db4ec72.css",
+    "main.js": "/VisitingAngelsSURJS/static/js/main.99aa0754.js",
+    "index.html": "/VisitingAngelsSURJS/index.html",
+    "main.7db4ec72.css.map": "/VisitingAngelsSURJS/static/css/main.7db4ec72.css.map",
+    "main.99aa0754.js.map": "/VisitingAngelsSURJS/static/js/main.99aa0754.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7db4ec72.css",
+    "static/js/main.99aa0754.js"
+  ]
+}
