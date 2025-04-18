@@ -1,4 +1,5 @@
 // server/app.js
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
@@ -15,7 +16,11 @@ const app = express();
  * - `cors`: Enables Cross-Origin Resource Sharing to allow requests from different origins.
  * - `express.json`: Parses incoming requests with JSON payloads.
  */
-app.use(cors());
+app.use(
+    cors({
+        origin: process.env.ALLOWED_ORIGIN || '*'
+    })
+);
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use(`/api/db`, dbRoutes);

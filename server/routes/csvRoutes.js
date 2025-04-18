@@ -18,7 +18,7 @@ const {
 
 const router = express.Router();
 // Configure Multer for file uploads, specifying the destination folder
-const upload = multer({ dest: 'uploads/' }); 
+const upload = multer({ dest: process.env.UPLOAD_DIR || 'uploads/' });
 
 /**
  * POST /upload-schedule-csv
