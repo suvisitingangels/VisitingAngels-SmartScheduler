@@ -1,7 +1,7 @@
 // server/controllers/csvController.js
 
 // ─── IMPORTS ───────────────────────────────────────────────────────────────────
-const csvParser = require('csv‑parser');
+const csvParser = require('csv-parser');
 const fs        = require('fs');
 
 // ─── IN‑MEMORY DATA STORES ─────────────────────────────────────────────────────
