@@ -43,11 +43,11 @@ function App() {
 			<AppLayout>
 				<Routes>
 					<Route path="/" element={<Login/>}/>
-					<Route path="/scheduler/find-caregiver" element={<PrivateRoute><FindCaregiver/></PrivateRoute>}/>
-					<Route path="/scheduler/load-data" element={<PrivateRoute><LoadData/></PrivateRoute>}/>
-					<Route path="/scheduler/availability" element={<PrivateRoute><Availability/></PrivateRoute>}/>
-					<Route path="/caregiver/availability" element={<PrivateRoute><CaregiverAvailability/></PrivateRoute>}/>
-					<Route path="/caregiver/profile" element={<PrivateRoute><Profile/></PrivateRoute>}/>
+					<Route path="/scheduler/find-caregiver" element={<PrivateRoute allowedRoles={['scheduler','admin']}><FindCaregiver/></PrivateRoute>}/>
+					<Route path="/scheduler/load-data" element={<PrivateRoute allowedRoles={['scheduler','admin']}><LoadData/></PrivateRoute>}/>
+					<Route path="/scheduler/availability" element={<PrivateRoute allowedRoles={['scheduler','admin']}><Availability/></PrivateRoute>}/>
+					<Route path="/caregiver/availability" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverAvailability/></PrivateRoute>}/>
+					<Route path="/caregiver/profile" element={<PrivateRoute allowedRoles={['caregiver','admin']}><Profile/></PrivateRoute>}/>
 					<Route path="*" element={<NotFound/>}/>
 				</Routes>
 			</AppLayout>
