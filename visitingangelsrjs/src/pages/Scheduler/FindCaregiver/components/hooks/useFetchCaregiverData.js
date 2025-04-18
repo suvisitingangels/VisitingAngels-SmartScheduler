@@ -25,7 +25,7 @@ export default function useFetchCaregiverData() {
     */
     const fetchCaregiverData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/csv-data');
+        const response = await axios.get('https://visitingangelssurjsbackend.onrender.com/api/csv-data');
 
         const data = response.data.data;
         
