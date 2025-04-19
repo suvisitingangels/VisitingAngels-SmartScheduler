@@ -10,7 +10,8 @@
 import './App.css';
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
-import Navbar from './pages/Scheduler/Components/Navbar/Navbar';
+import SchedulerNavbar from './pages/Scheduler/Components/Navbar/SchedulerNavbar';
+import CaregiverNavbar from './pages/Caregiver/Components/Navbar/Navbar';
 import FindCaregiver from './pages/Scheduler/FindCaregiver/FindCaregiver';
 import LoadData from './pages/Scheduler/LoadData/LoadData';
 import Availability from './pages/Scheduler/Availability/Availability';
@@ -21,17 +22,18 @@ import CaregiverAvailability from './pages/Caregiver/Availability/Availability.j
 import Profile from "./pages/Caregiver/Profile/Profile";
 
 
-// Component to conditionally render Navbar
+// Component to conditionally render SchedulerNavbar
 const AppLayout = ({children}) => {
 	const location = useLocation();
 	const token = localStorage.getItem('token');
 
-	// Show Navbar only if the user is logged in and not on the login page
-	const showNavbar = token && location.pathname !== '/';
+	// Show SchedulerNavbar only if the user is logged in and not on the login page
+	const showSchedulerNavbar = token && location.pathname !== '/' && location.pathname.includes('/scheduler');
+	const showCaregiverNavbar = token && location.pathname !== '/' && location.pathname.includes('/caregiver');
 
 	return (
 		<>
-			{showNavbar && <Navbar/>}
+			{(showSchedulerNavbar && <SchedulerNavbar/>) || (showCaregiverNavbar && <CaregiverNavbar/>)}
 			{children}
 		</>
 	);
