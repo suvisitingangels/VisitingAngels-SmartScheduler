@@ -77,7 +77,6 @@ function Availability() {
 
 			{/* Form Section */}
 			<form className="availability-form" onSubmit={handleSubmit}>
-
 				<label>
 					Caregiver Name:
 					<input

@@ -29,12 +29,6 @@
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.availability-form h3 {
-	text-align: center;
-	margin-bottom: 20px;
-	color: #333;
-}
-
 .availability-form label {
 	display: block;
 	margin-bottom: 10px;
@@ -76,6 +70,6 @@
 	border-radius: 8px;
 }
 
-input {
+.availability-form input {
 	font-family: monospace;
 }
