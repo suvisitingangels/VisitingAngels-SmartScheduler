@@ -48,7 +48,7 @@ function Availability() {
 		e.preventDefault();
 
 		// TODO: need to fetch to database once submitted and then we can send submission alert
-		const response = await fetch('http://localhost:5000/api/db/new-availability', {
+		const response = await fetch('https://visitingangelssurjsbackend.onrender.com/api/db/new-availability', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(formData),

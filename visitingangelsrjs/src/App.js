@@ -9,7 +9,7 @@
 
 import './App.css';
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
+import {HashRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
 import SchedulerNavbar from './pages/Scheduler/Components/Navbar/SchedulerNavbar';
 import CaregiverNavbar from './pages/Caregiver/Components/Navbar/Navbar';
 import FindCaregiver from './pages/Scheduler/FindCaregiver/FindCaregiver';

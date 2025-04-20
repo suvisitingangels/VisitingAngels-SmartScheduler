@@ -1,5 +1,14 @@
 {
   "dependencies": {
     "dotenv": "^16.4.5"
+  },
+  "scripts": {
+    "build:frontend": "cd visitingangelsrjs && npm install && npm run build",
+    "copy:to-docs": "rimraf docs && cpx \"visitingangelsrjs/build/**/*\" docs",
+    "deploy:docs": "npm run build:frontend && npm run copy:to-docs"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "rimraf": "^6.0.1"
   }
 }
