@@ -28,7 +28,7 @@ const LoginPage = () => {
 		  // decode role from JWT and redirect accordingly
 		  const { role } = jwtDecode(token);
 		  if (role === 'caregiver') {
-			navigate('/caregiver/profile');
+			navigate(`/caregiver/profile/${username}`);
 		  } else {
 			navigate('/scheduler/find-caregiver');
 		  }
