@@ -9,8 +9,9 @@
 
 import './App.css';
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
-import Navbar from './pages/Scheduler/Components/Navbar/Navbar';
+import {HashRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
+import SchedulerNavbar from './pages/Scheduler/Components/Navbar/SchedulerNavbar';
+import CaregiverNavbar from './pages/Caregiver/Components/Navbar/Navbar';
 import FindCaregiver from './pages/Scheduler/FindCaregiver/FindCaregiver';
 import LoadData from './pages/Scheduler/LoadData/LoadData';
 import Availability from './pages/Scheduler/Availability/Availability';
@@ -21,17 +22,18 @@ import CaregiverAvailability from './pages/Caregiver/Availability/Availability.j
 import Profile from "./pages/Caregiver/Profile/Profile";
 
 
-// Component to conditionally render Navbar
+// Component to conditionally render SchedulerNavbar
 const AppLayout = ({children}) => {
 	const location = useLocation();
 	const token = localStorage.getItem('token');
 
-	// Show Navbar only if the user is logged in and not on the login page
-	const showNavbar = token && location.pathname !== '/';
+	// Show SchedulerNavbar only if the user is logged in and not on the login page
+	const showSchedulerNavbar = token && location.pathname !== '/' && location.pathname.includes('/scheduler');
+	const showCaregiverNavbar = token && location.pathname !== '/' && location.pathname.includes('/caregiver');
 
 	return (
 		<>
-			{showNavbar && <Navbar/>}
+			{(showSchedulerNavbar && <SchedulerNavbar/>) || (showCaregiverNavbar && <CaregiverNavbar/>)}
 			{children}
 		</>
 	);
@@ -43,11 +45,11 @@ function App() {
 			<AppLayout>
 				<Routes>
 					<Route path="/" element={<Login/>}/>
-					<Route path="/scheduler/find-caregiver" element={<PrivateRoute><FindCaregiver/></PrivateRoute>}/>
-					<Route path="/scheduler/load-data" element={<PrivateRoute><LoadData/></PrivateRoute>}/>
-					<Route path="/scheduler/availability" element={<PrivateRoute><Availability/></PrivateRoute>}/>
-					<Route path="/caregiver/availability" element={<PrivateRoute><CaregiverAvailability/></PrivateRoute>}/>
-					<Route path="/caregiver/profile" element={<PrivateRoute><Profile/></PrivateRoute>}/>
+					<Route path="/scheduler/find-caregiver" element={<PrivateRoute allowedRoles={['scheduler','admin']}><FindCaregiver/></PrivateRoute>}/>
+					<Route path="/scheduler/load-data" element={<PrivateRoute allowedRoles={['scheduler','admin']}><LoadData/></PrivateRoute>}/>
+					<Route path="/scheduler/availability" element={<PrivateRoute allowedRoles={['scheduler','admin']}><Availability/></PrivateRoute>}/>
+					<Route path="/caregiver/availability" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverAvailability/></PrivateRoute>}/>
+					<Route path="/caregiver/profile" element={<PrivateRoute allowedRoles={['caregiver','admin']}><Profile/></PrivateRoute>}/>
 					<Route path="*" element={<NotFound/>}/>
 				</Routes>
 			</AppLayout>

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import './FirstLogin.css';
 import {useNavigate} from 'react-router-dom'; // Import useNavigate
-
+import { jwtDecode } from 'jwt-decode';
 
 const LoginPage = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -17,16 +17,24 @@ const LoginPage = () => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-
+	
 		try {
-			const response = await axios.post('http://localhost:5000/api/auth/login', {username, password});
-			localStorage.setItem('token', response.data.token);
-			alert('Login successful!');
-			navigate('/scheduler/load-data'); // Redirect to /scheduler after successful login
+		  const response = await axios.post('https://visitingangelssurjsbackend.onrender.com/api/auth/login',{ username, password });
+		  const token = response.data.token;
+		  localStorage.setItem('token', token);
+		  alert('Login successful!');
+	
+		  // decode role from JWT and redirect accordingly
+		  const { role } = jwtDecode(token);
+		  if (role === 'caregiver') {
+			navigate('/caregiver/profile');
+		  } else {
+			navigate('/scheduler/find-caregiver');
+		  }
 		} catch (err) {
-			setError('Invalid credentials');
+		  setError('Invalid credentials');
 		}
-	};
+	  };
 	// Function to handle password input type
 	const getPasswordInputType = () => {
 		if (showPassword) {

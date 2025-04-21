@@ -37,9 +37,9 @@ function LoadData() {
 		// Determine the endpoint based on the selected CSV type.
 		let endpoint = '';
 		if (csvType === 'schedule') {
-			endpoint = 'http://localhost:5000/api/upload-schedule-csv';
+			endpoint = 'https://visitingangelssurjsbackend.onrender.com/api/upload-schedule-csv';
 		} else if (csvType === 'classes') {
-			endpoint = 'http://localhost:5000/api/upload-classes-csv';
+			endpoint = 'https://visitingangelssurjsbackend.onrender.com/api/upload-classes-csv';
 		}
 
 		try {

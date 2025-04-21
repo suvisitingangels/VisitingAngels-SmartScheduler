@@ -9,7 +9,7 @@ export default function useFetchFullFilterClassesData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/classes-data');
+        const response = await axios.get('https://visitingangelssurjsbackend.onrender.com/api/classes-data');
         setFullFilterClasses(response.data.data);
         console.log(fullFilterClasses);
       } catch (err) {
