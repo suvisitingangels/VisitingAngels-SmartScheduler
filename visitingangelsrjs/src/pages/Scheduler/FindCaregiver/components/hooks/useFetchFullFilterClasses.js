@@ -5,11 +5,12 @@ export default function useFetchFullFilterClassesData() {
   const [fullFilterClasses, setFullFilterClasses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://visitingangelssurjsbackend.onrender.com/api/classes-data');
+        const response = await axios.get(`${baseUrl}/api/classes-data`);
         setFullFilterClasses(response.data.data);
         console.log(fullFilterClasses);
       } catch (err) {

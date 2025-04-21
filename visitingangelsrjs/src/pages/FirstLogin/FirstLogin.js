@@ -10,6 +10,7 @@ const LoginPage = () => {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
+	const baseUrl = process.env.REACT_APP_BASE_URL;
 
 	const togglePasswordVisibility = () => {
 		setShowPassword(prevState => !prevState);
@@ -19,7 +20,7 @@ const LoginPage = () => {
 		e.preventDefault();
 	
 		try {
-		  const response = await axios.post('https://visitingangelssurjsbackend.onrender.com/api/auth/login',{ username, password });
+		  const response = await axios.post(`${baseUrl}/api/auth/login`,{ username, password });
 		  const token = response.data.token;
 		  localStorage.setItem('token', token);
 		  alert('Login successful!');

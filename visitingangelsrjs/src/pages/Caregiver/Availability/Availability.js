@@ -19,6 +19,7 @@ function Availability() {
 		end_time: ''
 	});
 	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
+	const baseUrl = process.env.REACT_APP_BASE_URL;
 
 
 	useEffect(() => {
@@ -48,7 +49,7 @@ function Availability() {
 		e.preventDefault();
 
 		// TODO: need to fetch to database once submitted and then we can send submission alert
-		const response = await fetch('https://visitingangelssurjsbackend.onrender.com/api/db/new-availability', {
+		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(formData),
