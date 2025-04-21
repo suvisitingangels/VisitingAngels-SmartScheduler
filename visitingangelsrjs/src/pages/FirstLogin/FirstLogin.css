@@ -1,12 +1,14 @@
 .first-login-page-container {
-	width: 500px;
-	margin: 100px auto;
-	padding: 20px;
+	width: 100%;
+	max-width: 500px;
+	margin: 5vh auto;
+	padding: 2rem 1rem;
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	background-color: #f9f9f9;
 	box-shadow: 0 4px 8px #33adbb;
-}
+	box-sizing: border-box;
+  }
 
 .first-login-page-form {
 	display: flex;
@@ -84,4 +86,28 @@
 
 .password-toggle-button:hover {
 	color: #05863f;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+  }
+html, body {
+	height: 100%;
+}
+
+@media (max-width: 480px) {
+  .first-login-page-title {
+    font-size: 1.25rem;
+  }
+
+  .first-login-page-button {
+    font-size: 1rem;
+  }
+
+  .password-toggle-button {
+    font-size: 0.9rem;
+  }
 }

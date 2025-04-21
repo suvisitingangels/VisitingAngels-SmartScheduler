@@ -1,4 +1,4 @@
-// server/tests/db/connection.test.js
+// server/db/connection.js
 
 const mysql = require('mysql2');
 
