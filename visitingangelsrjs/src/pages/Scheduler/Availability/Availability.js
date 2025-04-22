@@ -10,6 +10,7 @@
 
 import React, { useState } from 'react';
 import './Availability.css';
+import {useNavigate} from "react-router-dom";
 
 function Availability() {
 	const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -21,6 +22,7 @@ function Availability() {
 		end_time: ''
 	});
 	const [action, setAction] = useState('Add');
+	const navigate = useNavigate();
 	
 	/**
 		 * Handle input changes in the form fields.
@@ -37,7 +39,6 @@ function Availability() {
 		setAction(e.target);
 	}
 
-
 	/**
 		 * Handle form submission.
 		 * Logs the current form data to the console.
@@ -46,24 +47,25 @@ function Availability() {
 	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const baseUrl = process.env.REACT_APP_BASE_URL;
 		console.log(formData);
-		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
-			method: 'POST',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(formData),
-		})
-		if (!response.ok) {
-			throw new Error('Failed to input availability');
-		}
-		else {
-			alert("Submission successful!")
-			setFormData({
-				user_id: '',
-				date: '',
-				start_time: '',
-				end_time: ''
+		if (action === "Add") {
+			const response = await fetch(`${baseUrl}/api/db/new-availability`, {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify(formData),
 			})
+			if (!response.ok) {
+				alert("Failed to submit. Please try again.");
+
+			} else {
+				navigate('/scheduler/find-caregiver');
+			}
 		}
+		else if (action === "Delete") {
+			console.log("To be deleted");
+		}
+
 	};
 
 	return (

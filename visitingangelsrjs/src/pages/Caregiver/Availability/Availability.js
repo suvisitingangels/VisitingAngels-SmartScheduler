@@ -49,7 +49,6 @@ function Availability() {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
-		console.log(formData);
 	};
 
 
@@ -70,9 +69,11 @@ function Availability() {
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(formData),
 		})
-		console.log(response);
-		navigate('/caregiver/home');
-
+		if (!response.ok) {
+			alert("Failed to submit. Please try again.");
+		} else {
+			navigate('/caregiver/home');
+		}
 
 	};
 
