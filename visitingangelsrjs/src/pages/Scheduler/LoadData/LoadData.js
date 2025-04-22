@@ -10,7 +10,7 @@
  *
  * @returns {JSX.Element} - A styled file upload interface.
  */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './LoadData.css';
 
@@ -23,6 +23,11 @@ function LoadData() {
 	const [csvType, setCsvType] = useState('schedule');
 
 	const baseUrl = process.env.REACT_APP_BASE_URL;
+
+	useEffect(() => {
+		document.title = "Load Data | SmartScheduler";
+
+	}, []);
 
 	/**
 	 * Handles the file upload process.

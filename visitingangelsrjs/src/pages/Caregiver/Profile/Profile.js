@@ -29,7 +29,9 @@ function Profile() {
 		  	console.log(data);
 		  	setProfile(data);
 	  }
-	  fetchProfile()
+	  fetchProfile();
+	  document.title = "Profile | SmartScheduler";
+
 
   }, []);
 
