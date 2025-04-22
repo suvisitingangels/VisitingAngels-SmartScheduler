@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './Home.css';
+import {jwtDecode} from "jwt-decode";
 
 function Home() {
 	const [availabilityList, setAvailabilityList] = useState([]);
@@ -7,8 +8,13 @@ function Home() {
 
 	useEffect(() => {
 		const fetchAvailabilities = async () => {
+			const token = localStorage.getItem('token');
+			if (!token) return setError('Not logged in');
+			const {username} = jwtDecode(token);
+			const baseUrl = process.env.REACT_APP_BASE_URL;
+
 			try {
-				const response = await fetch('http://localhost:5000/api/db/filtered-availabilities');
+				const response = await fetch(`${baseUrl}/api/db/filtered-availabilities/${username}`);
 				if (!response.ok) throw new Error(`HTTP Status: ${response.status}`);
 				let data = await response.json();
 				data = data.availabilities;
