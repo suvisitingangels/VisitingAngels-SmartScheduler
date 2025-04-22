@@ -58,10 +58,7 @@ function Availability() {
 			body: JSON.stringify(formData),
 		})
 		console.log(response);
-
-		} catch(e) {
-			console.error("Error submitting time.", e);
-		}
+		navigate('/caregiver/home');
 
 
 	};
