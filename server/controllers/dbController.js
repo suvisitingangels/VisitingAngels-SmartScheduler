@@ -25,8 +25,10 @@ async function getAllAvailabilities(req, res) {
 
 async function getAvailabilitiesByUser(req, res) {
 	try {
+		const username = req.params.username;
+
 		const promise = pool.promise();
-		const query = 'SELECT * FROM availabilities WHERE user_id = \'admin.admin\' ORDER BY available_date';
+		const query = `SELECT * FROM availabilities WHERE user_id = '${username}' ORDER BY available_date`;
 		const [availabilities] = await promise.query(query);
 		return res.json({availabilities}).status(200);
 	} catch (e) {

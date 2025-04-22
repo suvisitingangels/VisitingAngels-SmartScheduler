@@ -51,7 +51,6 @@ function App() {
 					<Route path="/scheduler/availability" element={<PrivateRoute allowedRoles={['scheduler','admin']}><Availability/></PrivateRoute>}/>
 					<Route path="/caregiver/home" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverHome/></PrivateRoute>}/>
 					<Route path="/caregiver/availability" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverAvailability/></PrivateRoute>}/>
-					<Route path="/caregiver/profile" element={<PrivateRoute allowedRoles={['caregiver','admin']}><Profile/></PrivateRoute>}/>
 					<Route path="/caregiver/profile/:username" element={<PrivateRoute allowedRoles={['caregiver','admin']}><Profile/></PrivateRoute>}/>
 					<Route path="*" element={<NotFound/>}/>
 				</Routes>

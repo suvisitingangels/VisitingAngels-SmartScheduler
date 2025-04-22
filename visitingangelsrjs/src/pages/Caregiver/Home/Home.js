@@ -38,7 +38,7 @@ function Home() {
 				console.error(e);
 				setError('Failed to fetch your availabilities');
 			}
-		}
+		};
 		fetchAvailabilities();
 	}, []);
 

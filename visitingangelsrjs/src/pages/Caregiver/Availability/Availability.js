@@ -25,11 +25,11 @@ function Availability() {
 
 
 	useEffect(() => {
-			const token = localStorage.getItem('token');
-			if (!token) return setError('Not logged in');
-			const {username} = jwtDecode(token);
-			setFormData({user_id: username});
-			console.log(formData);
+		const token = localStorage.getItem('token');
+		if (!token) return setError('Not logged in');
+		const {username} = jwtDecode(token);
+		setFormData({user_id: username});
+		console.log(formData);
 
 
 	}, []);
@@ -69,6 +69,8 @@ function Availability() {
 
 
 	};
+
+	if (error) return <p>{error}</p>
 
 	return (
 		<div className="availability-container">
