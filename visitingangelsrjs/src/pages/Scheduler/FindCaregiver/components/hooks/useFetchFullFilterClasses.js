@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function useFetchFullFilterClassesData() {
   const [fullFilterClasses, setFullFilterClasses] = useState([]);
@@ -10,8 +10,12 @@ export default function useFetchFullFilterClassesData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/classes-data`);
-        setFullFilterClasses(response.data.data);
+        // const response = await axios.get(`${baseUrl}/api/classes-data`);
+        // setFullFilterClasses(response.data.data);
+		  const response = await fetch(`${baseUrl}/api/classes-data`);
+		  const data = await response.json();
+		  setFullFilterClasses(data.data);
+
         console.log(fullFilterClasses);
       } catch (err) {
         console.error('Error fetching full filter classes data:', err);

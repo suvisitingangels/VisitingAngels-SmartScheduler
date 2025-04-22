@@ -8,7 +8,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function useFetchFilterClasses() {
     const [filterClasses, setFilterClasses] = useState([]);
@@ -20,8 +20,11 @@ export default function useFetchFilterClasses() {
         // Define the inner async function to fetch filter classes data
         const fetchFilterClasses = async () => {
             try {
-                const response = await axios.get(`${baseUrl}/api/classes-data`); 
-                const data = response.data.data;
+                // const response = await axios.get(`${baseUrl}/api/classes-data`);
+                // const data = response.data.data;
+				const response = await fetch(`${baseUrl}/api/classes-data`);
+				const fetchData = await response.json();
+				const data = fetchData.data;
 
                 if (data && data.length > 0) {
                     // Extract the header keys from the first row if available
