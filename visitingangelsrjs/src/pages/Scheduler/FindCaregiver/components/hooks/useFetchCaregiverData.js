@@ -8,7 +8,7 @@
 */
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function useFetchCaregiverData() {
   const [caregivers, setCaregivers] = useState([]);
@@ -26,9 +26,11 @@ export default function useFetchCaregiverData() {
     */
     const fetchCaregiverData = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/csv-data`);
-
-        const data = response.data.data;
+        // const response = await axios.get(`${baseUrl}/api/csv-data`);
+        // const data = response.data.data;
+		  const response = await fetch(`${baseUrl}/api/csv-data`);
+		  const fetchData = await response.json();
+		  const data = fetchData.data;
         
         const processedCaregivers = data.map((details) => {
             const rawName = details['Caregiver Name'] || 'Unknown Caregiver';
