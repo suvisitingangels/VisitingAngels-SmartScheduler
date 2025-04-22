@@ -15,6 +15,7 @@ export default function useFetchCaregiverData() {
   const [dates, setDates] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     /**
@@ -25,7 +26,7 @@ export default function useFetchCaregiverData() {
     */
     const fetchCaregiverData = async () => {
       try {
-        const response = await axios.get('https://visitingangelssurjsbackend.onrender.com/api/csv-data');
+        const response = await axios.get(`${baseUrl}/api/csv-data`);
 
         const data = response.data.data;
         

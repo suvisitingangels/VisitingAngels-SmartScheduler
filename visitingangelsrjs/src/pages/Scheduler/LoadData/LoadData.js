@@ -22,6 +22,8 @@ function LoadData() {
 	// State to track the type of CSV file being uploaded ("schedule" or "classes")
 	const [csvType, setCsvType] = useState('schedule');
 
+	const baseUrl = process.env.REACT_APP_BASE_URL;
+
 	/**
 	 * Handles the file upload process.
 	 * Sends the selected file to the appropriate backend API endpoint based on the CSV type.
@@ -37,9 +39,9 @@ function LoadData() {
 		// Determine the endpoint based on the selected CSV type.
 		let endpoint = '';
 		if (csvType === 'schedule') {
-			endpoint = 'https://visitingangelssurjsbackend.onrender.com/api/upload-schedule-csv';
+			endpoint = `${baseUrl}/api/upload-schedule-csv`;
 		} else if (csvType === 'classes') {
-			endpoint = 'https://visitingangelssurjsbackend.onrender.com/api/upload-classes-csv';
+			endpoint = `${baseUrl}/api/upload-classes-csv`;
 		}
 
 		try {

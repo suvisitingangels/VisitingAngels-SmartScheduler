@@ -1,13 +1,13 @@
-// server/tests/db/connection.test.js
-
+// server/db/connection.js
+require('dotenv').config();
 const mysql = require('mysql2');
 
 // Create a connection pool. It's best practice to store sensitive information in environment variables.
 const pool = mysql.createPool({
-  host: "suvisitingangelsdb.caji6oq84asv.us-east-1.rds.amazonaws.com",     // e.g., 'localhost'
-  user: "VAuser",     // e.g., 'root'
-  password: "0aJo0AD#6#6{", // e.g., 'yourpassword'
-  database: "suvisitingangels", // e.g., 'mydatabase'
+  host: process.env.DB_HOST,     // e.g., 'localhost'
+  user: process.env.DB_USER,     // e.g., 'root'
+  password: process.env.DB_PASSWORD, // e.g., 'yourpassword'
+  database: process.env.DB_NAME, // e.g., 'mydatabase'
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

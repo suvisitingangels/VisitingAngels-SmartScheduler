@@ -49,14 +49,33 @@ async function insertAvailability(req, res) {
 		return res.status(201).json({message: 'Submission successful.', availability});
 	} catch (e) {
 		console.error(e);
-		res.status(500).json({error: 'Internal server error.'});
+		res.status(500);
 	}
 }
+
+async function getCaregiverProfile(req, res) {
+	try {
+	  const username = req.params.username;
+	  const query = 'SELECT * FROM caregivers WHERE user_id = ?';
+	  const [rows] = await pool.promise().query(query, [username]);
+
+	  if (rows.length === 0) {
+		return res.status(404).json({ error: 'Caregiver not found' });
+	  }
+
+	  // return just the single object
+	  return res.status(200).json(rows[0]);
+	} catch (err) {
+	  console.error('getCaregiverProfile error:', err);
+	  return res.status(500).json({ error: 'Internal server error' });
+	}
+  }
 
 
 module.exports = {
 	getAllCaregivers,
 	getAllAvailabilities,
 	getAvailabilitiesByUser,
-	insertAvailability
+	insertAvailability,
+	getCaregiverProfile
 }

@@ -21,6 +21,8 @@ function Availability() {
 	});
 	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
 	const navigate = useNavigate();
+	const baseUrl = process.env.REACT_APP_BASE_URL;
+
 
 	useEffect(() => {
 		// TODO: Get user's first/last name from login
@@ -49,14 +51,13 @@ function Availability() {
 		e.preventDefault();
 		console.log("form submitted")
 
-		try {
-			const response = await fetch('https://visitingangelssurjsbackend.onrender.com/api/db/new-availability', {
-				method: 'POST',
-				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify(formData),
-			})
-			console.log(response);
-			navigate('/caregiver/home');
+		// TODO: need to fetch to database once submitted and then we can send submission alert
+		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(formData),
+		})
+		console.log(response);
 
 		} catch(e) {
 			console.error("Error submitting time.", e);

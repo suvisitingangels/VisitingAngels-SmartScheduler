@@ -14,12 +14,13 @@ export default function useFetchFilterClasses() {
     const [filterClasses, setFilterClasses] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
+    const baseUrl = process.env.REACT_APP_BASE_URL;
 
     useEffect(() => {
         // Define the inner async function to fetch filter classes data
         const fetchFilterClasses = async () => {
             try {
-                const response = await axios.get('https://visitingangelssurjsbackend.onrender.com/api/classes-data'); 
+                const response = await axios.get(`${baseUrl}/api/classes-data`); 
                 const data = response.data.data;
 
                 if (data && data.length > 0) {
