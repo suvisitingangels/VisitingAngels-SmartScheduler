@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const {getAllCaregivers, getAllAvailabilities, insertAvailability, getCaregiverProfile} = require('../controllers/dbController');
+const {getAllCaregivers, getAllAvailabilities, getAvailabilitiesByUser, insertAvailability, getCaregiverProfile} = require('../controllers/dbController');
 
 router.get("/", getAllAvailabilities);
 
-router.get("/home", getAllCaregivers);
+router.get("/filtered-availabilities/:username", getAvailabilitiesByUser);
 
-router.post("/new-availability",insertAvailability);
+router.post(`/:username/new-availability`,insertAvailability);
 
 router.get('/caregiver/:username', getCaregiverProfile);
 

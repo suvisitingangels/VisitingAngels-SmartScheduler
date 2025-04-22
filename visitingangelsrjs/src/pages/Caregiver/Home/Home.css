@@ -1,0 +1,43 @@
+/* Note: Check if the class name is a typo - "availabilites-list" vs "availabilities-list" */
+.availabilites-list {
+	text-align: center; /* Centers all inline children horizontally */
+	padding: 20px; /* Optional: Add some spacing around the container */
+}
+
+.availabilites-list ul {
+	list-style-type: none; /* Removes bullet points */
+	padding: 0; /* Removes default ul padding */
+	display: inline-block; /* Makes ul only as wide as its content for proper centering */
+	margin: 0 auto; /* Centers the ul itself */
+}
+
+.availability-card {
+	border: 1px solid #000; /* Adds border around each li */
+	border-radius: 4px; /* Optional: Rounded corners */
+	padding: 10px; /* Spacing inside each li */
+	margin: 10px 0; /* Space between list items */
+	text-align: center; /* Centers content inside li */
+	min-width: 200px; /* Optional: Minimum width for better appearance */
+}
+
+.availability-card > span {
+	display: inline-flex;
+	align-items: center;
+}
+
+.date-info, .delete-option {
+	display: block;
+	padding: 10px;
+
+
+}
+
+.delete-option {
+	margin: 3px auto;
+	padding: 3px;
+}
+
+.delete-option:hover {
+	background-color: #ccc;
+	border-radius: 4px;
+}

@@ -8,19 +8,26 @@ function Profile() {
   const [profile, setProfile] = useState(null);
   const [error, setError]     = useState('');
 
-  useEffect(() => {
+  useEffect(async () => {
     // grab token & decode user_id
     const token = localStorage.getItem('token');
     if (!token) return setError('Not logged in');
     const { username } = jwtDecode(token);
 
     const baseUrl = process.env.REACT_APP_BASE_URL;
-    axios.get(`${baseUrl}/api/db/caregiver/${username}`)
-      .then(({ data }) => setProfile(data))
-      .catch(err => {
-        console.error('Error fetching profile:', err);
-        setError('Could not load profile');
-      });
+    // axios.get(`${baseUrl}/api/db/caregiver/${username}`)
+    //   .then(({ data }) => setProfile(data))
+    //   .catch(err => {
+    //     console.error('Error fetching profile:', err);
+    //     setError('Could not load profile');
+    //   });
+	  const response = await fetch(`${baseUrl}/api/db/caregiver/${username}`);
+	  if (!response.ok) throw new Error(`HTTP Status: ${response.status}`);
+		let data = await response.json();
+		data = data.rows[0];
+		console.log(data);
+		setProfile(data);
+
   }, []);
 
   if (error)   return <p style={{color:'red'}}>{error}</p>;
@@ -39,5 +46,6 @@ function Profile() {
     </div>
   );
 }
+// TODO: add an edit button
 
 export default Profile;

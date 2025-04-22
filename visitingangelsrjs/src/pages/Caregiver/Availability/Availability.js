@@ -9,23 +9,30 @@
 
 import React, {useEffect, useState} from 'react';
 import './Availability.css';
+import {useNavigate} from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
 function Availability() {
 	// State to store form data
 	const [formData, setFormData] = useState({
-		user_id: 'admin.admin',
+		user_id: '',
 		date: '',
 		start_time: '',
 		end_time: ''
 	});
-	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
-	const baseUrl = process.env.REACT_APP_BASE_URL;
+	const [error, setError] = useState(null);
+	const navigate = useNavigate();
 
 
 	useEffect(() => {
-		// TODO: Get user's first/last name from login
-		// then setFormData user_id
-	})
+		const token = localStorage.getItem('token');
+		if (!token) return setError('Not logged in');
+		const {username} = jwtDecode(token);
+		setFormData({user_id: username});
+		console.log(formData);
+
+
+	}, []);
 
 	/**
 	 * Handle input changes in the form fields.
@@ -36,6 +43,7 @@ function Availability() {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
+		console.log(formData);
 	};
 
 
@@ -47,6 +55,8 @@ function Availability() {
 	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		console.log(formData);
+		const baseUrl = process.env.REACT_APP_BASE_URL;
 
 		// TODO: need to fetch to database once submitted and then we can send submission alert
 		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
@@ -55,20 +65,12 @@ function Availability() {
 			body: JSON.stringify(formData),
 		})
 		console.log(response);
+		navigate('/caregiver/home');
 
-		if (!response.ok) {
-			throw new Error('Failed to input availability');
-		}
-		else {
-			alert("Submission successful!")
-			setFormData({
-				user_id: '',
-				date: '',
-				start_time: '',
-				end_time: ''
-			})
-		}
+
 	};
+
+	if (error) return <p>{error}</p>
 
 	return (
 		<div className="availability-container">

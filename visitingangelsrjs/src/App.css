@@ -3,9 +3,14 @@
 body, html {
     margin: 0;
     padding: 0;
-    overflow-y: hidden; /* Prevents vertical scrollbar across the whole page */
+    overflow-y: auto; /* Prevents vertical scrollbar across the whole page */
+	overflow-x: hidden;
 }
 
 * {
 	font-family: sans-serif;
+}
+
+h1 {
+	font-size: 40px;
 }
