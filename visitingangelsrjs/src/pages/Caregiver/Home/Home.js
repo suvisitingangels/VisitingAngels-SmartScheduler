@@ -1,0 +1,76 @@
+import React, {useEffect, useState} from 'react';
+import './Home.css';
+
+function Home() {
+	const [availabilityList, setAvailabilityList] = useState([]);
+	const [error, setError] = useState('');
+
+	useEffect(() => {
+		const fetchAvailabilities = async () => {
+			try {
+				const response = await fetch('http://localhost:5000/api/db/filtered-availabilities');
+				if (!response.ok) throw new Error(`HTTP Status: ${response.status}`);
+				let data = await response.json();
+				data = data.availabilities;
+				for (let i = 0; i < data.length; i++) {
+					let date = data[i].available_date;
+					date = date.split("T")[0];
+					data[i].available_date = date;
+
+					let startTime = data[i].start_time;
+					startTime = startTime.slice(0, startTime.length - 3);
+					data[i].start_time = startTime;
+
+					let endTime = data[i].end_time;
+					endTime = endTime.slice(0, endTime.length - 3);
+					data[i].end_time = endTime;
+
+				}
+				setAvailabilityList(data);
+
+			} catch (e) {
+				console.error(e);
+				setError('Failed to fetch your availabilities');
+			}
+		}
+		fetchAvailabilities();
+	}, []);
+
+	function handleDelete() {
+		console.log("to be deleted");
+	}
+
+	if (availabilityList.length === 0 && !error) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		return (
+			<div>
+				{error}
+			</div>
+		)
+	}
+	return (
+		<div className={"availabilites-list"}>
+			<h1 className={"title"}>Availabilities</h1>
+			<ul>
+				{availabilityList.map((availability) => (
+					<li key={availability.id} className={"availability-card"}>
+						<span>
+							<div className={"date-info"}>
+								<div><b>Date: {availability.available_date}</b></div>
+								<div>{availability.start_time} - {availability.end_time}</div>
+							</div>
+							{/*<button className={"delete-option"}>Trash</button>*/}
+							<img onClick={handleDelete} className={"delete-option"} src={"https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png"} alt={"trash"}/>
+						</span>
+
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
+
+export default Home;

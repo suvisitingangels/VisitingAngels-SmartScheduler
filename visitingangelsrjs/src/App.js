@@ -18,6 +18,7 @@ import Availability from './pages/Scheduler/Availability/Availability';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/FirstLogin/FirstLogin';
 import PrivateRoute from './components/PrivateRoute';
+import CaregiverHome from './pages/Caregiver/Home/Home';
 import CaregiverAvailability from './pages/Caregiver/Availability/Availability.js';
 import Profile from "./pages/Caregiver/Profile/Profile";
 
@@ -48,6 +49,7 @@ function App() {
 					<Route path="/scheduler/find-caregiver" element={<PrivateRoute allowedRoles={['scheduler','admin']}><FindCaregiver/></PrivateRoute>}/>
 					<Route path="/scheduler/load-data" element={<PrivateRoute allowedRoles={['scheduler','admin']}><LoadData/></PrivateRoute>}/>
 					<Route path="/scheduler/availability" element={<PrivateRoute allowedRoles={['scheduler','admin']}><Availability/></PrivateRoute>}/>
+					<Route path="/caregiver/home" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverHome/></PrivateRoute>}/>
 					<Route path="/caregiver/availability" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverAvailability/></PrivateRoute>}/>
 					<Route path="/caregiver/profile" element={<PrivateRoute allowedRoles={['caregiver','admin']}><Profile/></PrivateRoute>}/>
 					<Route path="*" element={<NotFound/>}/>

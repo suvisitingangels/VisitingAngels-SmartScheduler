@@ -9,6 +9,7 @@
 
 import React, {useEffect, useState} from 'react';
 import './Availability.css';
+import {useNavigate} from "react-router-dom";
 
 function Availability() {
 	// State to store form data
@@ -19,7 +20,7 @@ function Availability() {
 		end_time: ''
 	});
 	const [caregiverName, setCaregiverName] = useState('FirstName LastName');
-
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		// TODO: Get user's first/last name from login
@@ -46,27 +47,22 @@ function Availability() {
 	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		console.log("form submitted")
 
-		// TODO: need to fetch to database once submitted and then we can send submission alert
-		const response = await fetch('https://visitingangelssurjsbackend.onrender.com/api/db/new-availability', {
-			method: 'POST',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(formData),
-		})
-		console.log(response);
-
-		if (!response.ok) {
-			throw new Error('Failed to input availability');
-		}
-		else {
-			alert("Submission successful!")
-			setFormData({
-				user_id: '',
-				date: '',
-				start_time: '',
-				end_time: ''
+		try {
+			const response = await fetch('https://visitingangelssurjsbackend.onrender.com/api/db/new-availability', {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify(formData),
 			})
+			console.log(response);
+			navigate('/caregiver/home');
+
+		} catch(e) {
+			console.error("Error submitting time.", e);
 		}
+
+
 	};
 
 	return (
