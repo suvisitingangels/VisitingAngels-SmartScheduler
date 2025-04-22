@@ -20,10 +20,22 @@ const LoginPage = () => {
 		e.preventDefault();
 	
 		try {
-		  const response = await axios.post(`${baseUrl}/api/auth/login`,{ username, password });
-		  const token = response.data.token;
-		  localStorage.setItem('token', token);
-		  alert('Login successful!');
+		  // const response = await axios.post(`${baseUrl}/api/auth/login`,{ username, password });
+		  // const token = response.data.token;
+		  // localStorage.setItem('token', token);
+		  // alert('Login successful!');
+			const response = await fetch(`${baseUrl}/api/auth/login`,
+				{
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({ username, password }),
+				}
+				);
+			console.log(response);
+			const data = await response.json();
+			const token = data.token;
+			localStorage.setItem('token', token);
+			alert('Login successful!');
 	
 		  // decode role from JWT and redirect accordingly
 		  const { role } = jwtDecode(token);
