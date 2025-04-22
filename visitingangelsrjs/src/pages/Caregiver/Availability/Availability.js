@@ -25,16 +25,22 @@ function Availability() {
 
 
 	useEffect(() => {
-		const token = localStorage.getItem('token');
-		if (!token) return setError('Not logged in');
-		const {username} = jwtDecode(token);
-		setFormData({user_id: username});
-		console.log(formData);
+		function fetchUsername() {
+			const token = localStorage.getItem('token');
+			if (!token) return setError('Not logged in');
+			console.log("Before jwt")
 
+			const {username} = jwtDecode(token);
+			console.log("After jwt")
+
+			setFormData(prevData => ({...prevData, user_id: username}));
+			console.log(formData);
+		}
+		fetchUsername();
 
 	}, []);
 
-	/**
+	/**q
 	 * Handle input changes in the form fields.
 	 * Updates the corresponding field in the formData state.
 	 *

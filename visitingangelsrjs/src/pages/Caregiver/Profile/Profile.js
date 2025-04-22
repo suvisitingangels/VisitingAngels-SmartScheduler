@@ -5,28 +5,31 @@ import { jwtDecode } from 'jwt-decode';    // corrected import
 import './Profile.css';
 
 function Profile() {
-  const [profile, setProfile] = useState(null);
-  const [error, setError]     = useState('');
+  const [profile, setProfile] = useState({});
+  const [error, setError] = useState('');
 
-  useEffect(async () => {
-    // grab token & decode user_id
-    const token = localStorage.getItem('token');
-    if (!token) return setError('Not logged in');
-    const { username } = jwtDecode(token);
+  useEffect(() => {
+	  async function fetchProfile() {
+		  // grab token & decode user_id
+		  const token = localStorage.getItem('token');
+		  if (!token) return setError('Not logged in');
+		  const { username } = jwtDecode(token);
 
-    const baseUrl = process.env.REACT_APP_BASE_URL;
-    // axios.get(`${baseUrl}/api/db/caregiver/${username}`)
-    //   .then(({ data }) => setProfile(data))
-    //   .catch(err => {
-    //     console.error('Error fetching profile:', err);
-    //     setError('Could not load profile');
-    //   });
-	  const response = await fetch(`${baseUrl}/api/db/caregiver/${username}`);
-	  if (!response.ok) throw new Error(`HTTP Status: ${response.status}`);
-		let data = await response.json();
-		data = data.rows[0];
-		console.log(data);
-		setProfile(data);
+		  const baseUrl = process.env.REACT_APP_BASE_URL;
+		  // axios.get(`${baseUrl}/api/db/caregiver/${username}`)
+			//   .then(({ data }) => setProfile(data))
+			//   .catch(err => {
+			// 	  console.error('Error fetching profile:', err);
+			// 	  setError('Could not load profile');
+			//   });
+		    const response = await fetch(`${baseUrl}/api/db/caregiver/${username}`);
+		    if (!response.ok) throw new Error(`HTTP Status: ${response.status}`);
+		  	let data = await response.json();
+		  	data = data.rows[0];
+		  	console.log(data);
+		  	setProfile(data);
+	  }
+	  fetchProfile()
 
   }, []);
 
