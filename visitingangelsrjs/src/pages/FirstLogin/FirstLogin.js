@@ -28,9 +28,9 @@ const LoginPage = () => {
 		  // decode role from JWT and redirect accordingly
 		  const { role } = jwtDecode(token);
 		  if (role === 'caregiver') {
-			navigate(`/caregiver/profile/${username}`);
+			navigate(`/caregiver/home`);
 		  } else {
-			navigate('/scheduler/find-caregiver');
+			navigate('/scheduler/load-data');
 		  }
 		} catch (err) {
 		  setError('Invalid credentials');
