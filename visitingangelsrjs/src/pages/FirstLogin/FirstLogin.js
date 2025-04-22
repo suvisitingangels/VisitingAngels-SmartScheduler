@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './FirstLogin.css';
 import {useNavigate} from 'react-router-dom'; // Import useNavigate
 import { jwtDecode } from 'jwt-decode';

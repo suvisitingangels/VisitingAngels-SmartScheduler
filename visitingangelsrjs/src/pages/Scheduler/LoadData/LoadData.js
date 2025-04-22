@@ -50,6 +50,11 @@ function LoadData() {
 					'Content-Type': 'multipart/form-data',
 				},
 			});
+			// await fetch(endpoint, {
+			// 	method: 'POST',
+			// 	headers: {'Content-Type': 'multipart/form-data'},
+			// 	body: JSON.stringify(formData)
+			// })
 			setUploadStatus('File uploaded and processed successfully!');
 		} catch (error) {
 			setUploadStatus('Error uploading file.');
