@@ -8,7 +8,7 @@
      * The form supports dynamic state updates and handles form submission.
 */
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Availability.css';
 import {useNavigate} from "react-router-dom";
 
@@ -23,6 +23,11 @@ function Availability() {
 	});
 	const [action, setAction] = useState('Add');
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		document.title = "Availability | SmartScheduler";
+
+	}, []);
 	
 	/**
 		 * Handle input changes in the form fields.

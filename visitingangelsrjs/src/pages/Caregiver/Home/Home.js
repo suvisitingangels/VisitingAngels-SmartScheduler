@@ -40,6 +40,7 @@ function Home() {
 			}
 		};
 		fetchAvailabilities();
+		document.title = "Home | SmartScheduler";
 	}, []);
 
 	function handleDelete() {

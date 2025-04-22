@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 // import axios from 'axios';
 import './FirstLogin.css';
 import {useNavigate} from 'react-router-dom'; // Import useNavigate
@@ -11,6 +11,10 @@ const LoginPage = () => {
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
 	const baseUrl = process.env.REACT_APP_BASE_URL;
+
+	useEffect(() => {
+		document.title = "Login | SmartScheduler";
+	}, []);
 
 	const togglePasswordVisibility = () => {
 		setShowPassword(prevState => !prevState);

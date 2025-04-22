@@ -37,6 +37,7 @@ function Availability() {
 			console.log(formData);
 		}
 		fetchUsername();
+		document.title = "Availability | SmartScheduler";
 
 	}, []);
 
