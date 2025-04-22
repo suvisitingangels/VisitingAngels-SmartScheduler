@@ -6,7 +6,7 @@ router.get("/", getAllAvailabilities);
 
 router.get("/filtered-availabilities/:username", getAvailabilitiesByUser);
 
-router.post(`/:username/new-availability`,insertAvailability);
+router.post(`/new-availability`,insertAvailability);
 
 router.get('/caregiver/:username', getCaregiverProfile);
 
