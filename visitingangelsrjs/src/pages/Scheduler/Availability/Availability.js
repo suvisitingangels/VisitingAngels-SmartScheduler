@@ -68,8 +68,6 @@ function Availability() {
 
 	};
 
-	if (error) return <p>{error}</p>
-
 	return (
 		<div className="availability-container">
 		<div className="availability-header">
