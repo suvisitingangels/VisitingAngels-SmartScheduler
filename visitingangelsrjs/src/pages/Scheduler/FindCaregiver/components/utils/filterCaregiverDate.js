@@ -12,20 +12,20 @@
      * @returns {Array} - A filtered list of caregivers available on the selected date.
 */
 export default function filterCaregiversDate(caregivers, selectedDate) {
-  
+
     if (!selectedDate) {
-      return caregivers;
+        return caregivers;
     }
-  
-    const { fullDate } = selectedDate;
-  
+
+    const { fullDate, date } = selectedDate;
+
     const filtered = caregivers
-      .filter((caregiver) => caregiver.schedule[fullDate]) 
-      .map((caregiver) => ({
-        name: caregiver.name,
-        schedule: { [fullDate]: caregiver.schedule[fullDate] }, 
-      }));
-  
+        .filter((caregiver) => caregiver.schedule[fullDate] || caregiver.availability[date])
+        .map((caregiver) => ({
+            name: caregiver.name,
+            schedule: caregiver.schedule[fullDate] ? { [fullDate]: caregiver.schedule[fullDate] } : null,
+            availability: caregiver.availability[date] ? { [date]: caregiver.availability[date] } : null,
+        }));
+
     return filtered;
-  }
-  
+}
