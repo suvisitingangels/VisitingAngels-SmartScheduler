@@ -44,6 +44,7 @@ function FindCaregiver() {
         setActiveFilters(updatedFilters);
     };
 
+
     return (
         <div className="find-caregiver-container">
             <aside className="find-caregiver-filter-sidebar">

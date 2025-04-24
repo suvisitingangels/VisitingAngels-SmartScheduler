@@ -28,18 +28,52 @@ export default function useFetchCaregiverData() {
       try {
         // const response = await axios.get(`${baseUrl}/api/csv-data`);
         // const data = response.data.data;
-		  const response = await fetch(`${baseUrl}/api/csv-data`);
-		  const fetchData = await response.json();
-		  const data = fetchData.data;
+		  const csvResponse = await fetch(`${baseUrl}/api/csv-data`);
+          let csvData = await csvResponse.json();
+		  csvData = csvData.data;
+
+          const dbResponse = await fetch(`${baseUrl}/api/db`);
+          let dbData = await dbResponse.json();
+          dbData = dbData.rows;
+
+          for (let i = 0; i < dbData.length; i++) {
+              let rawName = dbData[i].user_id;
+              rawName = rawName.split(".");
+              let firstName = rawName[0].charAt(0).toUpperCase() + rawName[0].slice(1);
+              let lastName = rawName[1].charAt(0).toUpperCase() + rawName[1].slice(1);
+                let fullName = `${lastName}, ${firstName}`;
+              dbData[i].name = fullName;
+
+              let date = dbData[i].available_date;
+              date = date.split("T")[0];
+              date = date.split("-"); // year-month-day
+              date = `${date[1]}/${date[2]}/${date[0]}`; // month/day/year
+              dbData[i].available_date = date;
+
+              let startTime = dbData[i].start_time;
+              startTime = startTime.slice(0, startTime.length - 3);
+              dbData[i].start_time = startTime;
+
+              let endTime = dbData[i].end_time;
+              endTime = endTime.slice(0, endTime.length - 3);
+              dbData[i].end_time = endTime;
+
+              dbData[i].hours = `${startTime} to ${endTime}`;
+          }
         
-        const processedCaregivers = data.map((details) => {
+        const processedCaregivers = csvData.map((details) => {
             const rawName = details['Caregiver Name'] || 'Unknown Caregiver';
             const name = rawName.replace(/\s*\[Caregiver\]$/, ''); // filter out tag for space
-            const schedule = Object.entries(details)
+            const availability = dbData
+                .filter((entry) => entry.name === name)
+                .reduce((acc, entry) => {
+                    acc[entry.available_date] = entry.hours;
+                    return acc;
+                }, {});
+                const schedule = Object.entries(details)
               .filter(([key, value]) => key.includes('/') && value) 
               .reduce((acc, [date, hours]) => ({ ...acc, [date]: hours }), {});
-          
-            return { name, schedule };
+            return { name, schedule, availability };
           });
           
 
@@ -47,7 +81,7 @@ export default function useFetchCaregiverData() {
 
         const allDates = Array.from(
           new Set(
-            data.flatMap((caregiver) =>
+            csvData.flatMap((caregiver) =>
               Object.keys(caregiver).filter((key) => key.includes('/'))
             )
           )
@@ -55,6 +89,7 @@ export default function useFetchCaregiverData() {
 
         const formattedDates = allDates.map((dateStr) => ({
           day: new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short' }),
+          date: dateStr.slice(4,dateStr.length),
           fullDate: dateStr,
         }));
 
@@ -62,7 +97,7 @@ export default function useFetchCaregiverData() {
         setError('');
       } catch (err) {
         console.error('Error fetching caregiver data:', err);
-        setError(err.response?.data?.error || 'Failed to fetch data');
+        setError(err.response?.csvData?.error || 'Failed to fetch csv data');
       } finally {
         setLoading(false);
       }
