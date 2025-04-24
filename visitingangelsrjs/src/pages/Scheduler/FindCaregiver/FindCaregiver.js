@@ -44,8 +44,6 @@ function FindCaregiver() {
         setActiveFilters(updatedFilters);
     };
 
-	console.log("FindCaregiver {caregivers} ", caregivers);
-    console.log("Dates: ", dates);
 
     return (
         <div className="find-caregiver-container">
