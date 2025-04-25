@@ -15,7 +15,7 @@ async function getAllCaregivers(req, res) {
 async function getAllAvailabilities(req, res) {
 	try {
 		const promise = pool.promise();
-		const query = 'SELECT * FROM availabilities';
+		const query = 'SELECT * FROM availabilities ORDER BY available_date, start_time';
 		const [rows] = await promise.query(query);
 		return res.json({rows});
 	} catch (e) {
@@ -70,11 +70,38 @@ async function getCaregiverProfile(req, res) {
 	}
   }
 
+  async function removeAvailability(req, res) {
+	const {id} = req.params;
+
+	try {
+		const promise = pool.promise();
+		const query = 'SELECT * FROM availabilities WHERE id = ?';
+		const [rows] = await promise.query(query, [id]);
+
+		if (rows.length === 0) {
+			return res.status(404).json({error: 'Availability not found'});
+		}
+
+		const deleteQuery = 'DELETE FROM availabilities WHERE id = ?';
+		const [result] = await promise.query(deleteQuery, [id]);
+		if (result.affectedRows === 0) {
+			return res.status(404).json({error: 'Availability not found'});
+		}
+		return res.json({message: 'Availability deleted'});
+
+	} catch (e) {
+		console.error('Error deleting availability', e);
+		return res.status(500).json({error: 'Internal server error'});
+	}
+  }
+
+
 
 module.exports = {
 	getAllCaregivers,
 	getAllAvailabilities,
 	getAvailabilitiesByUser,
 	insertAvailability,
-	getCaregiverProfile
+	getCaregiverProfile,
+	removeAvailability
 }
