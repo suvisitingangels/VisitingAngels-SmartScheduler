@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './Home.css';
 import {jwtDecode} from "jwt-decode";
-import {useNavigate} from "react-router-dom";
 
 function Home() {
 	const [availabilityList, setAvailabilityList] = useState([]);
@@ -73,7 +72,6 @@ function Home() {
 								<div><b>Date: {availability.available_date}</b></div>
 								<div>{availability.start_time} - {availability.end_time}</div>
 							</div>
-							{/*<button className={"delete-option"}>Trash</button>*/}
 							<img onClick={() => handleDelete(availability.id)} className={"delete-option"}
 								 src={"https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png"}
 								 alt={"trash"}/>
