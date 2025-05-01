@@ -1,4 +1,4 @@
-// VisitingAngelsSURJS/visitingangelsrjs/src/pages/Scheduler/FindCaregiver/components/hooks/useFetchCaregiverData.js
+﻿// VisitingAngelsSURJS/visitingangelsrjs/src/pages/Scheduler/FindCaregiver/components/hooks/useFetchCaregiverData.js
 
 /**
      * useFetchCaregiverData Hook
@@ -24,13 +24,22 @@ export default function useFetchCaregiverData() {
          * Makes a GET request to the server, processes the data to extract caregiver schedules,
          * formats the schedule dates, and updates the respective state variables.
     */
+
+     function to12Hour(time24) {
+          const [hStr, m] = time24.split(':');
+          let h = parseInt(hStr, 10);
+          const suffix = h >= 12 ? 'pm' : 'am';
+          h = h % 12 || 12;           // map 0→12, 13→1, 12→12
+          return `${h}:${m}${suffix}`;
+      }
+
     const fetchCaregiverData = async () => {
       try {
         // const response = await axios.get(`${baseUrl}/api/csv-data`);
         // const data = response.data.data;
 		  const csvResponse = await fetch(`${baseUrl}/api/csv-data`);
           let csvData = await csvResponse.json();
-		  csvData = csvData.data;
+          csvData = csvData.data;
 
           const dbResponse = await fetch(`${baseUrl}/api/db`);
           let dbData = await dbResponse.json();
@@ -49,33 +58,42 @@ export default function useFetchCaregiverData() {
               date = `${date[1]}/${date[2]}/${date[0]}`; // month/day/year
               dbData[i].available_date = date;
 
-              let startTime = dbData[i].start_time;
-              startTime = startTime.slice(0, startTime.length - 3);
-              dbData[i].start_time = startTime;
+              // strip seconds then convert to 12-hour
+              const rawStart = dbData[i].start_time.slice(0, -3);
+              const rawEnd = dbData[i].end_time.slice(0, -3);
+              const start12 = to12Hour(rawStart);
+              const end12 = to12Hour(rawEnd);
 
-              let endTime = dbData[i].end_time;
-              endTime = endTime.slice(0, endTime.length - 3);
-              dbData[i].end_time = endTime;
+              dbData[i].start_time = start12;
+              dbData[i].end_time = end12;
+              dbData[i].hours = `${start12} to ${end12}`;
+          }
 
-              dbData[i].hours = `${startTime} to ${endTime}`;
+          function stripMI(fullName) {
+              const parts = fullName.split(' ');
+              if (parts.length > 2 && parts[parts.length - 1].length === 1) {
+                  return parts.slice(0, -1).join(' ');
+              }
+              return fullName;
           }
         
         const processedCaregivers = csvData.map((details) => {
             const rawName = details['Caregiver Name'] || 'Unknown Caregiver';
             const name = rawName.replace(/\s*\[Caregiver\]$/, ''); // filter out tag for space
             const availability = dbData
-                .filter((entry) => entry.name === name)
+                .filter((entry) => entry.name === stripMI(name))
                 .reduce((acc, entry) => {
                     acc[entry.available_date] = entry.hours;
                     return acc;
                 }, {});
                 const schedule = Object.entries(details)
-              .filter(([key, value]) => key.includes('/') && value) 
-              .reduce((acc, [date, hours]) => ({ ...acc, [date]: hours }), {});
+                .filter(([key, value]) => key.includes('/') && value) 
+                .reduce((acc, [date, hours]) => ({ ...acc, [date]: hours }), {});
             return { name, schedule, availability };
-          });
-          
+            });
 
+
+          console.log(processedCaregivers);
         setCaregivers(processedCaregivers);
 
         const allDates = Array.from(

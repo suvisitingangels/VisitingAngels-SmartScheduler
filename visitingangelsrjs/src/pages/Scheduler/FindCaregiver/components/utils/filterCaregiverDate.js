@@ -19,6 +19,8 @@ export default function filterCaregiversDate(caregivers, selectedDate) {
 
     const { fullDate, date } = selectedDate;
 
+    console.log(caregivers);
+
     const filtered = caregivers
         .filter((caregiver) => caregiver.schedule[fullDate] || caregiver.availability[date])
         .map((caregiver) => ({
