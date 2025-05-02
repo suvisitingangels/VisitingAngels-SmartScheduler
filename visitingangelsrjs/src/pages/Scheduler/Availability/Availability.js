@@ -55,7 +55,7 @@ function Availability() {
 	};
 
 	const handleActionChange = (e) => {
-		setAction(e.target);
+		setAction(e.target.value);
 	}
 
 	/**
@@ -87,8 +87,18 @@ function Availability() {
 				navigate('/scheduler/find-caregiver');
 			}
 		}
-		else if (action === "Delete") {
+		else if (action === "Remove") {
 			console.log("To be deleted");
+			const response = await fetch(`${baseUrl}/api/db/availability`,
+				{method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(formData)
+				});
+			if (response.status === 404 || response.status === 500) {
+				alert("Availability not found.")
+			} else {
+				alert("Availability deleted.")
+			}
 		}
 
 	};
