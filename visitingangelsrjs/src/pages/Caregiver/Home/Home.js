@@ -62,7 +62,7 @@ function Home() {
 	}
 	return (
 		<div className={"availabilites-list"}>
-			<h1 className={"title"}>Availabilities</h1>
+			<h1 className={"title"}>Availability</h1>
 			{availabilityList.length <= 0 ? (<div>No availabilities</div>) : (
 				<ul>
 					{availabilityList.map((availability) => (

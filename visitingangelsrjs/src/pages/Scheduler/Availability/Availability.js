@@ -13,7 +13,6 @@ import './Availability.css';
 import {useNavigate} from "react-router-dom";
 
 function Availability() {
-	const baseUrl = process.env.REACT_APP_BASE_URL;
 	// State to store form data
 	const [formData, setFormData] = useState({
 		user_id: '',
@@ -23,6 +22,21 @@ function Availability() {
 	});
 	const [action, setAction] = useState('Add');
 	const navigate = useNavigate();
+
+	const today = new Date();
+	let fullDate = `${today.getFullYear()}-`;
+	let month = today.getMonth() + 1;
+	if (month > 9) {
+		fullDate += `${month}-`;
+	} else {
+		fullDate += `0${month}-`;
+	}
+	let day = today.getDate();
+	if (day > 9) {
+		fullDate += `${day}`;
+	} else {
+		fullDate += `0${day}`;
+	}
 
 	useEffect(() => {
 		document.title = "Availability | SmartScheduler";
@@ -53,7 +67,13 @@ function Availability() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const baseUrl = process.env.REACT_APP_BASE_URL;
-		console.log(formData);
+
+		formData.user_id = formData.user_id.toLowerCase();
+		if (formData.end_time < formData.start_time) {
+			alert("End time needs to be after start time.");
+			return;
+		}
+
 		if (action === "Add") {
 			const response = await fetch(`${baseUrl}/api/db/new-availability`, {
 				method: 'POST',
@@ -98,6 +118,7 @@ function Availability() {
 					<input
 						type="date"
 						name="date"
+						min={fullDate}
 						value={formData.date}
 						onChange={handleFormChange}
 					/>

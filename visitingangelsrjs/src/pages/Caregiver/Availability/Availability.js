@@ -23,18 +23,27 @@ function Availability() {
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
 
+	const today = new Date();
+	let fullDate = `${today.getFullYear()}-`;
+	let month = today.getMonth() + 1;
+	if (month > 9) {
+		fullDate += `${month}-`;
+	} else {
+		fullDate += `0${month}-`;
+	}
+	let day = today.getDate();
+	if (day > 9) {
+		fullDate += `${day}`;
+	} else {
+		fullDate += `0${day}`;
+	}
 
 	useEffect(() => {
 		function fetchUsername() {
 			const token = localStorage.getItem('token');
 			if (!token) return setError('Not logged in');
-			console.log("Before jwt")
-
 			const {username} = jwtDecode(token);
-			console.log("After jwt")
-
 			setFormData(prevData => ({...prevData, user_id: username}));
-			console.log(formData);
 		}
 		fetchUsername();
 		document.title = "Availability | SmartScheduler";
@@ -63,6 +72,11 @@ function Availability() {
 		e.preventDefault();
 		console.log(formData);
 		const baseUrl = process.env.REACT_APP_BASE_URL;
+
+		if (formData.end_time < formData.start_time) {
+			alert("End time needs to be after start time.");
+			return;
+		}
 
 		// TODO: need to fetch to database once submitted and then we can send submission alert
 		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
@@ -103,6 +117,7 @@ function Availability() {
 					<input
 						type="date"
 						name="date"
+						min={fullDate}
 						value={formData.date}
 						onChange={handleChange}
 					/>

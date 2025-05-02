@@ -7,7 +7,7 @@
      * Handles API requests, data processing, and state management for caregiver information.
 */
 
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
 // import axios from 'axios';
 
 export default function useFetchCaregiverData() {
@@ -41,8 +41,7 @@ export default function useFetchCaregiverData() {
               rawName = rawName.split(".");
               let firstName = rawName[0].charAt(0).toUpperCase() + rawName[0].slice(1);
               let lastName = rawName[1].charAt(0).toUpperCase() + rawName[1].slice(1);
-                let fullName = `${lastName}, ${firstName}`;
-              dbData[i].name = fullName;
+			  dbData[i].name = `${lastName}, ${firstName}`;
 
               let date = dbData[i].available_date;
               date = date.split("T")[0];
