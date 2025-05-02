@@ -22,6 +22,7 @@ function Availability() {
 	});
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
+
 	const today = new Date();
 	let fullDate = `${today.getFullYear()}-`;
 	let month = today.getMonth() + 1;
@@ -71,6 +72,11 @@ function Availability() {
 		e.preventDefault();
 		console.log(formData);
 		const baseUrl = process.env.REACT_APP_BASE_URL;
+
+		if (formData.end_time < formData.start_time) {
+			alert("End time needs to be after start time.");
+			return;
+		}
 
 		// TODO: need to fetch to database once submitted and then we can send submission alert
 		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
