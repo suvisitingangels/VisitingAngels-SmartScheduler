@@ -95,7 +95,22 @@ async function getCaregiverProfile(req, res) {
 	}
   }
 
+async function deleteAvailabilityDateTime(req, res) {
+	const formData = req.body;
+	try {
+		const query = 'DELETE FROM availabilities where user_id=? AND available_date=? and start_time=? and end_time=?';
+		const values = [req.body.user_id, req.body.date, req.body.start_time, req.body.end_time];
+		const [result] = await pool.promise().query(query, values);
+		if (result.affectedRows === 0) {
+			return res.status(404).json({error: 'Availability not found'});
+		}
+		return res.json({message: 'Availability deleted'});
 
+	} catch (e) {
+		console.error(e);
+		res.status(500);
+	}
+}
 
 module.exports = {
 	getAllCaregivers,
@@ -103,5 +118,6 @@ module.exports = {
 	getAvailabilitiesByUser,
 	insertAvailability,
 	getCaregiverProfile,
-	removeAvailability
+	removeAvailability,
+	deleteAvailabilityDateTime
 }
