@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-// import axios from 'axios';
 import './FirstLogin.css';
 import {useNavigate} from 'react-router-dom'; // Import useNavigate
 import { jwtDecode } from 'jwt-decode';
@@ -9,12 +8,13 @@ const LoginPage = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 	const baseUrl = process.env.REACT_APP_BASE_URL;
 
 	useEffect(() => {
 		document.title = "Login | SmartScheduler";
-	}, []);
+	}, [error, loading]);
 
 	const togglePasswordVisibility = () => {
 		setShowPassword(prevState => !prevState);
@@ -22,35 +22,39 @@ const LoginPage = () => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-	
-		try {
-		  // const response = await axios.post(`${baseUrl}/api/auth/login`,{ username, password });
-		  // const token = response.data.token;
-		  // localStorage.setItem('token', token);
-		  // alert('Login successful!');
-			const response = await fetch(`${baseUrl}/api/auth/login`,
-				{
-					method: 'POST',
-					headers: {'Content-Type': 'application/json'},
-					body: JSON.stringify({ username, password }),
-				}
-				);
-			console.log(response);
+		setLoading(true);
+
+		const response = await fetch(`${baseUrl}/api/auth/login`, {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({ username, password }),
+			});
+
+		if (!response.ok) {
+			setLoading(false);
+			setError("Invalid credentials");
+		} else {
+			setError("");
 			const data = await response.json();
 			const token = data.token;
 			localStorage.setItem('token', token);
 			alert('Login successful!');
-	
-		  // decode role from JWT and redirect accordingly
-		  const { role } = jwtDecode(token);
-		  if (role === 'caregiver') {
-			navigate(`/caregiver/home`);
-		  } else {
-			navigate('/scheduler/load-data');
-		  }
-		} catch (err) {
-		  setError('Invalid credentials');
+
+			// decode role from JWT and redirect accordingly
+			setLoading(false)
+			const { role } = jwtDecode(token);
+			if (role === 'caregiver') {
+				navigate(`/caregiver/home`);
+			} else {
+				navigate('/scheduler/load-data');
+			}
 		}
+
+		// } catch (err) {
+		// 	setLoading(false);
+		//   setError('Invalid credentials');
+		// } finally {
+		// }
 	  };
 	// Function to handle password input type
 	const getPasswordInputType = () => {
@@ -119,6 +123,7 @@ const LoginPage = () => {
 					)}
 				</form>
 			</div>
+			{loading && <div className={"loading-div"}>Loading...</div>}
 		</div>
 	);
 };
