@@ -49,13 +49,8 @@ const LoginPage = () => {
 				navigate('/scheduler/load-data');
 			}
 		}
+	};
 
-		// } catch (err) {
-		// 	setLoading(false);
-		//   setError('Invalid credentials');
-		// } finally {
-		// }
-	  };
 	// Function to handle password input type
 	const getPasswordInputType = () => {
 		if (showPassword) {
