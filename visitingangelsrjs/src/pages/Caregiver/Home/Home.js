@@ -63,7 +63,7 @@ function Home() {
 	return (
 		<div className={"availabilites-list"}>
 			<h1 className={"title"}>Availability</h1>
-			{availabilityList.length <= 0 ? (<div>No availabilities</div>) : (
+			{availabilityList.length <= 0 ? (<div>No availability</div>) : (
 				<ul>
 					{availabilityList.map((availability) => (
 						<li key={availability.id} className={"availability-card"}>
