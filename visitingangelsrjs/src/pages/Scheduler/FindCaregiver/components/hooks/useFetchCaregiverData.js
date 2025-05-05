@@ -1,4 +1,4 @@
-// VisitingAngelsSURJS/visitingangelsrjs/src/pages/Scheduler/FindCaregiver/components/hooks/useFetchCaregiverData.js
+// visitingangelsrjs/src/pages/Scheduler/FindCaregiver/components/hooks/useFetchCaregiverData.js
 
 /**
      * useFetchCaregiverData Hook
@@ -8,7 +8,6 @@
 */
 
 import {useEffect, useState} from 'react';
-// import axios from 'axios';
 
 export default function useFetchCaregiverData() {
   const [caregivers, setCaregivers] = useState([]);
@@ -18,16 +17,12 @@ export default function useFetchCaregiverData() {
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
-    /**
-         * Fetch caregiver data from the API.
-         * 
-         * Makes a GET request to the server, processes the data to extract caregiver schedules,
-         * formats the schedule dates, and updates the respective state variables.
-    */
+
+	// Fetches caregiver schedule data and availability data from the API
+	// Format the database data to match the csv data
+	// Filter the caregiver data by caregiver
     const fetchCaregiverData = async () => {
       try {
-        // const response = await axios.get(`${baseUrl}/api/csv-data`);
-        // const data = response.data.data;
 		  const csvResponse = await fetch(`${baseUrl}/api/csv-data`);
           let csvData = await csvResponse.json();
 		  csvData = csvData.data;
@@ -74,8 +69,7 @@ export default function useFetchCaregiverData() {
               .reduce((acc, [date, hours]) => ({ ...acc, [date]: hours }), {});
             return { name, schedule, availability };
           });
-          
-
+		  
         setCaregivers(processedCaregivers);
 
         const allDates = Array.from(
@@ -103,7 +97,7 @@ export default function useFetchCaregiverData() {
     };
 
     fetchCaregiverData();
-  }, []);
+  }, [baseUrl]);
 
   return { caregivers, dates, loading, error };
 }

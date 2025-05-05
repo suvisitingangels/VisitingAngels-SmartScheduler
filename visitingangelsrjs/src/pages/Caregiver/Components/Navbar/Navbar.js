@@ -1,4 +1,4 @@
-// src/components/common/Navbar.js
+// src/pages/Caregiver/Components/Navbar\Navbar.js
 
 /**
  * Navbar Component
@@ -7,13 +7,10 @@
  * Uses React Router's `Link` component for client-side navigation.
  */
 
-
 import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import './Navbar.css';
 import { jwtDecode } from 'jwt-decode';
-
-
 
 function Navbar() {
 	const navigate = useNavigate();
