@@ -1,4 +1,5 @@
-// src/pages/Caregiver/Availability/Availability.js
+// visitingangelsrjs/src/pages/Scheduler/Availability/Availability.js
+
 /**
  * Availability Component
  *
@@ -8,11 +9,16 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import './Availability.css';
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
+import './Availability.css';
+import getFullDate from '../../../components/fetchDate';
 
 function Availability() {
+	const [error, setError] = useState(null);
+	const navigate = useNavigate();
+	const minDate = getFullDate();
+
 	// State to store form data
 	const [formData, setFormData] = useState({
 		user_id: '',
@@ -20,57 +26,39 @@ function Availability() {
 		start_time: '',
 		end_time: ''
 	});
-	const [error, setError] = useState(null);
-	const navigate = useNavigate();
-	const today = new Date();
-	let fullDate = `${today.getFullYear()}-`;
-	let month = today.getMonth() + 1;
-	if (month > 9) {
-		fullDate += `${month}-`;
-	} else {
-		fullDate += `0${month}-`;
-	}
-	let day = today.getDate();
-	if (day > 9) {
-		fullDate += `${day}`;
-	} else {
-		fullDate += `0${day}`;
-	}
 
 	useEffect(() => {
 		function fetchUsername() {
 			const token = localStorage.getItem('token');
 			if (!token) return setError('Not logged in');
 			const {username} = jwtDecode(token);
-			setFormData(prevData => ({...prevData, user_id: username}));
+			setFormData({ ...formData, user_id: username });
 		}
-		fetchUsername();
+
 		document.title = "Availability | SmartScheduler";
+		fetchUsername();
 
 	}, []);
 
-	/**q
-	 * Handle input changes in the form fields.
-	 * Updates the corresponding field in the formData state.
-	 *
-	 * @param {Object} e - The input change event.
-	 */
+	// update the formData every time the user clicks out of a form box
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 	};
 
 
-	/**
-	 * Handle form submission.
-	 * Logs the current form data to the console.
-	 *
-	 * @param {Object} e - The form submit event.
-	 */
+	// Verify that the end time is after the start time, else alert
+	// Send form to dbController to insert into database
+	// Redirect to caregiver/home
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log(formData);
 		const baseUrl = process.env.REACT_APP_BASE_URL;
+
+		if (formData.end_time < formData.start_time) {
+			alert("End time needs to be after start time.");
+			return;
+		}
 
 		// TODO: need to fetch to database once submitted and then we can send submission alert
 		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
@@ -111,7 +99,7 @@ function Availability() {
 					<input
 						type="date"
 						name="date"
-						min={fullDate}
+						min={minDate}
 						value={formData.date}
 						onChange={handleChange}
 					/>

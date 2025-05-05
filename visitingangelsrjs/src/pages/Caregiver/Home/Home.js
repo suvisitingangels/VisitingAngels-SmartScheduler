@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import './Home.css';
 import {jwtDecode} from "jwt-decode";
+import './Home.css';
 
 function Home() {
 	const [availabilityList, setAvailabilityList] = useState([]);
 	const [error, setError] = useState('');
+	const baseUrl = process.env.REACT_APP_BASE_URL;
 
 	useEffect(() => {
 		const fetchAvailabilities = async () => {
 			const token = localStorage.getItem('token');
 			if (!token) return setError('Not logged in');
 			const {username} = jwtDecode(token);
-			const baseUrl = process.env.REACT_APP_BASE_URL;
 
 			try {
 				const response = await fetch(`${baseUrl}/api/db/filtered-availabilities/${username}`);
@@ -32,8 +32,7 @@ function Home() {
 					data[i].end_time = endTime;
 
 				}
-				setAvailabilityList(data);
-
+                setAvailabilityList(data);
 			} catch (e) {
 				console.error(e);
 				setError('Failed to fetch your availabilities');
@@ -41,23 +40,24 @@ function Home() {
 		};
 		fetchAvailabilities();
 		document.title = "Home | SmartScheduler";
-	}, []);
+	}, [baseUrl]);
 
-	function handleDelete() {
-		console.log("to be deleted");
+	async function handleDelete(id) {
+		try {
+			await fetch(`${baseUrl}/api/db/availability/${id}`, {method: 'DELETE'});
+            window.location.reload();
+		} catch (e) {
+			console.error(e);
+			setError('Failed to delete availability');
+		}
 	}
 
-	if (error) {
-		return (
-			<div>
-				{error}
-			</div>
-		)
-	}
+	if (error) return <div>{error}</div>
+
 	return (
 		<div className={"availabilites-list"}>
-			<h1 className={"title"}>Availabilities</h1>
-			{availabilityList.length <= 0 ? (<div>No availabilities</div>) : (
+			<h1 className={"title"}>Availability</h1>
+			{availabilityList.length <= 0 ? (<div>No availability</div>) : (
 				<ul>
 					{availabilityList.map((availability) => (
 						<li key={availability.id} className={"availability-card"}>
@@ -66,8 +66,7 @@ function Home() {
 								<div><b>Date: {availability.available_date}</b></div>
 								<div>{availability.start_time} - {availability.end_time}</div>
 							</div>
-							{/*<button className={"delete-option"}>Trash</button>*/}
-							<img onClick={handleDelete} className={"delete-option"}
+							<img onClick={() => handleDelete(availability.id)} className={"delete-option"}
 								 src={"https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png"}
 								 alt={"trash"}/>
 						</span>

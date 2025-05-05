@@ -1,4 +1,4 @@
-// src/components/common/Navbar.js
+// visitingangelsrjs/src/pages/Scheduler/Components/Navbar/SchedulerNavbar.js
 
 /**
  * Navbar Component
@@ -6,7 +6,6 @@
  * A reusable navigation bar component that provides links to different pages of the application.
  * Uses React Router's `Link` component for client-side navigation.
  */
-
 
 import React from 'react';
 import {Link} from 'react-router-dom';
