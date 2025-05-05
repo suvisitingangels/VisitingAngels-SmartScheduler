@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import './Home.css';
 import {jwtDecode} from "jwt-decode";
+import './Home.css';
 
 function Home() {
 	const [availabilityList, setAvailabilityList] = useState([]);
@@ -43,7 +43,6 @@ function Home() {
 	}, [baseUrl]);
 
 	async function handleDelete(id) {
-
 		try {
 			await fetch(`${baseUrl}/api/db/availability/${id}`, {method: 'DELETE'});
             window.location.reload();
@@ -53,13 +52,8 @@ function Home() {
 		}
 	}
 
-	if (error) {
-		return (
-			<div>
-				{error}
-			</div>
-		)
-	}
+	if (error) return <div>{error}</div>
+
 	return (
 		<div className={"availabilites-list"}>
 			<h1 className={"title"}>Availability</h1>

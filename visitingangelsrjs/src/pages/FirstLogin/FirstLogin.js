@@ -38,7 +38,6 @@ const LoginPage = () => {
 			const data = await response.json();
 			const token = data.token;
 			localStorage.setItem('token', token);
-			alert('Login successful!');
 
 			// decode role from JWT and redirect accordingly
 			setLoading(false)
