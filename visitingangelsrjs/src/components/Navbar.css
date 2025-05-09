@@ -1,0 +1,31 @@
+/* src/components/common/Navbar.css */
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #33adbb;
+	color: #fff;
+}
+
+.navbar > img {
+	width: 2.5rem;
+	height: 2.25rem;
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+.navbar-link {
+	color: #fff;
+	text-decoration: none;
+	padding: 1.5rem 1.5rem;
+}
+
+.navbar-links a:hover {
+	color: #000;
+}
+
