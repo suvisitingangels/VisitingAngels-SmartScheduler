@@ -9,27 +9,43 @@
 
 import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import './Navbar.css';
+import '../../../../components/Navbar.css';
 import { jwtDecode } from 'jwt-decode';
 
 function Navbar() {
 	const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const userId = token ? jwtDecode(token).username : '';
+	const role = token ? jwtDecode(token).role : "";
 
 	function handleNavigate() {
 		navigate('/caregiver/home')
 	}
 
     return (
-        <nav className="navbar">
-                <img src="https://i.imgur.com/GSKsNA8.png" alt="logo" onClick={handleNavigate} />
-			<div>
-                <Link to="/caregiver/availability" className="navbar-link">Availability</Link>
-                <Link to={`/caregiver/profile/${userId}`} className="navbar-link">Profile</Link>
-            </div>
-        </nav>
-    );
+		<nav className="navbar">
+			<img src="https://i.imgur.com/GSKsNA8.png" alt="logo" onClick={handleNavigate}/>
+			{/*<div>*/}
+			{/*	{role === "admin" && <Link to="/scheduler/load-data" className={"navbar-link"}>To Scheduler</Link>}*/}
+			{/*	<Link to="/caregiver/availability" className="navbar-link">Availability</Link>*/}
+			{/*	<Link to={`/caregiver/profile/${userId}`} className="navbar-link">Profile</Link>*/}
+			{/*</div>*/}
+
+			<table className={"links"}>
+				<tr>
+					<th>
+						{role === "admin" && <Link to="/scheduler/load-data" className={"navbar-link"}>To Scheduler</Link>}
+					</th>
+					<th>
+						<Link to="/caregiver/availability" className="navbar-link">Availability</Link>
+					</th>
+					<th>
+						<Link to={`/caregiver/profile/${userId}`} className="navbar-link">Profile</Link>
+					</th>
+				</tr>
+			</table>
+		</nav>
+	);
 }
 
 export default Navbar;

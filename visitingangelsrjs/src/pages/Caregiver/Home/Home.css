@@ -25,6 +25,11 @@
 	align-items: center;
 }
 
+.delete-option {
+	height: 68px;
+	width: 68px;
+}
+
 .date-info, .delete-option {
 	display: block;
 	padding: 10px;
