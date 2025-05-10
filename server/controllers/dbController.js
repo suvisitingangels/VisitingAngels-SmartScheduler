@@ -37,19 +37,44 @@ async function getAvailabilitiesByUser(req, res) {
 	}
 }
 
-async function insertAvailability(req, res) {
-	const formData = req.body;
-
+async function insertAvailability(formData, date) {
 	try {
 		const query = 'INSERT INTO `availabilities` (`user_id`, `available_date`, `start_time`, `end_time`) VALUES (?, ?, ?, ?)';
-		const values = [formData.user_id, formData.date, formData.start_time, formData.end_time];
+		const values = [formData.user_id, date, formData.start_time, formData.end_time];
 		const [result] = await pool.promise().query(query, values);
-		const availability = result.id;
-		return res.status(201).json({message: 'Submission successful.', availability});
+		return result.insertId;
 	} catch (e) {
-		console.error(e);
-		res.status(500);
+		console.error(e)
+		return e;
 	}
+}
+
+function addLeadingZero(value) {
+	return `${value < 9 ? "0" : ""}${value}`;
+}
+
+async function insertRecurringAvailability(req, res) {
+	const formData = req.body;
+
+	// Data validation
+	if (formData.recurring === "none") {
+		formData.numRecurrences = 1;
+	} else {
+		formData.numRecurrences = parseInt(formData.numRecurrences);
+	}
+	// Must be converted to a Date object in order to add to it
+	let dateObject = new Date(`${formData.date}T${formData.start_time}`);
+
+	for (let i = 0; i < formData.numRecurrences; i++) {
+		let date = `${dateObject.getFullYear()}-${addLeadingZero(dateObject.getMonth() + 1)}-${addLeadingZero(dateObject.getDate())}`;
+		const result = await insertAvailability(formData, date);
+		if (typeof(result) !== "number") {
+			return res.status(500);
+		}
+		let intervalIncrease = (formData.recurring === "weekly" && 7) || (formData.recurring === "biweekly" && 14);
+		dateObject.setDate(dateObject.getDate() + intervalIncrease);
+	}
+	return res.status(201).send("Successful");
 }
 
 async function getCaregiverProfile(req, res) {
@@ -99,13 +124,25 @@ async function deleteAvailabilityDateTime(req, res) {
 	const formData = req.body;
 	try {
 		const query = 'DELETE FROM availabilities where user_id=? AND available_date=? and start_time=? and end_time=?';
-		const values = [req.body.user_id, req.body.date, req.body.start_time, req.body.end_time];
+		const values = [formData.body.user_id, formData.body.date, formData.body.start_time, formData.body.end_time];
 		const [result] = await pool.promise().query(query, values);
 		if (result.affectedRows === 0) {
 			return res.status(404).json({error: 'Availability not found'});
 		}
 		return res.json({message: 'Availability deleted'});
+	} catch (e) {
+		console.error(e);
+		res.status(500);
+	}
+}
 
+async function deletePastAvailability(req, res) {
+	const today = new Date();
+	const fullDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+	try {
+		const query = `DELETE FROM availabilities where available_date < "${fullDate}";`;
+		await pool.promise().query(query);
+		return res.status(200).json({message: 'Past availability deleted.'});
 	} catch (e) {
 		console.error(e);
 		res.status(500);
@@ -113,11 +150,11 @@ async function deleteAvailabilityDateTime(req, res) {
 }
 
 module.exports = {
-	getAllCaregivers,
 	getAllAvailabilities,
 	getAvailabilitiesByUser,
-	insertAvailability,
+	insertRecurringAvailability,
 	getCaregiverProfile,
 	removeAvailability,
-	deleteAvailabilityDateTime
+	deleteAvailabilityDateTime,
+	deletePastAvailability
 }

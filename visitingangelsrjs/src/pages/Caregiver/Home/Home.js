@@ -8,16 +8,27 @@ function Home() {
 	const baseUrl = process.env.REACT_APP_BASE_URL;
 
 	useEffect(() => {
+
 		const fetchAvailabilities = async () => {
 			const token = localStorage.getItem('token');
 			if (!token) return setError('Not logged in');
 			const {username} = jwtDecode(token);
 
+			// Delete all past availabilities
+			try {
+				await fetch(`${baseUrl}/api/db/past-availability`, {method: 'DELETE'});
+			} catch (e) {
+				console.error(e);
+			}
+
+			// Fetch current availabilities
 			try {
 				const response = await fetch(`${baseUrl}/api/db/filtered-availabilities/${username}`);
 				if (!response.ok) throw new Error(`HTTP Status: ${response.status}`);
 				let data = await response.json();
 				data = data.availabilities;
+
+				// parse data to reformat times
 				for (let i = 0; i < data.length; i++) {
 					let date = data[i].available_date;
 					date = date.split("T")[0];
@@ -30,7 +41,6 @@ function Home() {
 					let endTime = data[i].end_time;
 					endTime = endTime.slice(0, endTime.length - 3);
 					data[i].end_time = endTime;
-
 				}
                 setAvailabilityList(data);
 			} catch (e) {
