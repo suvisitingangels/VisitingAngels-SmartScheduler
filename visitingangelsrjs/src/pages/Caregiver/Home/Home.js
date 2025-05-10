@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
 import './Home.css';
 
 function Home() {
 	const [availabilityList, setAvailabilityList] = useState([]);
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
 	const baseUrl = process.env.REACT_APP_BASE_URL;
 
 	useEffect(() => {
@@ -67,7 +69,17 @@ function Home() {
 	return (
 		<div className={"availabilites-list"}>
 			<h1 className={"title"}>Availability</h1>
-			{availabilityList.length <= 0 ? (<div>No availability</div>) : (
+			{availabilityList.length <= 0 ? (
+				<div className={"no-availability"}>
+					<label>
+						No availability
+					</label>
+					<button onClick={() => navigate('/caregiver/availability')}>
+						Add availability
+					</button>
+				</div>
+
+			) : (
 				<ul>
 					{availabilityList.map((availability) => (
 						<li key={availability.id} className={"availability-card"}>
