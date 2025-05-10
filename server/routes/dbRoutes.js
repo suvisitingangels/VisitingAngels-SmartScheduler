@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const {getAllAvailabilities,
+const {deleteAvailabilityDateTime,
+	deletePastAvailability,
+	getAllAvailabilities,
 	getAvailabilitiesByUser,
-	insertRecurringAvailability,
 	getCaregiverProfile,
-	removeAvailability,
-	deleteAvailabilityDateTime,
-	deletePastAvailability} = require('../controllers/dbController');
+	insertRecurringAvailability,
+	removeAvailability} = require('../controllers/dbController');
 
 router.get("/", getAllAvailabilities);
 
