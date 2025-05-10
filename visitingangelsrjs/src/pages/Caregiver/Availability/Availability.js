@@ -24,7 +24,9 @@ function Availability() {
 		user_id: '',
 		date: '',
 		start_time: '',
-		end_time: ''
+		end_time: '',
+		recurring: 'none',
+		numRecurrences: 1
 	});
 
 	useEffect(() => {
@@ -44,8 +46,8 @@ function Availability() {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
+		console.log(formData);
 	};
-
 
 	// Verify that the end time is after the start time, else alert
 	// Send form to dbController to insert into database
@@ -55,12 +57,16 @@ function Availability() {
 		console.log(formData);
 		const baseUrl = process.env.REACT_APP_BASE_URL;
 
+		// User error alerts
+		if (formData.date === "" || formData.start_time === "" || formData.end_time === "") {
+			alert("Please fill in all fields.");
+			return;
+		}
 		if (formData.end_time < formData.start_time) {
 			alert("End time needs to be after start time.");
 			return;
 		}
 
-		// TODO: need to fetch to database once submitted and then we can send submission alert
 		const response = await fetch(`${baseUrl}/api/db/new-availability`, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
@@ -124,6 +130,26 @@ function Availability() {
 						onChange={handleChange}
 					/>
 				</label>
+
+				<label className={"recurring-list"}>
+					Recurring:
+					<select name={"recurring"} onChange={handleChange}>
+						<option value={"none"}>None</option>
+						<option value={"weekly"}>Weekly</option>
+						<option value={"biweekly"}>Biweekly</option>
+					</select>
+				</label>
+
+				<div className={"num-recurrences"}>
+					<span>End after: </span>
+					<input
+						type={"text"}
+						name={"numRecurrences"}
+						value={formData.numRecurrences}
+						onChange={handleChange}
+					/>
+					<span>occurrences</span>
+				</div>
 
 				<button type="submit">Add</button>
 			</form>
