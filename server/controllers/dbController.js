@@ -113,7 +113,7 @@ async function insertRecurringAvailability(req, res) {
 	return res.status(201).send("Successful");
 }
 
-  async function removeAvailability(req, res) {
+async function removeAvailability(req, res) {
 	const {id} = req.params;
 
 	try {
@@ -136,9 +136,7 @@ async function insertRecurringAvailability(req, res) {
 		console.error('Error deleting availability', e);
 		return res.status(500).json({error: 'Internal server error'});
 	}
-  }
-
-
+}
 
 module.exports = {
 	deleteAvailabilityDateTime,
