@@ -1,124 +1,9 @@
 const mysql = require('mysql2/promise');
 const {pool} = require('../db/connection')
 
-async function getAllCaregivers(req, res) {
-	try {
-		const promise = pool.promise();
-		const query = 'SELECT * FROM caregivers';
-		const [rows] = await promise.query(query);
-		return res.json({rows});
-	} catch (e) {
-		console.error(e);
-	}
-}
-
-async function getAllAvailabilities(req, res) {
-	try {
-		const promise = pool.promise();
-		const query = 'SELECT * FROM availabilities ORDER BY available_date, start_time';
-		const [rows] = await promise.query(query);
-		return res.json({rows});
-	} catch (e) {
-		console.error(e);
-	}
-}
-
-async function getAvailabilitiesByUser(req, res) {
-	try {
-		const username = req.params.username;
-
-		const promise = pool.promise();
-		const query = `SELECT * FROM availabilities WHERE user_id = '${username}' ORDER BY available_date`;
-		const [availabilities] = await promise.query(query);
-		return res.json({availabilities}).status(200);
-	} catch (e) {
-		console.error('Error retrieving availabilities', e);
-		return res.status(500).json({error: 'Internal server error.'});
-	}
-}
-
-async function insertAvailability(formData, date) {
-	try {
-		const query = 'INSERT INTO `availabilities` (`user_id`, `available_date`, `start_time`, `end_time`) VALUES (?, ?, ?, ?)';
-		const values = [formData.user_id, date, formData.start_time, formData.end_time];
-		const [result] = await pool.promise().query(query, values);
-		return result.insertId;
-	} catch (e) {
-		console.error(e)
-		return e;
-	}
-}
-
 function addLeadingZero(value) {
 	return `${value < 9 ? "0" : ""}${value}`;
 }
-
-async function insertRecurringAvailability(req, res) {
-	const formData = req.body;
-
-	// Data validation
-	if (formData.recurring === "none") {
-		formData.numRecurrences = 1;
-	} else {
-		formData.numRecurrences = parseInt(formData.numRecurrences);
-	}
-	// Must be converted to a Date object in order to add to it
-	let dateObject = new Date(`${formData.date}T${formData.start_time}`);
-
-	for (let i = 0; i < formData.numRecurrences; i++) {
-		let date = `${dateObject.getFullYear()}-${addLeadingZero(dateObject.getMonth() + 1)}-${addLeadingZero(dateObject.getDate())}`;
-		const result = await insertAvailability(formData, date);
-		if (typeof(result) !== "number") {
-			return res.status(500);
-		}
-		let intervalIncrease = (formData.recurring === "weekly" && 7) || (formData.recurring === "biweekly" && 14);
-		dateObject.setDate(dateObject.getDate() + intervalIncrease);
-	}
-	return res.status(201).send("Successful");
-}
-
-async function getCaregiverProfile(req, res) {
-	try {
-	  const username = req.params.username;
-	  const query = 'SELECT * FROM caregivers WHERE user_id = ?';
-	  const [rows] = await pool.promise().query(query, [username]);
-
-	  if (rows.length === 0) {
-		return res.status(404).json({ error: 'Caregiver not found' });
-	  }
-
-	  // return just the single object
-	  return res.status(200).json({rows});
-	} catch (err) {
-	  console.error('getCaregiverProfile error:', err);
-	  return res.status(500).json({ error: 'Internal server error' });
-	}
-  }
-
-  async function removeAvailability(req, res) {
-	const {id} = req.params;
-
-	try {
-		const promise = pool.promise();
-		const query = 'SELECT * FROM availabilities WHERE id = ?';
-		const [rows] = await promise.query(query, [id]);
-
-		if (rows.length === 0) {
-			return res.status(404).json({error: 'Availability not found'});
-		}
-
-		const deleteQuery = 'DELETE FROM availabilities WHERE id = ?';
-		const [result] = await promise.query(deleteQuery, [id]);
-		if (result.affectedRows === 0) {
-			return res.status(404).json({error: 'Availability not found'});
-		}
-		return res.json({message: 'Availability deleted'});
-
-	} catch (e) {
-		console.error('Error deleting availability', e);
-		return res.status(500).json({error: 'Internal server error'});
-	}
-  }
 
 async function deleteAvailabilityDateTime(req, res) {
 	const formData = req.body;
@@ -149,12 +34,118 @@ async function deletePastAvailability(req, res) {
 	}
 }
 
+async function getAllAvailabilities(req, res) {
+	try {
+		const promise = pool.promise();
+		const query = 'SELECT * FROM availabilities ORDER BY available_date, start_time';
+		const [rows] = await promise.query(query);
+		return res.json({rows});
+	} catch (e) {
+		console.error(e);
+	}
+}
+
+async function getAvailabilitiesByUser(req, res) {
+	try {
+		const username = req.params.username;
+
+		const promise = pool.promise();
+		const query = `SELECT * FROM availabilities WHERE user_id = '${username}' ORDER BY available_date`;
+		const [availabilities] = await promise.query(query);
+		return res.json({availabilities}).status(200);
+	} catch (e) {
+		console.error('Error retrieving availabilities', e);
+		return res.status(500).json({error: 'Internal server error.'});
+	}
+}
+
+async function getCaregiverProfile(req, res) {
+	try {
+		const username = req.params.username;
+		const query = 'SELECT * FROM caregivers WHERE user_id = ?';
+		const [rows] = await pool.promise().query(query, [username]);
+
+		if (rows.length === 0) {
+			return res.status(404).json({ error: 'Caregiver not found' });
+		}
+
+		// return just the single object
+		return res.status(200).json({rows});
+	} catch (err) {
+		console.error('getCaregiverProfile error:', err);
+		return res.status(500).json({ error: 'Internal server error' });
+	}
+}
+
+async function insertAvailability(formData, date) {
+	try {
+		const query = 'INSERT INTO `availabilities` (`user_id`, `available_date`, `start_time`, `end_time`) VALUES (?, ?, ?, ?)';
+		const values = [formData.user_id, date, formData.start_time, formData.end_time];
+		const [result] = await pool.promise().query(query, values);
+		return result.insertId;
+	} catch (e) {
+		console.error(e)
+		return e;
+	}
+}
+
+async function insertRecurringAvailability(req, res) {
+	const formData = req.body;
+
+	// Data validation
+	if (formData.recurring === "none") {
+		formData.numRecurrences = 1;
+	} else {
+		formData.numRecurrences = parseInt(formData.numRecurrences);
+	}
+	// Must be converted to a Date object in order to add to it
+	let dateObject = new Date(`${formData.date}T${formData.start_time}`);
+
+	for (let i = 0; i < formData.numRecurrences; i++) {
+		let date = `${dateObject.getFullYear()}-${addLeadingZero(dateObject.getMonth() + 1)}-${addLeadingZero(dateObject.getDate())}`;
+		const result = await insertAvailability(formData, date);
+		if (typeof(result) !== "number") {
+			return res.status(500);
+		}
+		let intervalIncrease = (formData.recurring === "weekly" && 7) || (formData.recurring === "biweekly" && 14);
+		dateObject.setDate(dateObject.getDate() + intervalIncrease);
+	}
+	return res.status(201).send("Successful");
+}
+
+  async function removeAvailability(req, res) {
+	const {id} = req.params;
+
+	try {
+		const promise = pool.promise();
+		const query = 'SELECT * FROM availabilities WHERE id = ?';
+		const [rows] = await promise.query(query, [id]);
+
+		if (rows.length === 0) {
+			return res.status(404).json({error: 'Availability not found'});
+		}
+
+		const deleteQuery = 'DELETE FROM availabilities WHERE id = ?';
+		const [result] = await promise.query(deleteQuery, [id]);
+		if (result.affectedRows === 0) {
+			return res.status(404).json({error: 'Availability not found'});
+		}
+		return res.json({message: 'Availability deleted'});
+
+	} catch (e) {
+		console.error('Error deleting availability', e);
+		return res.status(500).json({error: 'Internal server error'});
+	}
+  }
+
+
+
 module.exports = {
+	deleteAvailabilityDateTime,
+	deletePastAvailability,
 	getAllAvailabilities,
 	getAvailabilitiesByUser,
-	insertRecurringAvailability,
 	getCaregiverProfile,
-	removeAvailability,
-	deleteAvailabilityDateTime,
-	deletePastAvailability
+	insertRecurringAvailability,
+	removeAvailability
 }
