@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './Home.css';
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 function Home() {
 	const [availabilityList, setAvailabilityList] = useState([]);
@@ -10,7 +10,7 @@ function Home() {
 		const fetchAvailabilities = async () => {
 			const token = localStorage.getItem('token');
 			if (!token) return setError('Not logged in');
-			const {username} = jwtDecode(token);
+			const { username } = jwtDecode(token);
 			const baseUrl = process.env.REACT_APP_BASE_URL;
 
 			try {

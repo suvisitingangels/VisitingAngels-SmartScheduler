@@ -45,11 +45,18 @@ function LoadData() {
 		}
 
 		try {
-			await axios.post(endpoint, formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
+			const response = await fetch(endpoint, {
+				method: 'POST',
+				body: formData,
+				// NOTE: don’t set Content-Type here—browser will
+				// add the correct multipart boundary for you.
 			});
+
+			if (!response.ok) {
+				// non-2xx status codes won’t throw automatically
+				throw new Error(`Server responded ${response.status}: ${response.statusText}`)
+			}
+
 			setUploadStatus('File uploaded and processed successfully!');
 		} catch (error) {
 			setUploadStatus('Error uploading file.');
