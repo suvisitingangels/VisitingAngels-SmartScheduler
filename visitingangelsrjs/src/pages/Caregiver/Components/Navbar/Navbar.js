@@ -36,12 +36,14 @@ function Navbar() {
 			<div className="hamburger" onClick={toggleMenu}>
 				&#9776;
 			</div>
+
+
 			<div className={`links ${isOpen ? 'open' : ''}`}>
 				{role === "admin" && (
-					<Link to="/scheduler/load-data" className="navbar-link" 
+					<Link to="/scheduler/load-data" className="navbar-link"
 					onClick={() => setIsOpen(false)}>To Scheduler</Link>
 				)}
-				<Link to="/caregiver/availability" className="navbar-link" 
+				<Link to="/caregiver/availability" className="navbar-link"
 				onClick={() => setIsOpen(false)}>Availability</Link>
 				<Link to={`/caregiver/profile/${userId}`} className="navbar-link"
 				onClick={() => setIsOpen(false)}>Profile</Link>
