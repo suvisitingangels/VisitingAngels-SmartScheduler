@@ -32,3 +32,7 @@
 	border-left: 1px solid lightblue;
 	border-right: 1px solid lightblue;
 }
+
+.navbar-link:hover, .navbar > img:hover {
+	background-color: #1d96a3;
+}
