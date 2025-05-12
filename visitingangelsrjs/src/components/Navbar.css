@@ -6,7 +6,7 @@
 	align-items: center;
 	background-color: #33adbb;
 	color: #fff;
-	padding: 1rem 2rem;
+	padding: 0rem 2rem;
 	position: relative;
 }
 
@@ -21,6 +21,7 @@
 	font-size: 2rem;
 	cursor: pointer;
 	color: white;
+	padding: 0.75rem;
 }
 
 .links {
