@@ -26,7 +26,6 @@ function LoadData() {
 
 	useEffect(() => {
 		document.title = "Load Data | SmartScheduler";
-
 	}, []);
 
 	/**
@@ -50,16 +49,15 @@ function LoadData() {
 		}
 
 		try {
-			await axios.post(endpoint, formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
+			const response = await fetch(endpoint, {
+				method: 'POST',
+				body: formData,
 			});
-			// await fetch(endpoint, {
-			// 	method: 'POST',
-			// 	headers: {'Content-Type': 'multipart/form-data'},
-			// 	body: JSON.stringify(formData)
-			// })
+
+			if (!response.ok) {
+				throw new Error(`Server responded ${response.status}: ${response.statusText}`)
+			}
+
 			setUploadStatus('File uploaded and processed successfully!');
 		} catch (error) {
 			setUploadStatus('Error uploading file.');

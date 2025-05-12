@@ -31,11 +31,11 @@ function FindCaregiver() {
     const { fullFilterClasses} = useFetchFullFilterClassesData();
     const [activeFilters, setActiveFilters] = useState([]);
     const finalFilteredCaregivers = filterCaregiverClasses(fullFilterClasses, filteredCaregiversDate, activeFilters);
+    const [searchQuery, setSearchQuery] = useState('');
 
-	useEffect(() => {
-		document.title = "Find Caregivers | SmartScheduler";
-
-	}, []);
+        useEffect(() => {
+            document.title = "Find Caregivers | SmartScheduler";
+        }, []);
 
     const handleCheckboxChange = (filter, isChecked) => {
         const updatedFilters = isChecked
@@ -44,6 +44,9 @@ function FindCaregiver() {
         setActiveFilters(updatedFilters);
     };
 
+    const displayedCaregivers = finalFilteredCaregivers.filter(c =>
+        c.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div className="find-caregiver-container">
@@ -53,10 +56,10 @@ function FindCaregiver() {
                 {filtersError && <p className="error-message">{filtersError}</p>}
             </aside>
             <section className="find-caregiver-caregiver-list">
-                <SearchBar />
+                <SearchBar query={searchQuery} onSearch={setSearchQuery} />
                 <hr className="find-caregiver-divider" />
                 <DateCarousel dates={dates} onDateSelect={setSelectedDate} />
-                <CaregiverDataDate caregivers={finalFilteredCaregivers} />
+                <CaregiverDataDate caregivers={displayedCaregivers} />
                 {loading && <p>Loading data...</p>}
                 {error && <p className="error-message">{error}</p>}
             </section>
