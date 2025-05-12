@@ -28,7 +28,7 @@ function FindCaregiver() {
     const { caregivers, dates, loading, error } = useFetchCaregiverData();
     const filteredCaregiversDate = filterCaregiversDate(caregivers, selectedDate);
     const { filterClasses, loading: filtersLoading, error: filtersError } = useFetchFilterClasses();
-    const { fullFilterClasses, loading: fullFiltersLoading, error: fullFiltersError } = useFetchFullFilterClassesData();
+    const { fullFilterClasses} = useFetchFullFilterClassesData();
     const [activeFilters, setActiveFilters] = useState([]);
     const finalFilteredCaregivers = filterCaregiverClasses(fullFilterClasses, filteredCaregiversDate, activeFilters);
     const [searchQuery, setSearchQuery] = useState('');
