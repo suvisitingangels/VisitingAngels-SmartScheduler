@@ -24,6 +24,10 @@ function LoadData() {
 
 	const baseUrl = process.env.REACT_APP_BASE_URL;
 
+	useEffect(() => {
+		document.title = "Load Data | SmartScheduler";
+	}, []);
+
 	/**
 	 * Handles the file upload process.
 	 * Sends the selected file to the appropriate backend API endpoint based on the CSV type.
