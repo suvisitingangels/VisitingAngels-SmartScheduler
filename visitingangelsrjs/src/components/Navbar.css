@@ -71,6 +71,7 @@
 		border: none;
 		border-bottom: 1px solid lightblue;
 	}
+}
 
 .navbar-link:hover, .navbar > img:hover {
 	background-color: #1d96a3;
