@@ -11,6 +11,14 @@ function Home() {
 
 	useEffect(() => {
 
+		function to12Hour(time24) {
+			const [hStr, m] = time24.split(':');
+			let h = parseInt(hStr, 10);
+			const suffix = h >= 12 ? 'pm' : 'am';
+			h = h % 12 || 12;           // map 0→12, 13→1, 12→12
+			return `${h}:${m}${suffix}`;
+		}
+
 		const fetchAvailabilities = async () => {
 			const token = localStorage.getItem('token');
 			if (!token) return setError('Not logged in');
@@ -38,11 +46,11 @@ function Home() {
 
 					let startTime = data[i].start_time;
 					startTime = startTime.slice(0, startTime.length - 3);
-					data[i].start_time = startTime;
+					data[i].start_time = to12Hour(startTime);
 
 					let endTime = data[i].end_time;
 					endTime = endTime.slice(0, endTime.length - 3);
-					data[i].end_time = endTime;
+					data[i].end_time = to12Hour(endTime);
 				}
                 setAvailabilityList(data);
 			} catch (e) {
