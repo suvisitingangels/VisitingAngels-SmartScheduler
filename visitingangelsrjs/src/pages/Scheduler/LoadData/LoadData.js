@@ -48,12 +48,9 @@ function LoadData() {
 			const response = await fetch(endpoint, {
 				method: 'POST',
 				body: formData,
-				// NOTE: don’t set Content-Type here—browser will
-				// add the correct multipart boundary for you.
 			});
 
 			if (!response.ok) {
-				// non-2xx status codes won’t throw automatically
 				throw new Error(`Server responded ${response.status}: ${response.statusText}`)
 			}
 

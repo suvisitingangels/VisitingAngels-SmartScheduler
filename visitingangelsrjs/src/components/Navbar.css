@@ -1,0 +1,38 @@
+/* src/components/common/Navbar.css */
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #33adbb;
+	color: #fff;
+}
+
+.navbar > img {
+	width: 2.5rem;
+	height: 2.25rem;
+}
+
+.navbar-link:first-child {
+	border-collapse: separate;
+	border-left: 2px solid lightblue;
+	border-right: 1px solid lightblue;
+}
+
+.navbar-link:last-child {
+	border-collapse: separate;
+	border-left: 1px solid lightblue;
+	border-right: 2px solid lightblue;
+}
+
+.navbar-link {
+	color: #fff;
+	text-decoration: none;
+	padding: 1.5rem 1.5rem;
+	border-left: 1px solid lightblue;
+	border-right: 1px solid lightblue;
+}
+
+.navbar-link:hover, .navbar > img:hover {
+	background-color: #1d96a3;
+}

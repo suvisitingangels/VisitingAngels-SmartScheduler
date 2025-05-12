@@ -73,3 +73,17 @@
 .availability-form input {
 	font-family: monospace;
 }
+
+.num-recurrences {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	align-items: baseline;
+	color: #555;
+
+}
+
+.num-recurrences input {
+	width: 50px;
+	height: 23px;
+}

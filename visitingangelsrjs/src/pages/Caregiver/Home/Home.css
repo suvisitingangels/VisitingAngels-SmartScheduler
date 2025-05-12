@@ -1,4 +1,18 @@
 /* Note: Check if the class name is a typo - "availabilites-list" vs "availabilities-list" */
+.no-availability {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	align-items: center;
+	font-size: 25px;
+}
+
+.no-availability button {
+	width: fit-content;
+	padding: 5px;
+	font-size: 15px;
+}
+
 .availabilites-list {
 	text-align: center; /* Centers all inline children horizontally */
 	padding: 20px; /* Optional: Add some spacing around the container */
@@ -25,11 +39,14 @@
 	align-items: center;
 }
 
+.delete-option {
+	height: 68px;
+	width: 68px;
+}
+
 .date-info, .delete-option {
 	display: block;
 	padding: 10px;
-
-
 }
 
 .delete-option {
