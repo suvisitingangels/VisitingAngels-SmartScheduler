@@ -12,15 +12,46 @@ const { PassThrough } = require('stream');                       // ⬅️ CHANG
 const csvDataStore     = [];        // In-memory store for schedule CSV data
 const classesDataStore = [];        // In-memory store for classes CSV data
 
+function preprocessCsv(buffer, firstLineSkipCount) {
+  // turn buffer into array of lines
+  const text = buffer.toString('utf8');
+  const lines = text.split(/\r?\n/);
+
+  // pull off the very first line for validation
+  const headerInfo = lines.shift().split(',').map(s => s.trim());
+
+  // drop the next N lines
+  lines.splice(0, firstLineSkipCount - 1);
+
+  // re-join the remainder (first CSV header now at lines[0])
+  const cleanedCsv = lines.join('\n');
+
+  console.log("cleaned: " + cleanedCsv);
+  console.log("header info: " + headerInfo);
+  return { cleanedCsv, headerInfo };
+}
+
 exports.uploadCSV = (req, res) => {
   const file = req.file;
   if (!file || !file.originalname.endsWith('.csv')) {
     return res.status(400).json({ error: 'Please upload a valid CSV file.' });
+    }
+ 
+  // preprocess: read first line, skip next 16
+  const { cleanedCsv, headerInfo } = preprocessCsv(file.buffer, 16);
+
+  // guardrail: schedule endpoint must see “Reports - Visits By Caregiver”
+  if (headerInfo[0] !== 'Report:' ||
+    headerInfo[1] !== '"Reports - Visits By Caregiver"') {
+    console.log("ERROR HAPPENED");
+    return res.status(400).json({
+        error: 'This file is not a caregiver schedule. Please upload the correct CSV type.'
+      });
   }
 
   const results = [];
-  const bufferStream = new PassThrough();                       // ⬅️ CHANGED
-  bufferStream.end(file.buffer);                                // ⬅️ CHANGED
+  const bufferStream = new PassThrough();                       
+  bufferStream.end(Buffer.from(cleanedCsv, 'utf8'));          
 
   bufferStream
     .pipe(csvParser())
@@ -36,14 +67,25 @@ exports.uploadCSV = (req, res) => {
 };
 
 exports.uploadClassesCSV = (req, res) => {
+  console.log('⏺️  uploadCSV invoked');
   const file = req.file;
   if (!file || !file.originalname.endsWith('.csv')) {
     return res.status(400).json({ error: 'Please upload a valid CSV file.' });
   }
 
+  const { cleanedCsv, headerInfo } = preprocessCsv(file.buffer, 8);
+
+  if (headerInfo[0] !== 'Report:' ||
+    headerInfo[1] !== '"Report - Classes"') {
+    console.log("ERROR HAPPENED");
+    return res.status(400).json({
+      error: 'This file is not classes. Please upload the correct CSV type.'
+    });
+  }
+
   const results = [];
-  const bufferStream = new PassThrough();                       // ⬅️ CHANGED
-  bufferStream.end(file.buffer);                                // ⬅️ CHANGED
+  const bufferStream = new PassThrough();                      
+  bufferStream.end(Buffer.from(cleanedCsv, 'utf8'));                                
 
   bufferStream
     .pipe(csvParser())
