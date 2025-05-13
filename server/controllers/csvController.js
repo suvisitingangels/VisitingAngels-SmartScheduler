@@ -18,7 +18,18 @@ function preprocessCsv(buffer, firstLineSkipCount) {
   const lines = text.split(/\r?\n/);
 
   // pull off the very first line for validation
-  const headerInfo = lines.shift().split(',').map(s => s.trim());
+  const headerInfo = lines
+    .shift()
+    .split(',')
+    .map(s => {
+      // trim whitespace
+      let val = s.trim();
+      // if it starts+ends with a quote, remove them
+      if (val.startsWith('"') && val.endsWith('"')) {
+        val = val.slice(1, -1);
+      }
+      return val;
+    });
 
   // drop the next N lines
   lines.splice(0, firstLineSkipCount - 1);
@@ -27,7 +38,7 @@ function preprocessCsv(buffer, firstLineSkipCount) {
   const cleanedCsv = lines.join('\n');
 
   console.log("cleaned: " + cleanedCsv);
-  console.log("header info: " + headerInfo);
+  console.log("header info: " + headerInfo[1]);
   return { cleanedCsv, headerInfo };
 }
 
@@ -42,7 +53,7 @@ exports.uploadCSV = (req, res) => {
 
   // guardrail: schedule endpoint must see “Reports - Visits By Caregiver”
   if (headerInfo[0] !== 'Report:' ||
-    headerInfo[1] !== '"Reports - Visits By Caregiver"') {
+    headerInfo[1] !== 'Reports - Visits By Caregiver') {
     console.log("ERROR HAPPENED");
     return res.status(400).json({
         error: 'This file is not a caregiver schedule. Please upload the correct CSV type.'
@@ -76,7 +87,7 @@ exports.uploadClassesCSV = (req, res) => {
   const { cleanedCsv, headerInfo } = preprocessCsv(file.buffer, 8);
 
   if (headerInfo[0] !== 'Report:' ||
-    headerInfo[1] !== '"Report - Classes"') {
+    headerInfo[1] !== 'Report - Classes') {
     console.log("ERROR HAPPENED");
     return res.status(400).json({
       error: 'This file is not classes. Please upload the correct CSV type.'
