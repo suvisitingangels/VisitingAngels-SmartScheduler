@@ -39,6 +39,7 @@ function LoadData() {
 
 		const formData = new FormData();
 		formData.append('file', file);
+		setUploadStatus("Uploading...");
 
 		// Determine the endpoint based on the selected CSV type.
 		let endpoint = '';
@@ -53,14 +54,15 @@ function LoadData() {
 				method: 'POST',
 				body: formData,
 			});
+			const payload = await response.json();
 
 			if (!response.ok) {
-				throw new Error(`Server responded ${response.status}: ${response.statusText}`)
+				setUploadStatus(payload.error || 'Unknown upload error');
+				throw new Error(`Server responded ${response.status}: ${response.statusText}`);
 			}
 
-			setUploadStatus('File uploaded and processed successfully!');
+			setUploadStatus(payload.message);
 		} catch (error) {
-			setUploadStatus('Error uploading file.');
 			console.error('Upload error:', error);
 		}
 	};

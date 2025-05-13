@@ -62,7 +62,6 @@ export default function useFetchCaregiverData() {
               dbData[i].end_time = end12;
               dbData[i].hours = `${start12} to ${end12}`;
           }
-
           function stripMI(fullName) {
               const parts = fullName.split(' ');
               if (parts.length > 2 && parts[parts.length - 1].length === 1) {
