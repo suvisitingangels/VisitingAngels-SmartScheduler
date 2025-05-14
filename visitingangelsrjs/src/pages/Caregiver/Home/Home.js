@@ -97,7 +97,7 @@ function Home() {
                                 <img
                                     onClick={() => handleDelete(availability.id)}
                                     className="delete-option"
-                                    src="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png"
+                                    src="https://i.imgur.com/YilbdXD.png"
                                     alt="trash"
                                 />
                             </span>

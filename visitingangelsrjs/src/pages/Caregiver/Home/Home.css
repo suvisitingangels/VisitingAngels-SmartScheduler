@@ -52,14 +52,14 @@
 }
 
 .delete-option {
-    width: 32px;
-    height: 32px;
+    width: 55px;
+    height: 55px;
     cursor: pointer;
     margin-right: 10px;
     transition: background-color 0.2s ease;
 }
 
 .delete-option:hover {
-    background-color: #ccc;
+    background-color: #ddd;
     border-radius: 4px;
 }
