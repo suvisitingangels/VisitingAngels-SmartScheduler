@@ -10,21 +10,21 @@ export default function useFetchFullFilterClassesData() {
 	  // Fetch class csv data from the backend
     const fetchData = async () => {
       try {
-		  const response = await fetch(`${baseUrl}/api/classes-data`);
-		  const data = await response.json();
-		  setFullFilterClasses(data.data);
+		    const response = await fetch(`${baseUrl}/api/classes-data`);
+		    const data = await response.json();
+		    setFullFilterClasses(data.data);
 
-        console.log(fullFilterClasses);
+        console.log('loop');
       } catch (err) {
-        console.error('Error fetching full filter classes data:', err);
-        setError(err.response?.data?.error || 'Failed to fetch full filter classes data');
+          console.error('Error fetching full filter classes data:', err);
+          setError(err.response?.data?.error || 'Failed to fetch full filter classes data');
       } finally {
-        setLoading(false);
+          setLoading(false);
       }
     };
 
     fetchData();
-  }, [baseUrl, fullFilterClasses]);
+  }, [baseUrl]); // fixed loop removed fullFilterClasses watcher (looped itself)
 
   return { fullFilterClasses, loading, error };
 }

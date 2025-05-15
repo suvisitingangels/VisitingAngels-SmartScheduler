@@ -26,7 +26,6 @@ function LoadData() {
 
 	useEffect(() => {
 		document.title = "Load Data | SmartScheduler";
-
 	}, []);
 
 	/**
@@ -40,6 +39,7 @@ function LoadData() {
 
 		const formData = new FormData();
 		formData.append('file', file);
+		setUploadStatus("Uploading...");
 
 		// Determine the endpoint based on the selected CSV type.
 		let endpoint = '';
@@ -50,19 +50,19 @@ function LoadData() {
 		}
 
 		try {
-			await axios.post(endpoint, formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
+			const response = await fetch(endpoint, {
+				method: 'POST',
+				body: formData,
 			});
-			// await fetch(endpoint, {
-			// 	method: 'POST',
-			// 	headers: {'Content-Type': 'multipart/form-data'},
-			// 	body: JSON.stringify(formData)
-			// })
-			setUploadStatus('File uploaded and processed successfully!');
+			const payload = await response.json();
+
+			if (!response.ok) {
+				setUploadStatus(payload.error || 'Unknown upload error');
+				throw new Error(`Server responded ${response.status}: ${response.statusText}`);
+			}
+
+			setUploadStatus(payload.message);
 		} catch (error) {
-			setUploadStatus('Error uploading file.');
 			console.error('Upload error:', error);
 		}
 	};

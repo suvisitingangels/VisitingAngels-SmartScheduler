@@ -20,7 +20,9 @@ function Availability() {
 		user_id: '',
 		date: '',
 		start_time: '',
-		end_time: ''
+		end_time: '',
+		recurring: "none",
+		numRecurrences: 1
 	});
 	const minDate = getFullDate();
 
@@ -48,6 +50,11 @@ function Availability() {
 		const baseUrl = process.env.REACT_APP_BASE_URL;
 
 		formData.user_id = formData.user_id.toLowerCase();
+		// User error alerts
+		if (formData.date === "" || formData.start_time === "" || formData.end_time === "") {
+			alert("Please fill in all fields.");
+			return;
+		}
 		if (formData.end_time < formData.start_time) {
 			alert("End time needs to be after start time.");
 			return;
@@ -61,7 +68,6 @@ function Availability() {
 			})
 			if (!response.ok) {
 				alert("Failed to submit. Please try again.");
-
 			} else {
 				navigate('/scheduler/find-caregiver');
 			}

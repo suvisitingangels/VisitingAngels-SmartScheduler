@@ -40,7 +40,7 @@ function Availability() {
 		document.title = "Availability | SmartScheduler";
 		fetchUsername();
 
-	}, []);
+	}, [formData]);
 
 	// update the formData every time the user clicks out of a form box
 	const handleChange = (e) => {

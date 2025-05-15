@@ -68,8 +68,8 @@ const LoginPage = () => {
 
 	return (
 		<div>
-			<nav className="navbar">
-				<img src="https://i.imgur.com/GSKsNA8.png" alt="logo"></img>
+			<nav className="login-navbar">
+				<img src="https://i.imgur.com/GSKsNA8.png" alt="logo" className={"login-logo"}></img>
 			</nav>
 			<div className="first-login-page-container">
 				<form className="first-login-page-form" onSubmit={handleLogin}>

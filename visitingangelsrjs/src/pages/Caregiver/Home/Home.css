@@ -14,47 +14,52 @@
 }
 
 .availabilites-list {
-	text-align: center; /* Centers all inline children horizontally */
-	padding: 20px; /* Optional: Add some spacing around the container */
+    text-align: center;
+    padding: 20px; 
 }
 
 .availabilites-list ul {
-	list-style-type: none; /* Removes bullet points */
-	padding: 0; /* Removes default ul padding */
-	display: inline-block; /* Makes ul only as wide as its content for proper centering */
-	margin: 0 auto; /* Centers the ul itself */
+    list-style-type: none; 
+    padding: 0; 
+    display: inline-block; 
+    margin: 0 auto; 
 }
 
 .availability-card {
-	border: 1px solid #000; /* Adds border around each li */
-	border-radius: 4px; /* Optional: Rounded corners */
-	padding: 10px; /* Spacing inside each li */
-	margin: 10px 0; /* Space between list items */
-	text-align: center; /* Centers content inside li */
-	min-width: 200px; /* Optional: Minimum width for better appearance */
+    border-radius: 10px; 
+    padding: 20px; 
+    margin: 20px 0; 
+    text-align: left; 
+    min-width: 300px; 
+    box-shadow: 0 4px 8px #33adbb;
+    background-color: #f9f9f9;
+    width: auto;
+    max-width: 90%;
+    word-wrap: break-word;
+    transition: all 0.3s ease-in-out;
+    font-size: 20px;
+
 }
 
 .availability-card > span {
-	display: inline-flex;
-	align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-info {
+    padding: 10px;
 }
 
 .delete-option {
-	height: 68px;
-	width: 68px;
-}
-
-.date-info, .delete-option {
-	display: block;
-	padding: 10px;
-}
-
-.delete-option {
-	margin: 3px auto;
-	padding: 3px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.2s ease;
 }
 
 .delete-option:hover {
-	background-color: #ccc;
-	border-radius: 4px;
+    background-color: #ddd;
+    border-radius: 4px;
 }
