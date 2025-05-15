@@ -8,12 +8,13 @@
  */
 
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import '../../../../components/Navbar.css'
 import {jwtDecode} from "jwt-decode";
 
 function SchedulerNavbar() {
 	const [isOpen, setIsOpen] = useState(false);
+	const navigate = useNavigate();
 	const token = localStorage.getItem('token');
 	const role = token ? jwtDecode(token).role : "";
 
@@ -21,7 +22,7 @@ function SchedulerNavbar() {
 
 	return (
 		<nav className="navbar">
-			<img src="https://i.imgur.com/GSKsNA8.png" alt="logo" />
+			<img src="https://i.imgur.com/GSKsNA8.png" alt="logo" onClick={() => navigate("/scheduler/find-caregiver")}/>
 			<div className="hamburger" onClick={toggleMenu}>
 				&#9776;
 			</div>
