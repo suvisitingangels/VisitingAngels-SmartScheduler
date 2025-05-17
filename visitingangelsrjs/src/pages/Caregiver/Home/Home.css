@@ -1,65 +1,46 @@
-/* Note: Check if the class name is a typo - "availabilites-list" vs "availabilities-list" */
-.no-availability {
+#no-availability {
+	font-size: 20px;
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
-	align-items: center;
-	font-size: 25px;
+	text-align: center;
+	label {
+		padding: 5px;
+	}
 }
 
-.no-availability button {
-	width: fit-content;
-	padding: 5px;
-	font-size: 15px;
+#availability-list {
+    list-style-type: none;
+    display: inline-block;
 }
 
-.availabilites-list {
-    text-align: center;
-    padding: 20px; 
+#availability-card {
+	/*width:100*/
+	/*margin: 0;*/
+	text-align: left;
+	width: 330px;
+	/*!*!*width: auto;*!*!*/
+	font-size: 20px;
+
+	span {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
 }
 
-.availabilites-list ul {
-    list-style-type: none; 
-    padding: 0; 
-    display: inline-block; 
-    margin: 0 auto; 
+#date-info {
+    /*padding: 10px;*/
 }
 
-.availability-card {
-    border-radius: 10px; 
-    padding: 20px; 
-    margin: 20px 0; 
-    text-align: left; 
-    min-width: 300px; 
-    box-shadow: 0 4px 8px #33adbb;
-    background-color: #f9f9f9;
-    width: auto;
-    max-width: 90%;
-    word-wrap: break-word;
-    transition: all 0.3s ease-in-out;
-    font-size: 20px;
-
-}
-
-.availability-card > span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.date-info {
-    padding: 10px;
-}
-
-.delete-option {
+#delete-icon {
     width: 55px;
     height: 55px;
     cursor: pointer;
-    margin-right: 10px;
     transition: background-color 0.2s ease;
 }
 
-.delete-option:hover {
+#delete-icon:hover {
     background-color: #ddd;
     border-radius: 4px;
 }

@@ -21,7 +21,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CaregiverHome from './pages/Caregiver/Home/Home';
 import CaregiverAvailability from './pages/Caregiver/Availability/Availability.js';
 import Profile from "./pages/Caregiver/Profile/Profile";
-
+import EditProfileForm from "./pages/Caregiver/Profile/EditProfileForm";
 
 // Component to conditionally render SchedulerNavbar
 const AppLayout = ({children}) => {
@@ -52,6 +52,7 @@ function App() {
 					<Route path="/caregiver/home" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverHome/></PrivateRoute>}/>
 					<Route path="/caregiver/availability" element={<PrivateRoute allowedRoles={['caregiver','admin']}><CaregiverAvailability/></PrivateRoute>}/>
 					<Route path="/caregiver/profile/:username" element={<PrivateRoute allowedRoles={['caregiver','admin']}><Profile/></PrivateRoute>}/>
+					<Route path="/caregiver/profile/:username/edit" element={<PrivateRoute allowedRoles={['caregiver','admin']}><EditProfileForm/></PrivateRoute>}/>
 					<Route path="*" element={<NotFound/>}/>
 				</Routes>
 			</AppLayout>

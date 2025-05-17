@@ -11,7 +11,6 @@
  * @returns {JSX.Element} - A styled file upload interface.
  */
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import './LoadData.css';
 
 function LoadData() {
@@ -122,11 +121,11 @@ function LoadData() {
 	};
 
 	return (
-		<div>
-			<h1 className="load-data-h1">Load Data</h1>
+		<div className={"mobile-container"}>
+			<h1 className="page-header">Load Data</h1>
 
 			{/* CSV Type Selector */}
-			<div className="csv-type-selector">
+			<div id="csv-type-selector">
 				<label>
 					<input
 						type="radio"
@@ -136,6 +135,7 @@ function LoadData() {
 					/>
 					Schedule CSV
 				</label>
+
 				<label>
 					<input
 						type="radio"
@@ -162,11 +162,12 @@ function LoadData() {
 					style={{display: 'none'}}
 					id="fileInput"
 				/>
-				<label htmlFor="fileInput" className="upload-btn">
+
+				<label htmlFor="fileInput" id="upload-btn">
 					Select File
 				</label>
 			</div>
-			<p className={"upload-status"}>{uploadStatus}</p>
+			<p id={"upload-status"}>{uploadStatus}</p>
 		</div>
 	);
 }

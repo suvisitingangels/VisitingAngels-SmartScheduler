@@ -83,13 +83,12 @@ function Availability() {
 	if (error) return <p>{error}</p>
 
 	return (
-		<div className="availability-container">
-			<div className="availability-header">
-				<h2>Update Availability</h2>
-			</div>
+		<div className="mobile-container">
+				<h1 className={"page-header"}>Update Availability</h1>
+
 
 			{/* Form Section */}
-			<form className="availability-form" onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<label>
 					Caregiver Name:
 					<input
@@ -131,16 +130,16 @@ function Availability() {
 					/>
 				</label>
 
-				<label className={"recurring-list"}>
+				<label>
 					Recurring:
-					<select name={"recurring"} onChange={handleChange}>
+					<select onChange={handleChange}>
 						<option value={"none"}>None</option>
 						<option value={"weekly"}>Weekly</option>
 						<option value={"biweekly"}>Biweekly</option>
 					</select>
 				</label>
 
-				<div className={"num-recurrences"}>
+				<label id={"num-recurrences"}>
 					<span>End after: </span>
 					<input
 						type={"text"}
@@ -149,9 +148,9 @@ function Availability() {
 						onChange={handleChange}
 					/>
 					<span>occurrences</span>
-				</div>
+				</label>
 
-				<button type="submit">Add</button>
+				<button className={"submit-button"} type="submit">Add</button>
 			</form>
 		</div>
 	);
