@@ -73,7 +73,7 @@ const LoginPage = () => {
 			</nav>
 			<div className={"mobile-container"}>
 				<h1 className="page-header">Login</h1>
-				<form  onSubmit={handleLogin}>
+				<form  onSubmit={handleLogin} id={"login"}>
 
 					<label htmlFor="username" >Username
 						<input
