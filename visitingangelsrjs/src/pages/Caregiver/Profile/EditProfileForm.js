@@ -111,11 +111,13 @@ function EditProfileForm() {
 		}
 	}
 
-	return (
-		<div className={"edit-profile-container"}>
-				<h2 className={"header"}>Edit Profile</h2>
+	if (error) return <p>{error}</p>
 
-			<form onSubmit={handleSubmit} className={"edit-profile-form"}>
+	return (
+		<div className={"mobile-container"}>
+				<h1 className={"page-header"}>Edit Profile</h1>
+
+			<form onSubmit={handleSubmit}>
 				<label>
 					First Name:
 					<input
@@ -161,7 +163,8 @@ function EditProfileForm() {
 
 				<label>
 					Address:
-					<input
+					<textarea
+						id={"address"}
 						type={"text"}
 						name={"address"}
 						value={updatedProfile.address}
@@ -169,7 +172,7 @@ function EditProfileForm() {
 					/>
 				</label>
 
-				<div className={"form-buttons"}>
+				<div id={"form-buttons"}>
 					<button type={"submit"}>Save</button>
 					<button onClick={() => navigate(`/caregiver/profile/${username}`)}>Cancel</button>
 				</div>

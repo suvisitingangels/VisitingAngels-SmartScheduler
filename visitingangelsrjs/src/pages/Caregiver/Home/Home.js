@@ -74,10 +74,10 @@ function Home() {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className="availabilites-list">
-            <h1 className="title">Availability</h1>
+        <div className="mobile-container">
+            <h1 className="page-header">Availability</h1>
             {availabilityList.length <= 0 ? (
-				<div className={"no-availability"}>
+				<div id={"no-availability"}>
 					<label>
 						No availability
 					</label>
@@ -86,17 +86,17 @@ function Home() {
 					</button>
 				</div>
 			) : (
-				<ul>
+				<ul id={"availability-list"}>
 					{availabilityList.map((availability) => (
-						<li key={availability.id} className="availability-card">
+						<li key={availability.id} className="mobile-view-container" id={"availability-card"}>
                             <span>
-                                <div className="date-info">
+                                <div id="date-info">
                                     <div><b>Date: {availability.available_date}</b></div>
                                     <div>{availability.start_time} - {availability.end_time}</div>
                                 </div>
                                 <img
                                     onClick={() => handleDelete(availability.id)}
-                                    className="delete-option"
+                                    id="delete-icon"
                                     src="https://i.imgur.com/YilbdXD.png"
                                     alt="trash"
                                 />

@@ -1,3 +1,15 @@
+#csv-type-selector {
+	text-align: center;
+
+	label {
+		padding: 6px;
+
+		input[type="radio"] {
+			margin: 0 6px;
+		}
+	}
+}
+
 .drop-zone {
 	width: 100%;
 	max-width: 400px;
@@ -22,9 +34,10 @@
 	color: #1890ff;
 }
 
-.upload-btn {
+#upload-btn {
 	margin-top: 10px;
 	background-color: #007bff;
+	font-size: 20px;
 	color: white;
 	padding: 10px 20px;
 	border: none;
@@ -35,7 +48,7 @@
 	transition: background-color 0.3s ease;
 }
 
-.upload-btn:hover {
+#upload-btn:hover {
 	background-color: #0056b3;
 }
 
@@ -43,19 +56,6 @@
 	background-color: #004085;
 }
 
-.load-data-h1 {
-	padding-top: 1rem;
-	text-align: center;
-}
-
-.csv-type-selector {
-	text-align: center;
-}
-
-.csv-type-selector input[type="radio"] {
-	margin: 0 5px;
-}
-
-.upload-status {
+#upload-status {
 	text-align: center;
 }
