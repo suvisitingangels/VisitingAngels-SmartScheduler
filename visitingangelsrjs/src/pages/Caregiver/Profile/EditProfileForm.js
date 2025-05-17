@@ -102,8 +102,7 @@ function EditProfileForm() {
 		if (!response.ok) {
 			alert("Failed to update. Please try again.");
 		} else {
-			alert("Success");
-			// navigate(`/caregiver/profile/${username}`);
+			navigate(`/caregiver/profile/${username}`);
 		}
 
 		const caregiverName = `${updatedProfile.first_name} ${updatedProfile.last_name}`;
