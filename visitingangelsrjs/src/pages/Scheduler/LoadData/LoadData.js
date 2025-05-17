@@ -11,7 +11,6 @@
  * @returns {JSX.Element} - A styled file upload interface.
  */
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import './LoadData.css';
 
 function LoadData() {

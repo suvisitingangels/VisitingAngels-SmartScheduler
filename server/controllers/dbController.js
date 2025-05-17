@@ -1,5 +1,7 @@
+const http = require('http');
 const mysql = require('mysql2/promise');
-const {pool} = require('../db/connection')
+const {pool} = require('../db/connection');
+const promise = pool.promise();
 
 function addLeadingZero(value) {
 	return `${value < 9 ? "0" : ""}${value}`;
@@ -10,7 +12,7 @@ async function deleteAvailabilityDateTime(req, res) {
 	try {
 		const query = 'DELETE FROM availabilities where user_id=? AND available_date=? and start_time=? and end_time=?';
 		const values = [formData.body.user_id, formData.body.date, formData.body.start_time, formData.body.end_time];
-		const [result] = await pool.promise().query(query, values);
+		const [result] = await promise.query(query, values);
 		if (result.affectedRows === 0) {
 			return res.status(404).json({error: 'Availability not found'});
 		}
@@ -26,7 +28,7 @@ async function deletePastAvailability(req, res) {
 	const fullDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 	try {
 		const query = `DELETE FROM availabilities where available_date < "${fullDate}";`;
-		await pool.promise().query(query);
+		await promise.query(query);
 		return res.status(200).json({message: 'Past availability deleted.'});
 	} catch (e) {
 		console.error(e);
@@ -36,7 +38,6 @@ async function deletePastAvailability(req, res) {
 
 async function getAllAvailabilities(req, res) {
 	try {
-		const promise = pool.promise();
 		const query = 'SELECT * FROM availabilities ORDER BY available_date, start_time';
 		const [rows] = await promise.query(query);
 		return res.json({rows});
@@ -49,7 +50,6 @@ async function getAvailabilitiesByUser(req, res) {
 	try {
 		const username = req.params.username;
 
-		const promise = pool.promise();
 		const query = `SELECT * FROM availabilities WHERE user_id = '${username}' ORDER BY available_date`;
 		const [availabilities] = await promise.query(query);
 		return res.json({availabilities}).status(200);
@@ -63,7 +63,7 @@ async function getCaregiverProfile(req, res) {
 	try {
 		const username = req.params.username;
 		const query = 'SELECT * FROM caregivers WHERE user_id = ?';
-		const [rows] = await pool.promise().query(query, [username]);
+		const [rows] = await promise.query(query, [username]);
 
 		if (rows.length === 0) {
 			return res.status(404).json({ error: 'Caregiver not found' });
@@ -81,7 +81,7 @@ async function insertAvailability(formData, date) {
 	try {
 		const query = 'INSERT INTO `availabilities` (`user_id`, `available_date`, `start_time`, `end_time`) VALUES (?, ?, ?, ?)';
 		const values = [formData.user_id, date, formData.start_time, formData.end_time];
-		const [result] = await pool.promise().query(query, values);
+		const [result] = await promise.query(query, values);
 		return result.insertId;
 	} catch (e) {
 		console.error(e)
@@ -117,7 +117,6 @@ async function removeAvailability(req, res) {
 	const {id} = req.params;
 
 	try {
-		const promise = pool.promise();
 		const query = 'SELECT * FROM availabilities WHERE id = ?';
 		const [rows] = await promise.query(query, [id]);
 
@@ -138,6 +137,37 @@ async function removeAvailability(req, res) {
 	}
 }
 
+async function updateCaregiverInfo(req, res) {
+	const {username} = req.params;
+	const profileForm = req.body;
+	console.log(profileForm);
+
+	let updateProfileQuery = "UPDATE caregivers set "
+	for (const [key, value] of Object.entries(profileForm)) {
+		console.log(key, value)
+		if (updateProfileQuery.slice(18) === "set ") {
+			updateProfileQuery += `${key} = \"${value}\"`
+		} else {
+			updateProfileQuery += `, ${key} = \"${value}\"`
+
+		}
+	}
+	updateProfileQuery += ` where user_id = \"${username}\"`;
+	console.log(updateProfileQuery);
+
+	try {
+		const [result] = await promise.query(updateProfileQuery);
+		console.log(result);
+		if (result.affectedRows === 0) {
+			return res.status(404).json({error: 'Caregiver not found'});
+		}
+		return res.status(201).json({message: "Profile updated"});
+	} catch (e) {
+		console.error(e);
+		res.status(500).json({error: "Could not update"});
+	}
+}
+
 module.exports = {
 	deleteAvailabilityDateTime,
 	deletePastAvailability,
@@ -145,5 +175,6 @@ module.exports = {
 	getAvailabilitiesByUser,
 	getCaregiverProfile,
 	insertRecurringAvailability,
-	removeAvailability
+	removeAvailability,
+	updateCaregiverInfo
 }
