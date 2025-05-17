@@ -1,4 +1,5 @@
 .profile-container {
+	display: block;
     text-align: center;
     padding: 20px;
     font-size: 30px;
@@ -8,19 +9,6 @@
     align-items: center;
     min-height: 50vh;
 	gap: 20px;
-}
-
-.profile-container h2 {
-	background-color: #33adbb;
-	color: #fff;
-	padding: 15px;
-	border-radius: 12px;
-	width: 290px;
-	text-align: center;
-	align-items: center;
-	font-size: 18px;
-	font-weight: bold;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profile-card {
@@ -39,10 +27,6 @@
 .profile-card p {
     margin: 25px 0;
     font-size: 20px; 
-}
-
-.profile-container h1 {
-    margin-bottom: 25px;
 }
 
 

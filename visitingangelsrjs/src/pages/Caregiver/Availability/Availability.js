@@ -84,7 +84,7 @@ function Availability() {
 
 	return (
 		<div className="availability-container">
-			<h2 className="header">Update Availability</h2>
+			<h1 className="page-header">Update Availability</h1>
 
 			{/* Form Section */}
 			<form className="availability-form" onSubmit={handleSubmit}>

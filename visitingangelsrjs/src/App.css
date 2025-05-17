@@ -11,19 +11,18 @@ body, html {
 	font-family: sans-serif;
 }
 
-.header {
-	h1 {
-		font-size: 25px;
-	}
-	background-color: #33adbb;
-	color: #fff;
+.page-header {
+	margin: 0 auto;
+	font-size: 30px;
+	/*background-color: #33adbb;*/
+	color: #000;
 	padding: 15px;
 	border-radius: 12px;
-	width: 290px;
+	width: 300px;
 	text-align: center;
 	align-items: center;
 	font-weight: bold;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	/*box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);*/
 }
 
 button {

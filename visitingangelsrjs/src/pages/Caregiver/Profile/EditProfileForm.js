@@ -113,7 +113,7 @@ function EditProfileForm() {
 
 	return (
 		<div className={"edit-profile-container"}>
-				<h2 className={"header"}>Edit Profile</h2>
+				<h1 className={"page-header"}>Edit Profile</h1>
 
 			<form onSubmit={handleSubmit} className={"edit-profile-form"}>
 				<label>

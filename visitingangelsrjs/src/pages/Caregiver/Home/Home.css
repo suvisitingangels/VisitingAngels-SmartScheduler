@@ -1,4 +1,3 @@
-/* Note: Check if the class name is a typo - "availabilites-list" vs "availabilities-list" */
 .no-availability {
 	display: flex;
 	flex-direction: column;
@@ -19,14 +18,14 @@
 .availabilites-list ul {
     list-style-type: none; 
     padding: 0; 
-    display: inline-block; 
+    display: inline-block;
     margin: 0 auto; 
 }
 
 .availability-card {
     border-radius: 10px; 
     padding: 20px; 
-    margin: 20px 0; 
+    margin: 20px 0;
     text-align: left; 
     min-width: 300px; 
     box-shadow: 0 4px 8px #33adbb;

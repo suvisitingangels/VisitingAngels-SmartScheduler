@@ -37,7 +37,7 @@ function Profile() {
 
   return (
     <div className="profile-container">
-      <h2 className="header">Profile</h2>
+      <h1 className="page-header">Profile</h1>
 		<div className="profile-card">
 			<p><strong>Name:</strong> {profile.first_name} {profile.last_name}</p>
 			<p><strong>Role:</strong> {profile.status}</p>

@@ -75,7 +75,7 @@ function Home() {
 
     return (
         <div className="availabilites-list">
-            <h1 className="title">Availability</h1>
+            <h1 className="page-header">Availability</h1>
             {availabilityList.length <= 0 ? (
 				<div className={"no-availability"}>
 					<label>
