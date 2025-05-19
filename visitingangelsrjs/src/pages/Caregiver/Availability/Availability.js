@@ -46,7 +46,7 @@ function Availability() {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
-		console.log(formData);
+		//console.log(formData);
 	};
 
 	// Verify that the end time is after the start time, else alert
@@ -54,7 +54,7 @@ function Availability() {
 	// Redirect to caregiver/home
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(formData);
+		//console.log(formData);
 		const baseUrl = process.env.REACT_APP_BASE_URL;
 
 		// User error alerts
@@ -83,12 +83,11 @@ function Availability() {
 	if (error) return <p>{error}</p>
 
 	return (
-		<div className="mobile-container">
-				<h1 className={"page-header"}>Update Availability</h1>
-
+		<div className="availability-container">
+			<h1 className="page-header">Update Availability</h1>
 
 			{/* Form Section */}
-			<form onSubmit={handleSubmit}>
+			<form className="availability-form" onSubmit={handleSubmit}>
 				<label>
 					Caregiver Name:
 					<input
@@ -130,16 +129,16 @@ function Availability() {
 					/>
 				</label>
 
-				<label>
+				<label className={"recurring-list"}>
 					Recurring:
-					<select onChange={handleChange}>
+					<select name={"recurring"} onChange={handleChange}>
 						<option value={"none"}>None</option>
 						<option value={"weekly"}>Weekly</option>
 						<option value={"biweekly"}>Biweekly</option>
 					</select>
 				</label>
 
-				<label id={"num-recurrences"}>
+				<div className={"num-recurrences"}>
 					<span>End after: </span>
 					<input
 						type={"text"}
@@ -148,9 +147,9 @@ function Availability() {
 						onChange={handleChange}
 					/>
 					<span>occurrences</span>
-				</label>
+				</div>
 
-				<button className={"submit-button"} type="submit">Add</button>
+				<button type="submit">Add</button>
 			</form>
 		</div>
 	);

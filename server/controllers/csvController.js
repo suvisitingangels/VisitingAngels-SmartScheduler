@@ -37,8 +37,6 @@ function preprocessCsv(buffer, firstLineSkipCount) {
   // re-join the remainder (first CSV header now at lines[0])
   const cleanedCsv = lines.join('\n');
 
-  console.log("cleaned: " + cleanedCsv);
-  console.log("header info: " + headerInfo[1]);
   return { cleanedCsv, headerInfo };
 }
 

@@ -36,9 +36,9 @@ function Profile() {
   if (!profile) return <p>Loading…</p>;
 
   return (
-    <div className="mobile-container">
+    <div className="profile-container">
       <h1 className="page-header">Profile</h1>
-		<div className="mobile-view-container" id={"profile-container"}>
+		<div className="profile-card">
 			<p><strong>Name:</strong> {profile.first_name} {profile.last_name}</p>
 			<p><strong>Role:</strong> {profile.status}</p>
 			<p><strong>Phone:</strong> {profile.mobile}</p>

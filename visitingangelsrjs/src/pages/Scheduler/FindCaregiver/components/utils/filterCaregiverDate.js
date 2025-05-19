@@ -11,15 +11,27 @@
      * 
      * @returns {Array} - A filtered list of caregivers available on the selected date.
 */
-export default function filterCaregiversDate(caregivers, selectedDate) {
-
+export default function filterCaregiversDate(caregivers, selectedDate, dateRange) {
     if (!selectedDate) {
-        return caregivers;
+      return caregivers.map(caregiver => {
+        const filteredAvailability = {};
+
+        dateRange.forEach(({ date }) => {
+          if (caregiver.availability[date]) {
+            filteredAvailability[date] = caregiver.availability[date];
+          }
+        });
+
+        return {
+          ...caregiver,
+          availability: filteredAvailability
+        };
+      });
     }
 
     const { fullDate, date } = selectedDate;
 
-    console.log(caregivers);
+    //console.log(caregivers);
 
     const filtered = caregivers
         .filter((caregiver) => caregiver.schedule[fullDate] || caregiver.availability[date])

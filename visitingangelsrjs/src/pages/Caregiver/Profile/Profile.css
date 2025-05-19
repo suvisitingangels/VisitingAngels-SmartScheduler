@@ -1,13 +1,30 @@
-#profile-container {
-	text-align: center;
-	font-size: 20px;
-	p {
-		text-align: left;
-		padding: 5px;
-	}
+.profile-container {
+	display: block;
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+	gap: 20px;
+}
 
-	button {
-		display: inline-block;
-		margin-top: 15px;
-	}
+.profile-card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #33adbb;
+    text-align: left;
+    background-color: #f9f9f9;
+    width: auto; 
+    max-width: 90%; 
+    min-width: 300px; 
+    word-wrap: break-word; 
+    transition: all 0.3s ease-in-out; 
+}
+
+.profile-card p {
+    margin: 25px 0;
+    font-size: 20px; 
 }
