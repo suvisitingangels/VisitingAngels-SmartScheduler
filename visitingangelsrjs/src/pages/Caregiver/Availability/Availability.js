@@ -46,7 +46,7 @@ function Availability() {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
-		//console.log(formData);
+		console.log(formData);
 	};
 
 	// Verify that the end time is after the start time, else alert
@@ -54,7 +54,7 @@ function Availability() {
 	// Redirect to caregiver/home
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		//console.log(formData);
+		console.log(formData);
 		const baseUrl = process.env.REACT_APP_BASE_URL;
 
 		// User error alerts
