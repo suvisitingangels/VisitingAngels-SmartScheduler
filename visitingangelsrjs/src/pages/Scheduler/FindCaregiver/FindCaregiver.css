@@ -2,7 +2,6 @@
 
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -12,7 +11,7 @@
   padding: 20px;
   width: 100%;
   padding-left: 0;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .find-caregiver-filter-sidebar {
@@ -24,21 +23,18 @@
   margin-right: 20px;
   position: sticky;
   top: 0;
-  height: calc(100vh - 80px); 
-  overflow-y: auto; 
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 .find-caregiver-caregiver-list {
   flex: 1;
   padding-left: 20px;
-  min-width: 60%; 
+  min-width: 60%;
   overflow-y: auto;
-  max-height: calc(100vh - 40px); 
+  max-height: calc(100vh - 40px);
 }
 
-.find-caregiver-caregiver-list h1 {
-  margin-bottom: 10px;
-}
 
 .find-caregiver-caregiver-list::-webkit-scrollbar {
   width: 10px;
