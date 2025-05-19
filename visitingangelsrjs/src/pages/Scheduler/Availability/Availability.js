@@ -10,6 +10,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import './Availability.css';
 import getFullDate from '../../../components/fetchDate';
 
 function Availability() {
@@ -88,11 +89,14 @@ function Availability() {
 	};
 
 	return (
-		<div className="mobile-container">
-			<h1 className={"page-header"}>Update Caregiver's Availability</h1>
-
+		<div className="availability-container">
+		<div className="availability-header">
+			<h2>Update Caregiver's Availability</h2>
+		</div>
+		
 		{/* Form Section */}
-			<form onSubmit={handleSubmit}>
+			<form className="availability-form" onSubmit={handleSubmit}>
+
 				<label>
 					Caregiver Name:
 					<input
@@ -135,6 +139,7 @@ function Availability() {
 					/>
 				</label>
 
+
 				{/* Add/Remove Dropdown */}
 				<label>
 					Action:
@@ -144,7 +149,7 @@ function Availability() {
 					</select>
 				</label>
 
-				<button type="submit" className={"submit-button"}>Submit</button>
+				<button type="submit">Submit</button>
 			</form>
 		</div>
 	);
