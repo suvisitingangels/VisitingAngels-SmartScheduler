@@ -68,56 +68,56 @@ const LoginPage = () => {
 
 	return (
 		<div>
-			<nav id="login-navbar">
-				<img src="https://i.imgur.com/GSKsNA8.png" alt="logo" id={"navbar-logo"}></img>
+			<nav className="login-navbar">
+				<img src="https://i.imgur.com/GSKsNA8.png" alt="logo" className={"login-logo"}></img>
 			</nav>
-			<div className={"mobile-container"}>
-				<h1 className="page-header">Login</h1>
-				<form  onSubmit={handleLogin} id={"login"}>
+			<div className="first-login-page-container">
+				<form className="first-login-page-form" onSubmit={handleLogin}>
+					<h2 className="first-login-page-title">Login</h2>
 
-					<label htmlFor="username" >Username
+					<div className="first-login-page-form-group">
+						<label htmlFor="username" className="first-login-page-label">Username</label>
 						<input
 							type="text"
 							id="username"
+							className="first-login-page-input"
 							placeholder="Enter your username"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
 							required
 						/>
-					</label>
-
-					<div>
-						<label htmlFor="password">
-							Password
-							<div id="password-input-container">
-								<input
-									type={getPasswordInputType()}
-									id="password-input"
-									placeholder="Enter your password"
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-									required
-								/>
-								<button
-									type="button"
-									id="password-toggle-button"
-									onClick={togglePasswordVisibility}
-								>
-									{getPasswordToggleLabel()}
-								</button>
-							</div>
-						</label>
-
 					</div>
 
-					<button type="submit" className={"submit-button"}>Login</button>
+					<div className="first-login-page-form-group">
+						<label htmlFor="password" className="first-login-page-label">Password</label>
+						<div className="password-input-container">
+							<input
+								type={getPasswordInputType()}
+								id="password"
+								className="first-login-page-input"
+								placeholder="Enter your password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								required
+							/>
+							<button
+								type="button"
+								className="password-toggle-button"
+								onClick={togglePasswordVisibility}
+							>
+								{getPasswordToggleLabel()}
+							</button>
+						</div>
+					</div>
+
+					<button type="submit" className="first-login-page-button">Login</button>
 
 					{error && (
 						<p style={{color: 'red'}}>{error}</p>
 					)}
 				</form>
 			</div>
-			{loading && <div id={"loading"}>Loading...</div>}
+			{loading && <div className={"loading-div"}>Loading...</div>}
 		</div>
 	);
 };
