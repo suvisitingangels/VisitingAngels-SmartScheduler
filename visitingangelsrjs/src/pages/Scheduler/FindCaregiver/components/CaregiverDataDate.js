@@ -29,7 +29,7 @@ function CaregiverDataDate({ caregivers }) {
                     {caregivers.length > 0 ? (
                         caregivers.map((caregiver, index) => {
                             // Get the availability hours if provided
-                            const workingHours = caregiver.schedule
+                            const workingHours = caregiver.schedule 
                                 ? Object.values(caregiver.schedule).join(', ')
                                 : 'No schedule available';
                             // Get the availability hours if provided
