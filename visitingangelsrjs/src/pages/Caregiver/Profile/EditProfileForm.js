@@ -161,7 +161,7 @@ function EditProfileForm() {
 
 				<label>
 					Address:
-					<input
+					<textarea
 						type={"text"}
 						name={"address"}
 						value={updatedProfile.address}
