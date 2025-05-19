@@ -26,7 +26,7 @@ import useFetchFullFilterClassesData from './components/hooks/useFetchFullFilter
 function FindCaregiver() {
     const [selectedDate, setSelectedDate] = useState(null);
     const { caregivers, dates, loading, error } = useFetchCaregiverData();
-    const filteredCaregiversDate = filterCaregiversDate(caregivers, selectedDate);
+    const filteredCaregiversDate = filterCaregiversDate(caregivers, selectedDate, dates);
     const { filterClasses, loading: filtersLoading, error: filtersError } = useFetchFilterClasses();
     const { fullFilterClasses} = useFetchFullFilterClassesData();
     const [activeFilters, setActiveFilters] = useState([]);
