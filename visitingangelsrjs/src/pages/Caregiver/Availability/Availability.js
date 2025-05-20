@@ -11,7 +11,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
-// import './Availability.css';
 import '../../../components/InputForm.css';
 import getFullDate from '../../../components/fetchDate';
 

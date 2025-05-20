@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {jwtDecode} from "jwt-decode";
 import emailjs from "@emailjs/browser";
 import {useNavigate} from "react-router-dom";
-// import './EditProfileForm.css'
 import '../../../components/InputForm.css';
 
 function EditProfileForm() {
