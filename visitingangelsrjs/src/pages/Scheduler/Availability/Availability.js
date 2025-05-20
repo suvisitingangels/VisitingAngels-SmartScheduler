@@ -1,16 +1,16 @@
 // visitingangelsrjs/src/pages/Scheduler/Availability/Availability.js
 
 /**
-     * Availability Component
-     * 
-     * This component renders a form to update a caregiver's availability.
-     * Users can add or remove availability for a caregiver by specifying the name, date, and time.
-     * The form supports dynamic state updates and handles form submission.
-*/
+ * Availability Component
+ *
+ * This component renders a form to update a caregiver's availability.
+ * Users can add or remove availability for a caregiver by specifying the name, date, and time.
+ * The form supports dynamic state updates and handles form submission.
+ */
 
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import './Availability.css';
+import '../../../components/InputForm.css';
 import getFullDate from '../../../components/fetchDate';
 
 function Availability() {
@@ -89,13 +89,11 @@ function Availability() {
 	};
 
 	return (
-		<div className="availability-container">
-		<div className="availability-header">
-			<h2>Update Caregiver's Availability</h2>
-		</div>
-		
-		{/* Form Section */}
-			<form className="availability-form" onSubmit={handleSubmit}>
+		<div className="input-form-container">
+			<h1 className={"page-header"}>Update Caregiver's Availability</h1>
+
+			{/* Form Section */}
+			<form className="input-form" onSubmit={handleSubmit}>
 
 				<label>
 					Caregiver Name:
@@ -149,7 +147,7 @@ function Availability() {
 					</select>
 				</label>
 
-				<button type="submit">Submit</button>
+				<button className={"submit-button"} type="submit">Submit</button>
 			</form>
 		</div>
 	);

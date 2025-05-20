@@ -1,4 +1,4 @@
-// visitingangelsrjs/src/pages/Scheduler/Availability/Availability.js
+// visitingangelsrjs/src/pages/Caregiver/Availability/Availability.js
 
 /**
  * Availability Component
@@ -11,7 +11,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
-import './Availability.css';
+import '../../../components/InputForm.css';
 import getFullDate from '../../../components/fetchDate';
 
 function Availability() {
@@ -83,11 +83,11 @@ function Availability() {
 	if (error) return <p>{error}</p>
 
 	return (
-		<div className="availability-container">
+		<div className="input-form-container">
 			<h1 className="page-header">Update Availability</h1>
 
 			{/* Form Section */}
-			<form className="availability-form" onSubmit={handleSubmit}>
+			<form className="input-form" onSubmit={handleSubmit}>
 				<label>
 					Caregiver Name:
 					<input
@@ -139,17 +139,19 @@ function Availability() {
 				</label>
 
 				<div className={"num-recurrences"}>
-					<span>End after: </span>
-					<input
-						type={"text"}
-						name={"numRecurrences"}
-						value={formData.numRecurrences}
-						onChange={handleChange}
-					/>
-					<span>occurrences</span>
+					<span>End after:
+						<input
+							type={"text"}
+							name={"numRecurrences"}
+							value={formData.numRecurrences}
+							onChange={handleChange}
+						/>
+						occurrences
+					</span>
+					{/*<span >occurrences</span>*/}
 				</div>
 
-				<button type="submit">Add</button>
+				<button className={"submit-button"} type="submit">Add</button>
 			</form>
 		</div>
 	);
