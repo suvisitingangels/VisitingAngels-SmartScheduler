@@ -102,9 +102,9 @@ function Availability() {
 				<label>
 					Date:
 					<input
-						type="date"
+						type="text"
 						name="date"
-						min={minDate}
+						// min={minDate}
 						value={formData.date}
 						onChange={handleChange}
 					/>
