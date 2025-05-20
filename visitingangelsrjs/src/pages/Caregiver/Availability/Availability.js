@@ -139,14 +139,16 @@ function Availability() {
 				</label>
 
 				<div className={"num-recurrences"}>
-					<span>End after: </span>
-					<input
-						type={"text"}
-						name={"numRecurrences"}
-						value={formData.numRecurrences}
-						onChange={handleChange}
-					/>
-					<span>occurrences</span>
+					<span>End after:
+						<input
+							type={"text"}
+							name={"numRecurrences"}
+							value={formData.numRecurrences}
+							onChange={handleChange}
+						/>
+						occurrences
+					</span>
+					{/*<span >occurrences</span>*/}
 				</div>
 
 				<button className={"submit-button"} type="submit">Add</button>

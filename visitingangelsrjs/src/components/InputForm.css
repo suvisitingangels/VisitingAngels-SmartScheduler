@@ -34,16 +34,28 @@
 }
 
 .num-recurrences {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	gap: 10px;
 	align-items: baseline;
 	color: #555;
+	margin: 15px 0;
+}
 
-	input {
-		width: 50px;
-		height: 23px;
-	}
+/*.num-recurrences span {*/
+/*	width: 100%;*/
+/*}*/
+
+.num-recurrences > span > input {
+	margin: 0px 5px;
+	width: 30%;
+}
+
+.form-buttons-container {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
 }
 
 .submit-button {
@@ -55,10 +67,4 @@
 	border-radius: 8px;
 	cursor: pointer;
 	font-size: 16px;
-}
-
-.form-buttons-container {
-	display: flex;
-	flex-direction: row;
-	gap: 10px;
 }
