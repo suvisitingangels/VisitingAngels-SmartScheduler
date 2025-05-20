@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {jwtDecode} from "jwt-decode";
 import emailjs from "@emailjs/browser";
 import {useNavigate} from "react-router-dom";
-import './EditProfileForm.css'
+// import './EditProfileForm.css'
+import '../../../components/InputForm.css';
 
 function EditProfileForm() {
 	const navigate = useNavigate();
@@ -112,10 +113,10 @@ function EditProfileForm() {
 	}
 
 	return (
-		<div className={"edit-profile-container"}>
-				<h1 className={"page-header"}>Edit Profile</h1>
+		<div className={"input-form-container"}>
+			<h1 className={"page-header"}>Edit Profile</h1>
 
-			<form onSubmit={handleSubmit} className={"edit-profile-form"}>
+			<form onSubmit={handleSubmit} className={"input-form"}>
 				<label>
 					First Name:
 					<input
@@ -169,9 +170,9 @@ function EditProfileForm() {
 					/>
 				</label>
 
-				<div className={"form-buttons"}>
-					<button type={"submit"}>Save</button>
-					<button onClick={() => navigate(`/caregiver/profile/${username}`)}>Cancel</button>
+				<div className={"form-buttons-container"}>
+					<button className={"submit-button"} type={"submit"}>Save</button>
+					<button className={"submit-button"} onClick={() => navigate(`/caregiver/profile/${username}`)}>Cancel</button>
 				</div>
 			</form>
 		</div>
