@@ -34,6 +34,10 @@
 	font-size: 13px;
 }
 
+.caregiver-name {
+	background-color: #e4e4e4;
+}
+
 .num-recurrences {
 	width: 100%;
 	display: flex;

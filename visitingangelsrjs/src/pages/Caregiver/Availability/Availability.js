@@ -92,7 +92,7 @@ function Availability() {
 					Caregiver Name:
 					<input
 						type={"text"}
-						id={"caregiver-name"}
+						className={"caregiver-name"}
 						readOnly
 						value={formData.user_id}
 					/>
