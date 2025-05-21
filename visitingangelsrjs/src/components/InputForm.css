@@ -33,6 +33,10 @@
 	border-radius: 8px;
 }
 
+.caregiver-name {
+	background-color: #e4e4e4;
+}
+
 .num-recurrences {
 	width: 100%;
 	display: flex;
@@ -42,10 +46,6 @@
 	color: #555;
 	margin: 15px 0;
 }
-
-/*.num-recurrences span {*/
-/*	width: 100%;*/
-/*}*/
 
 .num-recurrences > span > input {
 	margin: 0px 5px;
