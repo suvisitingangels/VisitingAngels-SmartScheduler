@@ -11,15 +11,15 @@ async function deleteAvailabilityDateTime(req, res) {
 	const formData = req.body;
 	try {
 		const query = 'DELETE FROM availabilities where user_id=? AND available_date=? and start_time=? and end_time=?';
-		const values = [formData.body.user_id, formData.body.date, formData.body.start_time, formData.body.end_time];
+		const values = [formData.user_id, formData.date, formData.start_time, formData.end_time];
 		const [result] = await promise.query(query, values);
 		if (result.affectedRows === 0) {
 			return res.status(404).json({error: 'Availability not found'});
 		}
-		return res.json({message: 'Availability deleted'});
+		return res.json({message: 'Availability deleted'}).status(201);
 	} catch (e) {
 		console.error(e);
-		res.status(500);
+		res.status(500).json({error: 'Internal server error'});
 	}
 }
 

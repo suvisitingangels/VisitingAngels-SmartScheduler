@@ -31,7 +31,11 @@
 	margin-bottom: 15px;
 	border: 1px solid #ddd;
 	border-radius: 8px;
-	font-size: 13px;
+	font-size: 15px;
+}
+
+.caregiver-name {
+	background-color: #e4e4e4;
 }
 
 .num-recurrences {
